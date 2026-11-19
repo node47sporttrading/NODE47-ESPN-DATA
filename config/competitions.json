@@ -6,49 +6,49 @@
   "retries": 2,
   "competitions": [
     {
-      "sport": "football",
+      "sport": "soccer",
       "league": "eng.1",
       "name": "English Premier League",
       "enabled": true,
       "coverage_status": "candidate"
     },
     {
-      "sport": "football",
+      "sport": "soccer",
       "league": "esp.1",
       "name": "Spanish LaLiga",
       "enabled": true,
       "coverage_status": "candidate"
     },
     {
-      "sport": "football",
+      "sport": "soccer",
       "league": "ger.1",
       "name": "German Bundesliga",
       "enabled": true,
       "coverage_status": "candidate"
     },
     {
-      "sport": "football",
+      "sport": "soccer",
       "league": "ita.1",
       "name": "Italian Serie A",
       "enabled": true,
       "coverage_status": "candidate"
     },
     {
-      "sport": "football",
+      "sport": "soccer",
       "league": "fra.1",
       "name": "French Ligue 1",
       "enabled": true,
       "coverage_status": "candidate"
     },
     {
-      "sport": "football",
+      "sport": "soccer",
       "league": "uefa.champions",
       "name": "UEFA Champions League",
       "enabled": true,
       "coverage_status": "candidate"
     },
     {
-      "sport": "football",
+      "sport": "soccer",
       "league": "usa.1",
       "name": "MLS",
       "enabled": true,
@@ -78,14 +78,14 @@
     {
       "sport": "tennis",
       "league": "atp",
-      "name": "ATP",
+      "name": "ATP Tour",
       "enabled": true,
       "coverage_status": "exploratory"
     },
     {
       "sport": "tennis",
       "league": "wta",
-      "name": "WTA",
+      "name": "WTA Tour",
       "enabled": true,
       "coverage_status": "exploratory"
     }
