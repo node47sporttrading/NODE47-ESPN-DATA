@@ -52,7 +52,7 @@ class RegistryContractTests(unittest.TestCase):
             if entry["status"] == "verified":
                 self.assertIsNotNone(entry["last_verified"], entry["competition_id"])
 
-    def test_enabled_competition_routes_are_verified_and_enabled_in_registry(self):
+    def test_enabled_competition_routes_are_configured_in_registry(self):
         registry = {(e["sport"], e["competition_id"]): e for e in _registry()["entries"]}
         for competition in _competitions()["competitions"]:
             if not competition.get("enabled", False):

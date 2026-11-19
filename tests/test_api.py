@@ -30,6 +30,14 @@ class ApiTests(unittest.TestCase):
         self.assertGreaterEqual(data["count"], 1)
         self.assertTrue(all("collection_enabled" in item for item in data["competitions"]))
 
+    def test_competition_catalog_supports_dynamic_filters(self):
+        response = self.client.get("/v1/competitions?sport=soccer&status=verified&collection_enabled=true")
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertGreater(data["count"], 0)
+        self.assertEqual(data["by_sport"], {"soccer": data["count"]})
+        self.assertTrue(all(item["collection_enabled"] for item in data["competitions"]))
+
     def test_mcp_endpoint_is_mounted(self):
         self.assertTrue(any(getattr(route, "path", None) == "/mcp" for route in api.app.routes))
 

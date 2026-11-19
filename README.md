@@ -26,7 +26,8 @@ Variables : `DATABASE_URL` (optionnelle ; PostgreSQL si définie), `NODE47_DATA_
 
 ## Périmètre et couverture
 - Sports : football, basketball et tennis.
-- Registre : 237 compétitions (220 football, 15 basketball, 2 tennis).
+- Registre de départ : 237 routes activées (220 soccer, 15 basketball, 2 tennis). Le snapshot de référence couvre les 218 ligues soccer référencées dans le Core API WADL consulté le 30/09/2026, plus deux routes scoreboard soccer supplémentaires (ind.2, mex.w.1), ainsi que les 15 ligues basketball et les circuits ATP/WTA.
+- Ce nombre est un état du registre, pas une limite fixe. La découverte automatique interroge désormais les collections ESPN Core /v2/sports/{sport}/leagues, puis fusionne les identifiants découverts avec les routes scoreboard existantes.
 - Les routes activées sont des routes configurées, pas une garantie d'événements disponibles à chaque collecte.
 - Statuts de collecte : `ok` (événements reçus), `empty` (réponse valide sans événement), `unavailable` (échec de la route).
 - ESPN scoreboard est la source primaire des calendriers, participants, statuts et scores effectivement présents.
@@ -44,11 +45,17 @@ OpenAPI : `/docs`.
 | Route | Fonction |
 |---|---|
 | GET /v1/health | État, fraîcheur, événements conservés et nombre de suppressions obsolètes |
-| GET /v1/competitions?sport=soccer | Registre et activation |
+| GET /v1/competitions?sport=soccer&status=verified&collection_enabled=true | Registre et filtres sport/statut/catégorie/genre/zone/activation |
 | GET /v1/coverage | Résultat du dernier cycle par route |
 | GET /v1/events?sport=basketball&league=nba | Événements filtrables et paginés |
 | GET /v1/events/{event_id} | Détail d'un événement |
 | POST /v1/refresh | Rafraîchissement manuel protégé par X-API-Key |
+
+## Découverte et synchronisation du catalogue ESPN
+
+Le script tools/discover_core_leagues.py interroge les collections ESPN Core pour soccer, basketball et tennis, extrait les identifiants de ligues depuis les références ESPN et les fusionne avec les routes déjà connues. Le script tools/probe_registry.py vérifie ensuite les scoreboards avec le même client que le collecteur. Le builder et l’activateur séparent le recensement, la preuve d’accès et l’activation des nouvelles routes.
+
+Le workflow .github/workflows/registry-sync.yml exécute ce cycle chaque semaine et ouvre une Pull Request de synchronisation si le catalogue évolue. Il ne fusionne pas automatiquement main et ne supprime pas les routes historiques en cas d’échec temporaire de l’API.
 
 ## Connexion MCP NODE.47
 
@@ -58,7 +65,7 @@ Le serveur expose un endpoint MCP Streamable HTTP à :
 
 Outils MCP en lecture seule :
 - `espn_health` : statut du service, dernière collecte, âge des données et nombre d'événements.
-- `espn_competitions` : registre des compétitions et activation des routes.
+- `espn_competitions` : catalogue complet filtrable par sport, statut, catégorie, genre, zone et activation. Ne pas limiter les analyses à une liste de ligues codée en dur.
 - `espn_coverage` : statut du dernier cycle par compétition.
 - `espn_events` : recherche paginée par sport, ligue, statut et période UTC.
 - `espn_event_detail` : détail d'un événement par identifiant exact.

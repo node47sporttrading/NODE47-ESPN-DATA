@@ -58,11 +58,14 @@ jobs:
           config = json.loads(Path("config/competitions.json").read_text())
           enabled = [item for item in config["competitions"] if item.get("enabled")]
           keys = {(item["sport"], item["league"]) for item in enabled}
-          verified = {(item["sport"], item["competition_id"]) for item in registry["entries"] if item.get("status") == "verified"}
-          assert len(enabled) == 237, f"expected 237 enabled routes, got {len(enabled)}"
-          assert len(keys) == 237, f"expected 237 unique enabled routes, got {len(keys)}"
-          assert keys == verified, f"enabled/verified mismatch: missing={verified-keys}, extra={keys-verified}"
-          print("Validated 237 unique enabled routes across all verified registry entries.")
+          active_registry = {(item["sport"], item["competition_id"]) for item in registry["entries"] if item.get("collection_enabled")}
+          assert len(keys) == len(enabled), f"duplicate enabled routes: {len(enabled)} entries, {len(keys)} unique"
+          assert keys == active_registry, f"enabled/registry mismatch: missing={active_registry-keys}, extra={keys-active_registry}"
+          counts = {}
+          for sport, _ in keys:
+              counts[sport] = counts.get(sport, 0) + 1
+          assert set(counts) == {"soccer", "basketball", "tennis"}, f"unexpected sports: {counts}"
+          print(f"Validated {len(keys)} unique enabled routes: {counts}")
           PY
       - name: Collect ESPN data
         env:
@@ -75,8 +78,11 @@ jobs:
           from pathlib import Path
           data = json.loads(Path("site/data/latest.json").read_text())
           coverage = data["coverage"]
-          assert len(coverage) == 237, f"expected 237 coverage rows, got {len(coverage)}"
-          assert len({(x["sport"], x["league"]) for x in coverage}) == 237, "duplicate coverage rows"
+          configured = [item for item in json.loads(Path("config/competitions.json").read_text())["competitions"] if item.get("enabled")]
+          expected = {(item["sport"], item["league"]) for item in configured}
+          actual = {(row["sport"], row["league"]) for row in coverage}
+          assert len(coverage) == len(expected), f"coverage rows {len(coverage)} != configured routes {len(expected)}"
+          assert actual == expected, f"coverage/config mismatch: missing={expected-actual}, extra={actual-expected}"
           counts = {}
           for row in coverage:
               counts[row["sport"]] = counts.get(row["sport"], 0) + 1

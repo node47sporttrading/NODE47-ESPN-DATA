@@ -103,10 +103,19 @@ async def espn_health() -> dict[str, Any]:
 
 
 @mcp.tool()
-async def espn_competitions(sport: str | None = None, status: str | None = None) -> dict[str, Any]:
-    """List configured ESPN competitions, optionally filtered by sport and registry status."""
-    return await competitions(sport=sport, status=status)
-
+async def espn_competitions(
+    sport: str | None = None,
+    status: str | None = None,
+    category: str | None = None,
+    gender: str | None = None,
+    zone: str | None = None,
+    collection_enabled: bool | None = None,
+) -> dict[str, Any]:
+    """List the full ESPN competition catalog with optional sport, status, category, gender, zone and activation filters."""
+    return await competitions(
+        sport=sport, status=status, category=category, gender=gender,
+        zone=zone, collection_enabled=collection_enabled,
+    )
 
 @mcp.tool()
 async def espn_coverage() -> dict[str, Any]:
@@ -442,7 +451,15 @@ async def health():
 
 
 @app.get("/v1/competitions", tags=["catalog"])
-async def competitions(sport: str | None = None, status: str | None = None):
+async def competitions(
+    sport: str | None = None,
+    status: str | None = None,
+    category: str | None = None,
+    gender: str | None = None,
+    zone: str | None = None,
+    collection_enabled: bool | None = None,
+):
+    """Filter the live ESPN competition registry without hard-coded league allowlists."""
     active = {
         (x["sport"], x["league"])
         for x in config.get("competitions", [])
@@ -454,11 +471,27 @@ async def competitions(sport: str | None = None, status: str | None = None):
             continue
         if status and entry.get("status") != status:
             continue
+        if category and entry.get("category") != category:
+            continue
+        if gender and entry.get("gender") != gender:
+            continue
+        if zone and entry.get("zone") != zone:
+            continue
+        is_enabled = (entry.get("sport"), entry.get("competition_id")) in active
+        if collection_enabled is not None and is_enabled != collection_enabled:
+            continue
         item = dict(entry)
-        item["collection_enabled"] = (item.get("sport"), item.get("competition_id")) in active
+        item["collection_enabled"] = is_enabled
         entries.append(item)
-    return {"count": len(entries), "registry_version": registry.get("version"), "competitions": entries}
-
+    counts = {}
+    for item in entries:
+        counts[item["sport"]] = counts.get(item["sport"], 0) + 1
+    return {
+        "count": len(entries),
+        "by_sport": counts,
+        "registry_version": registry.get("version"),
+        "competitions": entries,
+    }
 
 @app.get("/v1/coverage", tags=["catalog"])
 async def coverage():

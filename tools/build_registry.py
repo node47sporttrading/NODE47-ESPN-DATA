@@ -287,10 +287,11 @@ def main() -> None:
 
     registry = {
         "schema_version": "1.0",
-        "version": "0.0.5",
+        "version": "0.0.6",
         "dataset": "node47_multisport_competition_registry",
         "generated_at_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "scope": ["football (soccer)", "basketball", "tennis"],
+        "discovery": candidates_doc.get("discovery", {}),
         "status_values": ["verified", "candidate", "unavailable"],
         "status_semantics": {
             "verified": "endpoint identified, tested, data schema validated by live probes",

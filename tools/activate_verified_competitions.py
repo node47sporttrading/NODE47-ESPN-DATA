@@ -53,7 +53,7 @@ def main():
     activated_config, activated_registry = build_activation(registry, config, args.expected_total)
     config_path.write_text(json.dumps(activated_config, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     registry_path.write_text(json.dumps(activated_registry, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Enabled {len(activated_config['competitions'])} verified ESPN routes: " +
+    print(f"Configured {len(activated_config['competitions'])} active ESPN routes: " +
           ", ".join(f"{sport}={count}" for sport, count in sorted(activated_registry["collection_activation"]["by_sport"].items())))
 
 

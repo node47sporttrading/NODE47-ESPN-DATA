@@ -1,0 +1,54 @@
+name: NODE47 ESPN competition catalog sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 4 * * 1"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: node47-espn-registry-sync
+  cancel-in-progress: false
+
+jobs:
+  discover-probe-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Discover ESPN Core league collections
+        run: python tools/discover_core_leagues.py
+      - name: Probe Site API scoreboards
+        env:
+          PYTHONPATH: src
+        run: python tools/probe_registry.py --workers 4 --window-days 7
+      - name: Build registry from live probe evidence
+        run: python tools/build_registry.py
+      - name: Activate verified scoreboard routes
+        run: python tools/activate_verified_competitions.py --expected-total 0
+      - name: Run complete test suite
+        env:
+          PYTHONPATH: src
+        run: python -m unittest discover -s tests -v
+      - name: Create catalog update pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/espn-competition-catalog-sync
+          delete-branch: true
+          commit-message: "Sync ESPN football basketball and tennis competition catalog"
+          title: "chore: synchronize complete ESPN competition catalog"
+          body: |
+            Automated weekly census of ESPN Core league collections for soccer, basketball and tennis.
+            New routes are activated only after Site API scoreboard schema probes succeed.
+            Existing scoreboard-only routes are retained. Review route additions and coverage before merging.
