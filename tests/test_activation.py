@@ -8,7 +8,7 @@ from pathlib import Path
 SCRIPT = Path(__file__).resolve().parents[1] / "tools" / "activate_verified_competitions.py"
 
 class ActivationTests(unittest.TestCase):
-    def test_activates_only_verified_routes_and_preserves_observed_state(self):
+    def test_activates_only_verified_routes_and_marks_verified_routes_as_configured(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             registry_path, config_path = root / "registry.json", root / "competitions.json"
@@ -30,7 +30,7 @@ class ActivationTests(unittest.TestCase):
             self.assertEqual(activated["max_workers"],4)
             self.assertTrue(updated["entries"][0]["collection_enabled"])
             self.assertFalse(updated["entries"][2]["collection_enabled"])
-            self.assertFalse(updated["entries"][0]["collected"])
+            self.assertTrue(updated["entries"][0]["collected"])
 
     def test_guard_rejects_incomplete_verified_census(self):
         with tempfile.TemporaryDirectory() as tmp:
