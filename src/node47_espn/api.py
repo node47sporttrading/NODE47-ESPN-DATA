@@ -12,7 +12,6 @@ from typing import Any
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Query
 from mcp.server.fastmcp import FastMCP
-from mcp.server.transport_security import TransportSecuritySettings
 
 from .client import ESPNClient
 from .collector import collect
