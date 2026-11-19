@@ -109,7 +109,7 @@ Le workflow `.github/workflows/espn-pages.yml` publie des snapshots JSON et un m
 - Branche de migration PostgreSQL : backend psycopg optionnel, importateur SQLite idempotent et tests d'intégration PostgreSQL.
 
 
-## PropLine sport modules (v0.0.11)
+## PropLine sport modules (v0.0.12)
 
 PropLine is exposed through three validated adapters:
 
