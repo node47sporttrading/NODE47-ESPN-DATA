@@ -181,27 +181,11 @@ async def propline_sports() -> dict[str, Any]:
 
 
 @mcp.tool()
-async def propline_events(sport_key: str, commence_time_from: str | None = None,
-                          commence_time_to: str | None = None) -> dict[str, Any]:
-    """List PropLine events for a provider sport key, optionally bounded by UTC kickoff times."""
-    params = {}
-    if commence_time_from:
-        params["commence_time_from"] = commence_time_from
-    if commence_time_to:
-        params["commence_time_to"] = commence_time_to
+async def propline_events(sport_key: str) -> dict[str, Any]:
+    """List upcoming PropLine events for a provider sport key (e.g. basketball_nba)."""
     try:
-        data = await asyncio.to_thread(_propline().events, sport_key, **params)
+        data = await asyncio.to_thread(_propline().events, sport_key)
         return {"status": "ok", "sport_key": sport_key, "events": data}
-    except PropLineError as exc:
-        return {"status": "error", "sport_key": sport_key, "error": str(exc)}
-
-
-@mcp.tool()
-async def propline_event_ids(sport_key: str) -> dict[str, Any]:
-    """Return PropLine's event ID crosswalk, including ESPN event IDs where available."""
-    try:
-        data = await asyncio.to_thread(_propline().event_ids, sport_key)
-        return {"status": "ok", "sport_key": sport_key, "crosswalk": data}
     except PropLineError as exc:
         return {"status": "error", "sport_key": sport_key, "error": str(exc)}
 
@@ -226,17 +210,6 @@ async def propline_event_odds(sport_key: str, event_id: str, markets: str) -> di
         data = await asyncio.to_thread(_propline().event_odds, sport_key, event_id, markets)
         return {"status": "ok", "sport_key": sport_key, "event_id": event_id,
                 "markets": markets, "odds": data}
-    except PropLineError as exc:
-        return {"status": "error", "sport_key": sport_key, "event_id": event_id,
-                "error": str(exc)}
-
-
-@mcp.tool()
-async def propline_markets(sport_key: str, event_id: str) -> dict[str, Any]:
-    """Discover which market keys are actually available for a PropLine event."""
-    try:
-        data = await asyncio.to_thread(_propline().markets, sport_key, event_id)
-        return {"status": "ok", "sport_key": sport_key, "event_id": event_id, "markets": data}
     except PropLineError as exc:
         return {"status": "error", "sport_key": sport_key, "event_id": event_id,
                 "error": str(exc)}
