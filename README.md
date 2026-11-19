@@ -100,6 +100,12 @@ Le workflow `.github/workflows/espn-pages.yml` publie des snapshots JSON et un m
 - La connexion MCP native au plugin doit être configurée et testée séparément.
 - Sans cote actuelle, ligne exacte et règles de règlement vérifiées, le moteur décisionnel doit conclure NO BET.
 
+## Moteur prédictif NBA — V0.1 baseline
+
+Un premier moteur déterministe de projection basketball est disponible via `POST /v1/predictions/basketball`. Il exige des agrégats d'équipe explicitement fournis par l'appelant et renvoie une projection marquée `baseline_uncalibrated`. Il ne récupère pas automatiquement les statistiques, ne constitue pas un modèle entraîné et ne valide aucun avantage de pari. Les métriques de backtest et les exigences de validation sont décrites dans [docs/NBA_PREDICTION_ENGINE.md](docs/NBA_PREDICTION_ENGINE.md).
+
+**Cette version n'est pas encore déployée en production.** Elle doit passer les tests automatisés et une validation chronologique sur des données historiques avant tout usage opérationnel.
+
 ## Historique
 
 - V0.0.7 : API HTTP, SQLite, catalogue et couverture.
