@@ -17,7 +17,7 @@ class PropLineModuleAdapterTests(unittest.TestCase):
         self.assertIn("total_corners", markets)
         self.assertEqual(_validate_propline_period(config, "h1"), "h1")
 
-    def test_basketball_catalogue_has_documented_nba_player_markets(self):
+    def test_basketball_uses_dynamic_event_market_discovery(self):
         module, key, markets, config = _propline_module("basketball", "basketball_nba")
         self.assertEqual(module, "basketball")
         self.assertTrue(config["dynamic_event_markets"])
@@ -34,7 +34,9 @@ class PropLineModuleAdapterTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             _propline_module("football", "basketball_nba")
         with self.assertRaises(ValueError):
-            _propline_module("basketball", "basketball_nba", "player_aces")
+            _propline_module("basketball", "basketball_nba", "player_points")
+        module, key, markets, config = _propline_module("basketball", "basketball_nba", "player_points", allow_dynamic=True)
+        self.assertEqual(markets, "player_points")
         with self.assertRaises(ValueError):
             _validate_propline_period({"periods": ("q1",)}, "s1")
 
