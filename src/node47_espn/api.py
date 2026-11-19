@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Query
+from fastapi.staticfiles import StaticFiles
 from mcp.server.fastmcp import FastMCP
 
 from .client import ESPNClient
@@ -20,6 +21,7 @@ from .store import DataStore
 ROOT = Path(__file__).resolve().parents[2]
 CONFIG_PATH = Path(os.getenv("NODE47_CONFIG_PATH", ROOT / "config" / "competitions.json"))
 REGISTRY_PATH = Path(os.getenv("NODE47_REGISTRY_PATH", ROOT / "config" / "registry.json"))
+WEB_PATH = Path(__file__).resolve().parent / "web"
 DATA_PATH = os.getenv("NODE47_DATA_PATH", str(ROOT / "data" / "node47.sqlite3"))
 REFRESH_SECONDS = max(60, int(os.getenv("NODE47_REFRESH_SECONDS", "900")))
 
@@ -241,6 +243,10 @@ async def manual_refresh():
         "event_count": dataset["event_count"],
         "coverage": dataset["coverage"],
     }
+
+# Browser dashboard: same-origin, read-only access to the REST API.
+# It does not expose the protected manual refresh endpoint or any API key.
+app.mount("/app", StaticFiles(directory=WEB_PATH, html=True), name="node47-web")
 
 # Keep the REST routes first; the mounted MCP application handles only /mcp/.
 app.mount("/mcp", mcp_http_app)
