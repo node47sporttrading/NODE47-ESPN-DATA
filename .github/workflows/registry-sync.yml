@@ -1,0 +1,57 @@
+name: NODE47 ESPN competition catalog sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 4 * * 1"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: node47-espn-catalog-sync
+  cancel-in-progress: false
+
+jobs:
+  discover-probe-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Discover ESPN Core league collections
+        run: python tools/discover.py
+      - name: Force a fresh scoreboard census
+        run: rm -f data/registry/evidence.json data/registry/probe_checkpoint.jsonl
+      - name: Probe every discovered scoreboard route
+        env:
+          PYTHONPATH: src
+        run: python tools/probe_registry.py --workers 4 --window-days 7
+      - name: Rebuild the competition registry
+        run: python tools/build_registry.py
+      - name: Activate verified and previously active routes
+        run: python tools/activate_verified_competitions.py --expected-total 0
+      - name: Run test suite
+        env:
+          PYTHONPATH: src
+        run: python -m unittest discover -s tests -v
+      - name: Propose catalog update
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/espn-competition-catalog-sync
+          delete-branch: true
+          commit-message: "Sync ESPN soccer basketball and tennis catalog"
+          title: "chore: synchronize complete ESPN competition catalog"
+          body: |
+            Weekly census of ESPN Core league collections for soccer, basketball and tennis.
+            New scoreboard routes are activated only after schema probes succeed.
+            Previously active routes are retained during transient probe failures.
+            Review catalog changes, verification evidence and collection coverage before merging.

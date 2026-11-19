@@ -31,6 +31,14 @@ Variables : `DATABASE_URL` (optionnelle ; PostgreSQL si définie), `NODE47_DATA_
 - Statuts de collecte : `ok` (événements reçus), `empty` (réponse valide sans événement), `unavailable` (échec de la route).
 - ESPN scoreboard est la source primaire des calendriers, participants, statuts et scores effectivement présents.
 
+## Registre ESPN complet — football, basketball et tennis
+
+Le catalogue `config/registry.json` est construit à partir de l’énumération ESPN Core `sports.core.api.espn.com/v2/sports/{sport}/leagues` pour les trois sports NODE.47 : `soccer` (football), `basketball` et `tennis`. Le snapshot actuellement commité recense **237 identifiants ESPN** : 220 soccer, 15 basketball et 2 tennis. Ce nombre décrit l'état du catalogue au moment de la découverte ; il ne constitue pas une limite codée en dur.
+
+`tools/discover.py` réénumère les ligues ESPN Core. `tools/probe_registry.py` vérifie chaque route contre le scoreboard ESPN Site API. Une ligue découverte n'est pas automatiquement exploitable : le statut `verified` exige une réponse JSON valide contenant un champ `events` de type liste. Les ligues non vérifiées restent visibles dans le registre mais ne sont pas activées comme nouvelles routes de collecte.
+
+Les routes déjà activées sont conservées dans la configuration pendant un échec temporaire de probe. La couverture réelle reste distincte du recensement et est exposée par `espn_coverage` (`ok`, `empty`, `unavailable`). Le workflow hebdomadaire de synchronisation ouvre une Pull Request pour revue ; il ne pousse pas directement les changements sur `main`.
+
 ## API REST V0.0.9
 Python 3.11+ recommandé.
 
@@ -44,7 +52,7 @@ OpenAPI : `/docs`.
 | Route | Fonction |
 |---|---|
 | GET /v1/health | État, fraîcheur, événements conservés et nombre de suppressions obsolètes |
-| GET /v1/competitions?sport=soccer | Registre et activation |
+| GET /v1/competitions?sport=soccer&status=verified&collection_enabled=true | Registre complet, filtres sport/statut/catégorie/genre/zone/activation |
 | GET /v1/coverage | Résultat du dernier cycle par route |
 | GET /v1/events?sport=basketball&league=nba | Événements filtrables et paginés |
 | GET /v1/events/{event_id} | Détail d'un événement |
@@ -58,7 +66,7 @@ Le serveur expose un endpoint MCP Streamable HTTP à :
 
 Outils MCP en lecture seule :
 - `espn_health` : statut du service, dernière collecte, âge des données et nombre d'événements.
-- `espn_competitions` : registre des compétitions et activation des routes.
+- `espn_competitions` : recensement ESPN complet (soccer, basketball, tennis), filtrable par sport, statut, catégorie, genre, zone et activation du collecteur.
 - `espn_coverage` : statut du dernier cycle par compétition.
 - `espn_events` : recherche paginée par sport, ligue, statut et période UTC.
 - `espn_event_detail` : détail d'un événement par identifiant exact.

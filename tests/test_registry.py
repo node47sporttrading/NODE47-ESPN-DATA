@@ -59,19 +59,36 @@ class RegistryContractTests(unittest.TestCase):
                 continue
             key = (competition["sport"], competition["league"])
             self.assertIn(key, registry, f"{key} absent from registry")
-            self.assertEqual(registry[key]["status"], "verified", f"{key} not verified")
+            self.assertIn(registry[key]["status"], {"verified", "unavailable"}, f"{key} has invalid active status")
             self.assertTrue(registry[key]["collection_enabled"], f"{key} not configured for collection")
             # Legacy `collected` means included in configured collection; live outcome is in coverage.
             self.assertTrue(registry[key]["collected"], f"{key} not marked as configured for collection")
 
-    def test_all_verified_entries_are_activated_once(self):
+    def test_enabled_competition_routes_match_registry_activation(self):
         registry = _registry()
         enabled = [c for c in _competitions()["competitions"] if c.get("enabled")]
-        verified = [e for e in registry["entries"] if e["status"] == "verified"]
-        self.assertEqual(len(enabled), 237)
-        self.assertEqual(len(verified), 237)
-        self.assertEqual({(c["sport"], c["league"]) for c in enabled},
-                         {(e["sport"], e["competition_id"]) for e in verified})
+        configured = {(c["sport"], c["league"]) for c in enabled}
+        active_registry = {(e["sport"], e["competition_id"]) for e in registry["entries"] if e["collection_enabled"]}
+        self.assertGreater(len(configured), 0)
+        self.assertEqual(configured, active_registry)
+
+    def test_catalog_contains_all_requested_sports(self):
+        sports = {entry["sport"] for entry in _registry()["entries"]}
+        self.assertEqual(sports, ALLOWED_SPORT)
+
+    def test_activation_is_dynamic_and_retains_existing_unavailable_routes(self):
+        from tools.activate_verified_competitions import build_activation
+        registry = {"entries": [
+            {"sport": "soccer", "competition_id": "new.1", "status": "verified"},
+            {"sport": "basketball", "competition_id": "nba", "status": "unavailable"},
+            {"sport": "tennis", "competition_id": "new.circuit", "status": "candidate"},
+        ]}
+        config = {"max_workers": 4, "competitions": [{"sport": "basketball", "league": "nba", "enabled": True}]}
+        activated, updated_registry = build_activation(registry, config)
+        keys = {(x["sport"], x["league"]) for x in activated["competitions"]}
+        self.assertEqual(keys, {("soccer", "new.1"), ("basketball", "nba")})
+        self.assertEqual(updated_registry["collection_activation"]["enabled_count"], 2)
+        self.assertFalse(next(x for x in updated_registry["entries"] if x["competition_id"] == "new.circuit")["collection_enabled"])
 
     def test_registry_counts_match_entries(self):
         registry = _registry()

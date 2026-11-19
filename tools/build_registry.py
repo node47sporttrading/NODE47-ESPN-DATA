@@ -266,14 +266,16 @@ def main() -> None:
         print(f"WARNING: {len(missing_evidence)} candidates were never probed and stay 'candidate': "
               f"{missing_evidence[:10]}{'...' if len(missing_evidence) > 10 else ''}")
 
-    # Invariant: every enabled collection route must exist and be verified.
+    # New routes must be verified before activation. Previously enabled routes
+    # may remain configured through transient probe failures; coverage reports
+    # their current collection outcome separately.
     by_key = {(e["sport"], e["competition_id"]): e for e in entries}
     broken = []
     for key in sorted(collected_keys):
         entry = by_key.get(key)
         if entry is None:
             broken.append(f"{key}: absent from registry")
-        elif entry["status"] != "verified":
+        elif entry["status"] not in {"verified", "unavailable"}:
             broken.append(f"{key}: status={entry['status']}")
     if broken:
         sys_exit = "FAIL: enabled competitions.json routes not verified in registry:\n" + "\n".join(broken)
@@ -287,7 +289,7 @@ def main() -> None:
 
     registry = {
         "schema_version": "1.0",
-        "version": "0.0.5",
+        "version": "0.0.14",
         "dataset": "node47_multisport_competition_registry",
         "generated_at_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "scope": ["football (soccer)", "basketball", "tennis"],
@@ -306,6 +308,8 @@ def main() -> None:
         "collection_activation": {
             "mode": "enabled_routes_from_competitions_config",
             "enabled_count": len(collected_keys),
+            "verified_count": sum(1 for e in entries if e["status"] == "verified"),
+            "unavailable_count": sum(1 for e in entries if e["status"] == "unavailable"),
             "semantics": "collected and collection_enabled indicate inclusion in the configured collector; observed request outcomes are recorded separately in the coverage manifest.",
         },
         "total": len(entries),
