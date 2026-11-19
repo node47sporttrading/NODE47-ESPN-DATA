@@ -21,7 +21,7 @@ class ApiTests(unittest.TestCase):
     def test_health_endpoint(self):
         response = self.client.get("/v1/health")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()["version"], "0.0.9")
+        self.assertEqual(response.json()["version"], "0.0.10")
 
     def test_competitions_separates_registry_from_active_collection(self):
         response = self.client.get("/v1/competitions?sport=basketball")
@@ -47,6 +47,23 @@ class ApiTests(unittest.TestCase):
                 "/v1/refresh", headers={"X-API-Key": "test-secret"}
             )
             self.assertEqual(response.status_code, 200)
+
+
+    def test_basketball_prediction_endpoint_returns_uncalibrated_baseline(self):
+        payload = {
+            "home": {"name": "Spurs", "points_for_per_game": 117.1,
+                     "points_against_per_game": 105.9, "pace": 97.7},
+            "away": {"name": "Clippers", "points_for_per_game": 111.9,
+                     "points_against_per_game": 117.7, "pace": 99.0},
+            "market_total": 225.5,
+            "market_home_handicap": -15.5
+        }
+        response = self.client.post("/v1/predictions/basketball", json=payload)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["status"], "baseline_uncalibrated")
+        self.assertAlmostEqual(
+            response.json()["home_win_probability"] + response.json()["away_win_probability"], 1.0
+        )
 
 
 if __name__ == "__main__":
