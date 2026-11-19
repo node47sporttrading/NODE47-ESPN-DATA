@@ -2,13 +2,24 @@ name: NODE47 ESPN collect and publish
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "17 */6 * * *"
-  push:
+  pull_request:
     branches: [main]
     paths:
       - "src/**"
       - "config/**"
+      - "tests/**"
+      - "tools/**"
+      - "requirements.txt"
+      - ".github/workflows/espn-pages.yml"
+  schedule:
+    - cron: "17 */6 * * *"
+  push:
+    branches: [main, feature/node47-data-api-v0.0.7]
+    paths:
+      - "src/**"
+      - "config/**"
+      - "tests/**"
+      - "tools/**"
       - "requirements.txt"
       - ".github/workflows/espn-pages.yml"
 
@@ -38,10 +49,40 @@ jobs:
         env:
           PYTHONPATH: src
         run: python -m unittest discover -s tests -v
+      - name: Validate activation census
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          registry = json.loads(Path("config/registry.json").read_text())
+          config = json.loads(Path("config/competitions.json").read_text())
+          enabled = [item for item in config["competitions"] if item.get("enabled")]
+          keys = {(item["sport"], item["league"]) for item in enabled}
+          verified = {(item["sport"], item["competition_id"]) for item in registry["entries"] if item.get("status") == "verified"}
+          assert len(enabled) == 237, f"expected 237 enabled routes, got {len(enabled)}"
+          assert len(keys) == 237, f"expected 237 unique enabled routes, got {len(keys)}"
+          assert keys == verified, f"enabled/verified mismatch: missing={verified-keys}, extra={keys-verified}"
+          print("Validated 237 unique enabled routes across all verified registry entries.")
+          PY
       - name: Collect ESPN data
         env:
           PYTHONPATH: src
         run: python -m node47_espn.cli --config config/competitions.json --output site
+      - name: Verify full collection manifest
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("site/data/latest.json").read_text())
+          coverage = data["coverage"]
+          assert len(coverage) == 237, f"expected 237 coverage rows, got {len(coverage)}"
+          assert len({(x["sport"], x["league"]) for x in coverage}) == 237, "duplicate coverage rows"
+          counts = {}
+          for row in coverage:
+              counts[row["sport"]] = counts.get(row["sport"], 0) + 1
+          print(f"Collection completed: {len(coverage)} routes; {data['event_count']} events; {counts}")
+          print("Observed statuses:", {status: sum(1 for x in coverage if x["status"] == status) for status in ("ok", "empty", "unavailable")})
+          PY
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
@@ -49,14 +90,14 @@ jobs:
 
   deploy:
     needs: collect
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       pages: write
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: \${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
