@@ -1,6 +1,12 @@
-# Coverage matrix — V0.0.3
+# Coverage matrix — V0.0.5
 
-Verification state at last update: **2026-11-19**, one live probe session (3 date windows per route: current day, D-5, D+3, plus season-date probes for WNBA and UEFA Champions League). A route becomes **verified** only after repeatable successful live probes across several sessions; the states below are intermediate and must not be treated as permanent coverage guarantees.
+Since V0.0.4/V0.0.5, the full census lives in **`config/registry.json`** (237 competitions: 220 soccer, 15 basketball, 2 tennis, all verified by live scoreboard probes on **2026-11-19** across 4 matchday-aligned windows: Nov 19, 22, 25, 28). The registry is the source of truth for verification status; this matrix keeps the collection-route detail and the sport-specific notes.
+
+Probe evidence: `data/registry/evidence.json` (948 requests, 237/237 verified, 0 unavailable; 82 competitions had real events captured in the windows, 155 are verified but out-of-calendar — seasonal tournaments, summer leagues, one-off cups).
+
+## Collection routes (12, all verified)
+
+Verification state at last update: **2026-11-19**, live probe sessions (V0.0.3 session with windows day/D-5/D+3 + season probes, then V0.0.5 registry probes). A route stays **verified** only while repeatable live probes keep succeeding; the states below must not be treated as permanent coverage guarantees.
 
 | Sport | League | Configured | Verification state (2026-11-19 live probe) | Notes |
 |---|---|---:|---|---|
@@ -18,12 +24,12 @@ Verification state at last update: **2026-11-19**, one live probe session (3 dat
 | Tennis | wta | Yes | HTTP 200, but payload shape is tournament-level | See tennis note below |
 
 ## Tennis note (important, measured on 2026-11-19)
-The ESPN tennis scoreboard does not follow the team-sport shape. `events[]` items are **tournaments** (e.g. `Nitto ATP Finals`, id `339-2026`), each exposing `groupings[].competitions[].competitors[].athlete` instead of `competitions[].competitors[].team`. The V0.0.3 normalizer therefore records one event per tournament, with `participants` empty and a `participants_unavailable` quality flag. No data is invented. Match-level tennis mapping is a V0.0.4 concern (sport-specific normalizer), not something to fake into the current schema.
+The ESPN tennis scoreboard does not follow the team-sport shape. `events[]` items are **tournaments** (e.g. `Nitto ATP Finals`, id `339-2026`), each exposing `groupings[].competitions[].competitors[].athlete` instead of `competitions[].competitors[].team`. The V0.0.5 normalizer therefore records one event per tournament, with `participants` empty and a `participants_unavailable` quality flag. No data is invented. Match-level tennis mapping remains an open sport-specific work item (from V0.0.6 on), not something to fake into the current schema.
 
 ## Interpretation of collection status
 - `ok`: HTTP request succeeded and one or more events were normalized.
 - `empty`: HTTP request succeeded and ESPN returned an empty event list. This can be a legitimate off-day/off-season result (measured for `uefa.champions` and `wnba` on non-match days).
 - `unavailable`: request, HTTP, or payload parsing failed. See the error field in the manifest.
 
-## Not included in V0.0.3
-Injuries, player availability, rosters, advanced statistics, bookmaker odds, lineups, historical backfill and real-time push updates.
+## Not included yet
+Injuries, player availability, rosters, advanced statistics, bookmaker odds, lineups, historical backfill and real-time push updates. Registry-driven collection (beyond the 12 routes) starts with V0.0.6.

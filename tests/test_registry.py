@@ -1,0 +1,81 @@
+"""Registry contract tests: the census must stay consistent with the collection layer."""
+import json
+import unittest
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parents[1]
+REGISTRY_PATH = REPO / "config" / "registry.json"
+COMPETITIONS_PATH = REPO / "config" / "competitions.json"
+
+ALLOWED_STATUS = {"verified", "candidate", "unavailable"}
+ALLOWED_SPORT = {"soccer", "basketball", "tennis"}
+
+
+def _registry():
+    return json.loads(REGISTRY_PATH.read_text(encoding="utf-8"))
+
+
+def _competitions():
+    return json.loads(COMPETITIONS_PATH.read_text(encoding="utf-8"))
+
+
+class RegistryContractTests(unittest.TestCase):
+    def test_registry_exists_and_parses(self):
+        registry = _registry()
+        self.assertEqual(registry["schema_version"], "1.0")
+        self.assertIn("entries", registry)
+
+    def test_all_entries_have_required_fields(self):
+        required = {"sport", "competition_id", "name", "category", "gender",
+                    "zone", "status", "collected", "last_verified", "evidence"}
+        for entry in _registry()["entries"]:
+            missing = required - set(entry)
+            self.assertEqual(missing, set(), f"entry {entry.get('competition_id')} misses {missing}")
+
+    def test_statuses_and_sports_are_in_allowed_enums(self):
+        for entry in _registry()["entries"]:
+            self.assertIn(entry["status"], ALLOWED_STATUS, entry["competition_id"])
+            self.assertIn(entry["sport"], ALLOWED_SPORT, entry["competition_id"])
+
+    def test_competition_ids_are_unique_per_sport(self):
+        keys = [(e["sport"], e["competition_id"]) for e in _registry()["entries"]]
+        self.assertEqual(len(keys), len(set(keys)))
+
+    def test_non_candidate_entries_carry_verification_evidence(self):
+        for entry in _registry()["entries"]:
+            if entry["status"] == "candidate":
+                self.assertIsNone(entry["last_verified"], entry["competition_id"])
+            else:
+                self.assertIsNotNone(entry["last_verified"], entry["competition_id"])
+                self.assertGreaterEqual(entry["evidence"]["http_ok_windows"], 0)
+                self.assertTrue(entry["evidence"]["windows"], entry["competition_id"])
+
+    def test_every_verified_entry_has_a_probe_date(self):
+        for entry in _registry()["entries"]:
+            if entry["status"] == "verified":
+                self.assertIsNotNone(entry["last_verified"], entry["competition_id"])
+
+    def test_enabled_competition_routes_are_verified_in_registry(self):
+        registry = {(e["sport"], e["competition_id"]): e for e in _registry()["entries"]}
+        for competition in _competitions()["competitions"]:
+            if not competition.get("enabled", False):
+                continue
+            key = (competition["sport"], competition["league"])
+            self.assertIn(key, registry, f"{key} absent from registry")
+            self.assertEqual(registry[key]["status"], "verified", f"{key} not verified")
+            self.assertTrue(registry[key]["collected"], f"{key} not flagged collected")
+
+    def test_registry_counts_match_entries(self):
+        registry = _registry()
+        counted = {}
+        for entry in registry["entries"]:
+            bucket = counted.setdefault(entry["sport"], {"verified": 0, "candidate": 0, "unavailable": 0})
+            bucket[entry["status"]] += 1
+        for sport, block in registry["counts"].items():
+            for status in ("verified", "candidate", "unavailable"):
+                self.assertEqual(block[status], counted[sport][status],
+                                 f"{sport}/{status} counts mismatch")
+
+
+if __name__ == "__main__":
+    unittest.main()

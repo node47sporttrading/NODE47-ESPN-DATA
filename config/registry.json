@@ -1,0 +1,6681 @@
+{
+  "schema_version": "1.0",
+  "version": "0.0.5",
+  "dataset": "node47_multisport_competition_registry",
+  "generated_at_utc": "2026-11-19T10:30:10.770866Z",
+  "scope": [
+    "football (soccer)",
+    "basketball",
+    "tennis"
+  ],
+  "status_values": [
+    "verified",
+    "candidate",
+    "unavailable"
+  ],
+  "status_semantics": {
+    "verified": "endpoint identified, tested, data schema validated by live probes",
+    "candidate": "listed by ESPN's enumeration, not yet probed",
+    "unavailable": "probed and not exploitable through the scoreboard endpoint"
+  },
+  "classification_note": "category/gender/zone are a derived editorial layer computed from ESPN names and slug tokens (see tools/build_registry.py). 'unspecified' means no explicit signal; nothing is guessed. This layer never feeds the decision engine.",
+  "counts": {
+    "soccer": {
+      "verified": 220,
+      "candidate": 0,
+      "unavailable": 0,
+      "total": 220
+    },
+    "basketball": {
+      "verified": 15,
+      "candidate": 0,
+      "unavailable": 0,
+      "total": 15
+    },
+    "tennis": {
+      "verified": 2,
+      "candidate": 0,
+      "unavailable": 0,
+      "total": 2
+    }
+  },
+  "total": 237,
+  "entries": [
+    {
+      "sport": "soccer",
+      "competition_id": "afc.asian.cup",
+      "name": "AFC Asian Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Asia (AFC)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "afc.champions",
+      "name": "AFC Champions League Elite",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Asia (AFC)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 2,
+        "sample_event_date": "20261125",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "afc.champions_qual",
+      "name": "AFC Champions League Elite Qualifying",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "Asia (AFC)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "afc.cup",
+      "name": "AFC Champions League Two",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Asia (AFC)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 8,
+        "sample_event_date": "20261125",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "afc.cup_qual",
+      "name": "AFC Champions League Two Qualifying",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "Asia (AFC)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "afc.cupq",
+      "name": "AFC Asian Cup Qualifiers",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "Asia (AFC)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "afc.saff.championship",
+      "name": "SAFF Championship",
+      "category": "tournament",
+      "gender": "unspecified",
+      "zone": "Asia (AFC)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "afc.w.asian.cup",
+      "name": "AFC Women's Asian Cup",
+      "category": "cup",
+      "gender": "female",
+      "zone": "Asia (AFC)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "aff.championship",
+      "name": "ASEAN Championship",
+      "category": "tournament",
+      "gender": "unspecified",
+      "zone": "Southeast Asia (AFF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "arg.1",
+      "name": "Argentine Liga Profesional de Fútbol",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Argentina",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 3,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "arg.2",
+      "name": "Argentine Nacional B",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Argentina",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 4,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "arg.3",
+      "name": "Argentine Primera B",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Argentina",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "arg.copa",
+      "name": "Copa Argentina",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Argentina",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "arg.copa_de_la_superliga",
+      "name": "Argentine Copa de la Superliga",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Argentina",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "arg.supercopa",
+      "name": "Argentine Supercopa",
+      "category": "super_cup",
+      "gender": "unspecified",
+      "zone": "Argentina",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "arg.supercopa.internacional",
+      "name": "Argentine Supercopa Internacional",
+      "category": "super_cup",
+      "gender": "unspecified",
+      "zone": "Argentina",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "arg.trofeo_de_la_campeones",
+      "name": "Argentine Trofeo de Campeones",
+      "category": "super_cup",
+      "gender": "unspecified",
+      "zone": "Argentina",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "aus.1",
+      "name": "Australian A-League Men",
+      "category": "league",
+      "gender": "male",
+      "zone": "Australia",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 1,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "aus.w.1",
+      "name": "Australian A-League Women",
+      "category": "league",
+      "gender": "female",
+      "zone": "Australia",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "aut.1",
+      "name": "Austrian Bundesliga",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Austria",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 3,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "bel.1",
+      "name": "Belgian Pro League",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Belgium",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 4,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "bel.promotion.relegation",
+      "name": "Belgian Pro League Promotion/Relegation Playoffs",
+      "category": "play_offs",
+      "gender": "unspecified",
+      "zone": "Belgium",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "bol.1",
+      "name": "Bolivian Liga Profesional",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Bolivia",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 3,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "bol.copa",
+      "name": "Copa Bolivia",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Bolivia",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 1,
+        "sample_event_date": "20261125",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "bol.ply.rel",
+      "name": "Bolivian Liga Profesional Promotion/Relegation Playoffs",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "Bolivia",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "bra.1",
+      "name": "Brazilian Serie A",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Brazil",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 3,
+        "sample_event_date": "20261119",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "bra.2",
+      "name": "Brazilian Serie B",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Brazil",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 2,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "bra.camp.carioca",
+      "name": "Brazilian Campeonato Carioca",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Brazil",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "bra.camp.gaucho",
+      "name": "Brazilian Campeonato Gaucho",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Brazil",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "bra.camp.mineiro",
+      "name": "Brazilian Campeonato Mineiro",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Brazil",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "bra.camp.paulista",
+      "name": "Brazilian Campeonato Paulista",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Brazil",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "bra.copa_do_brazil",
+      "name": "Copa do Brasil",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Brazil",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "bra.supercopa_do_brazil",
+      "name": "Brazilian Supercopa Rei",
+      "category": "super_cup",
+      "gender": "unspecified",
+      "zone": "Brazil",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "caf.champions",
+      "name": "CAF Champions League",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Africa (CAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 5,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "caf.championship",
+      "name": "African Nations Championship",
+      "category": "tournament",
+      "gender": "unspecified",
+      "zone": "Africa (CAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "caf.confed",
+      "name": "CAF Confederation Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Africa (CAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 2,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "caf.cosafa",
+      "name": "COSAFA Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Africa (CAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "caf.nations",
+      "name": "Africa Cup of Nations",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Africa (CAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "caf.nations_qual",
+      "name": "Africa Cup of Nations Qualifying",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "Africa (CAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "caf.w.nations",
+      "name": "Women's Africa Cup of Nations",
+      "category": "cup",
+      "gender": "female",
+      "zone": "Africa (CAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "campeones.cup",
+      "name": "Campeones Cup",
+      "category": "super_cup",
+      "gender": "unspecified",
+      "zone": "International (clubs)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "can.w.nsl",
+      "name": "Northern Super League",
+      "category": "league",
+      "gender": "female",
+      "zone": "Canada",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "chi.1",
+      "name": "Chilean Primera División",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Chile",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 3,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "chi.1.promotion.relegation",
+      "name": "Chilean Primera División Promotion/Relegation Playoffs",
+      "category": "play_offs",
+      "gender": "unspecified",
+      "zone": "Chile",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "chi.copa_chi",
+      "name": "Copa Chile",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Chile",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "chi.super_cup",
+      "name": "Chilean Supercopa",
+      "category": "super_cup",
+      "gender": "unspecified",
+      "zone": "Chile",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "chn.1",
+      "name": "Chinese Super League",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "China",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "chn.1.promotion.relegation",
+      "name": "Chinese Super League Promotion/Relegation Playoffs",
+      "category": "play_offs",
+      "gender": "unspecified",
+      "zone": "China",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "club.friendly",
+      "name": "Club Friendly",
+      "category": "friendly",
+      "gender": "unspecified",
+      "zone": "International (clubs)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 1,
+        "sample_event_date": "20261119",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "col.1",
+      "name": "Colombian Primera A",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Colombia",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 2,
+        "sample_event_date": "20261125",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "col.copa",
+      "name": "Copa Colombia",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Colombia",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "col.superliga",
+      "name": "Colombian Superliga",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Colombia",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "concacaf.central.american.cup",
+      "name": "Concacaf Central American Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "North & Central America Caribbean (CONCACAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "concacaf.champions",
+      "name": "Concacaf Champions Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "North & Central America Caribbean (CONCACAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "concacaf.champions_cup",
+      "name": "CONCACAF Champions Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "North & Central America Caribbean (CONCACAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "concacaf.confederations_playoff",
+      "name": "Concacaf Cup",
+      "category": "play_offs",
+      "gender": "unspecified",
+      "zone": "North & Central America Caribbean (CONCACAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "concacaf.gold",
+      "name": "Concacaf Gold Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "North & Central America Caribbean (CONCACAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "concacaf.gold_qual",
+      "name": "Concacaf Gold Cup Qualifying",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "North & Central America Caribbean (CONCACAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "concacaf.leagues.cup",
+      "name": "Leagues Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "North & Central America Caribbean (CONCACAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "concacaf.nations.league",
+      "name": "Concacaf Nations League",
+      "category": "tournament",
+      "gender": "unspecified",
+      "zone": "North & Central America Caribbean (CONCACAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "concacaf.u23",
+      "name": "CONCACAF U23 Tournament",
+      "category": "tournament",
+      "gender": "unspecified",
+      "zone": "North & Central America Caribbean (CONCACAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "concacaf.w.champions_cup",
+      "name": "Concacaf W Champions Cup",
+      "category": "cup",
+      "gender": "female",
+      "zone": "North & Central America Caribbean (CONCACAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "concacaf.w.gold",
+      "name": "Concacaf W Gold Cup",
+      "category": "cup",
+      "gender": "female",
+      "zone": "North & Central America Caribbean (CONCACAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "concacaf.womens.championship",
+      "name": "Concacaf W Championship",
+      "category": "tournament",
+      "gender": "unspecified",
+      "zone": "North & Central America Caribbean (CONCACAF)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 2,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "conmebol.america",
+      "name": "Copa América",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "South America (CONMEBOL)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "conmebol.america.femenina",
+      "name": "Copa América Femenina",
+      "category": "cup",
+      "gender": "female",
+      "zone": "South America (CONMEBOL)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "conmebol.libertadores",
+      "name": "CONMEBOL Libertadores",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "South America (CONMEBOL)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 1,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "conmebol.recopa",
+      "name": "CONMEBOL Recopa",
+      "category": "super_cup",
+      "gender": "unspecified",
+      "zone": "South America (CONMEBOL)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "conmebol.sudamericana",
+      "name": "CONMEBOL Sudamericana",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "South America (CONMEBOL)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "crc.1",
+      "name": "Costa Rican Primera Division",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Costa Rica",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 4,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "den.1",
+      "name": "Danish Superliga",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Denmark",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 4,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ecu.1",
+      "name": "LigaPro Ecuador",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Ecuador",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 3,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "eng.1",
+      "name": "English Premier League",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "England",
+      "status": "verified",
+      "collected": true,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 3,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "eng.2",
+      "name": "English League Championship",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "England",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 10,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "eng.3",
+      "name": "English League One",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "England",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 11,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "eng.4",
+      "name": "English League Two",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "England",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 12,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "eng.5",
+      "name": "English National League",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "England",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 11,
+        "sample_event_date": "20261125",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "eng.charity",
+      "name": "English FA Community Shield",
+      "category": "super_cup",
+      "gender": "unspecified",
+      "zone": "England",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "eng.fa",
+      "name": "English FA Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "England",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "eng.fa_qual",
+      "name": "English FA Cup Qualifying",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "England",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "eng.league_cup",
+      "name": "English Carabao Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "England",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "eng.trophy",
+      "name": "English EFL Trophy",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "England",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "eng.w.1",
+      "name": "English Women's Super League",
+      "category": "league",
+      "gender": "female",
+      "zone": "England",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 5,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "eng.w.fa",
+      "name": "English Women's FA Cup",
+      "category": "cup",
+      "gender": "female",
+      "zone": "England",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 2,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "eng.w.league_cup",
+      "name": "English WSL Players Cup",
+      "category": "cup",
+      "gender": "female",
+      "zone": "England",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 6,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "eng.w.promotion.relegation",
+      "name": "English Women's Super League Promotion/Relegation Playoff",
+      "category": "play_offs",
+      "gender": "female",
+      "zone": "England",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "esp.1",
+      "name": "Spanish LALIGA",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Spain",
+      "status": "verified",
+      "collected": true,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 4,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "esp.2",
+      "name": "Spanish LALIGA 2",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Spain",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 5,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "esp.copa_de_la_reina",
+      "name": "Spanish Copa de la Reina",
+      "category": "cup",
+      "gender": "female",
+      "zone": "Spain",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 2,
+        "sample_event_date": "20261119",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "esp.copa_del_rey",
+      "name": "Spanish Copa del Rey",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Spain",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "esp.joan_gamper",
+      "name": "Trofeo Joan Gamper",
+      "category": "friendly",
+      "gender": "unspecified",
+      "zone": "Spain",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "esp.super_cup",
+      "name": "Spanish Supercopa",
+      "category": "super_cup",
+      "gender": "unspecified",
+      "zone": "Spain",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "esp.w.1",
+      "name": "Spanish Liga F",
+      "category": "league",
+      "gender": "female",
+      "zone": "Spain",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 4,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.concacaf.olympicsq",
+      "name": "Men's Olympic Qualifying Playoff",
+      "category": "qualifiers",
+      "gender": "male",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.conmebol.olympicsq",
+      "name": "CONMEBOL Pre-Olympic Tournament",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.cwc",
+      "name": "FIFA Club World Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.friendly",
+      "name": "International Friendly",
+      "category": "friendly",
+      "gender": "unspecified",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.friendly.w",
+      "name": "Women's International Friendly",
+      "category": "friendly",
+      "gender": "female",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 8,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.friendly_u21",
+      "name": "Under-21 International Friendly",
+      "category": "friendly",
+      "gender": "unspecified",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.intercontinental.cup",
+      "name": "Intercontinental Cup (India)",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.intercontinental_cup",
+      "name": "FIFA Intercontinental Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.olympics",
+      "name": "Men's Olympic Soccer Tournament",
+      "category": "tournament",
+      "gender": "male",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.shebelieves",
+      "name": "SheBelieves Cup",
+      "category": "cup",
+      "gender": "female",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.w.champions_cup",
+      "name": "FIFA Women's Champions Cup",
+      "category": "cup",
+      "gender": "female",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.w.concacaf.olympicsq",
+      "name": "Concacaf Women's Olympic Qualifying",
+      "category": "qualifiers",
+      "gender": "female",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.w.olympics",
+      "name": "Women's Olympic Soccer Tournament",
+      "category": "tournament",
+      "gender": "female",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.wcq.ply",
+      "name": "FIFA World Cup Qualifying - Playoff Tournament",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.world",
+      "name": "FIFA World Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.world.u17",
+      "name": "FIFA Under-17 World Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 8,
+        "sample_event_date": "20261119",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.world.u20",
+      "name": "FIFA Under-20 World Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.worldq.afc",
+      "name": "FIFA World Cup Qualifying - AFC",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.worldq.caf",
+      "name": "FIFA World Cup Qualifying - CAF",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.worldq.concacaf",
+      "name": "FIFA World Cup Qualifying - Concacaf",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.worldq.conmebol",
+      "name": "FIFA World Cup Qualifying - CONMEBOL",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.worldq.ofc",
+      "name": "FIFA World Cup Qualifying - OFC",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.worldq.uefa",
+      "name": "FIFA World Cup Qualifying - UEFA",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.wwc",
+      "name": "FIFA Women's World Cup",
+      "category": "cup",
+      "gender": "female",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.wwcq.ply",
+      "name": "FIFA Women's World Cup Qualifying - Playoff Tournament",
+      "category": "qualifiers",
+      "gender": "female",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 3,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.wworld.u17",
+      "name": "FIFA Under-17 Women's World Cup",
+      "category": "cup",
+      "gender": "female",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fifa.wworldq.uefa",
+      "name": "FIFA Women's World Cup Qualifying - UEFA",
+      "category": "qualifiers",
+      "gender": "female",
+      "zone": "International (FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fra.1",
+      "name": "French Ligue 1",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "France",
+      "status": "verified",
+      "collected": true,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 5,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fra.1.promotion.relegation",
+      "name": "French Ligue 1 Promotion/Relegation Playoffs",
+      "category": "play_offs",
+      "gender": "unspecified",
+      "zone": "France",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fra.2",
+      "name": "French Ligue 2",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "France",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fra.coupe_de_france",
+      "name": "Coupe de France",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "France",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 30,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fra.super_cup",
+      "name": "French Trophee des Champions",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "France",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "fra.w.1",
+      "name": "French Première Ligue",
+      "category": "league",
+      "gender": "female",
+      "zone": "France",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 2,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "friendly.emirates_cup",
+      "name": "Emirates Cup",
+      "category": "friendly",
+      "gender": "unspecified",
+      "zone": "International (clubs)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ger.1",
+      "name": "German Bundesliga",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Germany",
+      "status": "verified",
+      "collected": true,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 5,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ger.2",
+      "name": "German 2. Bundesliga",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Germany",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 4,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ger.2.promotion.relegation",
+      "name": "German Bundesliga 2. Promotion/Relegation Playoffs",
+      "category": "play_offs",
+      "gender": "unspecified",
+      "zone": "Germany",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ger.dfb_pokal",
+      "name": "German Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Germany",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ger.playoff.relegation",
+      "name": "German Bundesliga Promotion/Relegation Playoff",
+      "category": "play_offs",
+      "gender": "unspecified",
+      "zone": "Germany",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ger.super_cup",
+      "name": "German Supercup",
+      "category": "super_cup",
+      "gender": "unspecified",
+      "zone": "Germany",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "global.arnold.clark_cup",
+      "name": "Arnold Clark Cup",
+      "category": "cup",
+      "gender": "female",
+      "zone": "International",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "global.club_challenge",
+      "name": "CONMEBOL-UEFA Club Challenge",
+      "category": "super_cup",
+      "gender": "unspecified",
+      "zone": "International",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "global.finalissima",
+      "name": "CONMEBOL-UEFA Cup of Champions",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "International",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "global.gulf_cup",
+      "name": "Arabian Gulf Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "International",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "global.pinatar_cup",
+      "name": "Pinatar Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "International",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "global.u20.intercontinental_cup",
+      "name": "CONMEBOL-UEFA U20 Intercontinental Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "International",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "global.w.finalissima",
+      "name": "CONMEBOL-UEFA Women's Cup of Champions",
+      "category": "cup",
+      "gender": "female",
+      "zone": "International",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "gre.1",
+      "name": "Greek Super League",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Greece",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 5,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "gua.1",
+      "name": "Guatemalan Liga Nacional",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Guatemala",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 6,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "hon.1",
+      "name": "Honduran Liga Nacional",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Honduras",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 6,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ind.1",
+      "name": "Indian Super League",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "India",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 1,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ind.2",
+      "name": "Indian Football League",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "India",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 2,
+        "sample_event_date": "20261119",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ita.1",
+      "name": "Italian Serie A",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Italy",
+      "status": "verified",
+      "collected": true,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 5,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ita.2",
+      "name": "Italian Serie B",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Italy",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 5,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ita.coppa_italia",
+      "name": "Coppa Italia",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Italy",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ita.super_cup",
+      "name": "Italian Supercoppa",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Italy",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "jpn.1",
+      "name": "Japanese J.League",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Japan",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 7,
+        "sample_event_date": "20261125",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "jpn.world_challenge",
+      "name": "Japanese J.League World Challenge",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Japan",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ksa.1",
+      "name": "Saudi Pro League",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Saudi Arabia",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 3,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ksa.kings.cup",
+      "name": "Saudi King's Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Saudi Arabia",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "mex.1",
+      "name": "Mexican Liga BBVA MX",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Mexico",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 2,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "mex.2",
+      "name": "Mexican Liga de Expansión MX",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Mexico",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 1,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "mex.campeon",
+      "name": "Mexican Campeon de Campeones",
+      "category": "super_cup",
+      "gender": "unspecified",
+      "zone": "Mexico",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "mex.w.1",
+      "name": "Mexican Liga BBVA MX Femenil",
+      "category": "league",
+      "gender": "female",
+      "zone": "Mexico",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ned.1",
+      "name": "Dutch Eredivisie",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Netherlands",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 4,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ned.2",
+      "name": "Dutch Keuken Kampioen Divisie",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Netherlands",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 1,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ned.3.promotion.relegation",
+      "name": "Dutch Tweede Divisie Promotion/Relegation Playoffs",
+      "category": "play_offs",
+      "gender": "unspecified",
+      "zone": "Netherlands",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ned.cup",
+      "name": "Dutch KNVB Beker",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Netherlands",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ned.playoff.relegation",
+      "name": "Dutch Eredivisie Promotion/Relegation Playoffs",
+      "category": "play_offs",
+      "gender": "unspecified",
+      "zone": "Netherlands",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ned.supercup",
+      "name": "Dutch Johan Cruyff Shield",
+      "category": "super_cup",
+      "gender": "unspecified",
+      "zone": "Netherlands",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ned.w.1",
+      "name": "Dutch Vrouwen Eredivisie",
+      "category": "league",
+      "gender": "female",
+      "zone": "Netherlands",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 5,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ned.w.knvb_cup",
+      "name": "Dutch KNVB Beker Vrouwen",
+      "category": "cup",
+      "gender": "female",
+      "zone": "Netherlands",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "nonfifa",
+      "name": "Non-FIFA Friendly",
+      "category": "friendly",
+      "gender": "unspecified",
+      "zone": "International (non-FIFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "nor.1",
+      "name": "Norwegian Eliteserien",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Norway",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 4,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "nor.1.promotion.relegation",
+      "name": "Norwegian Eliteserien Promotion/Relegation Playoffs",
+      "category": "play_offs",
+      "gender": "unspecified",
+      "zone": "Norway",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 1,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "par.1",
+      "name": "Paraguayan Primera División",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Paraguay",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 6,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "par.1.supercopa",
+      "name": "Paraguayan Supercopa",
+      "category": "super_cup",
+      "gender": "unspecified",
+      "zone": "Paraguay",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "per.1",
+      "name": "Peruvian Liga 1",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Peru",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 2,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "por.1",
+      "name": "Portuguese Primeira Liga",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Portugal",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 4,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "por.1.promotion.relegation",
+      "name": "Portuguese Primeira Liga Promotion/Relegation Playoffs",
+      "category": "play_offs",
+      "gender": "unspecified",
+      "zone": "Portugal",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "por.taca.portugal",
+      "name": "Taca de Portugal",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Portugal",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 8,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "rsa.1",
+      "name": "South African Premiership",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "South Africa",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 3,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "rus.1",
+      "name": "Russian Premier League",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Russia",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 3,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "rus.1.promotion.relegation",
+      "name": "Russian Premier League Relegation/Promotion Playoffs",
+      "category": "play_offs",
+      "gender": "unspecified",
+      "zone": "Russia",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "sco.1",
+      "name": "Scottish Premiership",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Scotland",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 5,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "sco.1.promotion.relegation",
+      "name": "Scottish Premiership Promotion/Relegation Playoffs",
+      "category": "play_offs",
+      "gender": "unspecified",
+      "zone": "Scotland",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "sco.2",
+      "name": "Scottish Championship",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Scotland",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "sco.2.promotion.relegation",
+      "name": "Scottish Championship Promotion/Relegation Playoffs",
+      "category": "play_offs",
+      "gender": "unspecified",
+      "zone": "Scotland",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "sco.challenge",
+      "name": "Scottish League Challenge Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Scotland",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "sco.cis",
+      "name": "Scottish League Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Scotland",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "sco.tennents",
+      "name": "Scottish Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Scotland",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 19,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "sco.tennents_qual",
+      "name": "Scottish Cup Qualifying",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "Scotland",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "slv.1",
+      "name": "Salvadoran Primera Division",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "El Salvador",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "swe.1",
+      "name": "Swedish Allsvenskan",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Sweden",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 3,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "swe.1.promotion.relegation",
+      "name": "Swedish Allsvenskan Promotion/Relegation Playoffs",
+      "category": "play_offs",
+      "gender": "unspecified",
+      "zone": "Sweden",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 1,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "tur.1",
+      "name": "Turkish Super Lig",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Turkey",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 4,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.champions",
+      "name": "UEFA Champions League",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": true,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 9,
+        "sample_event_date": "20261125",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.champions_qual",
+      "name": "UEFA Champions League Qualifying",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.euro",
+      "name": "UEFA European Championship",
+      "category": "tournament",
+      "gender": "unspecified",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.euro.u19",
+      "name": "UEFA European Under-19 Championship",
+      "category": "tournament",
+      "gender": "unspecified",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.euro_u21",
+      "name": "UEFA European Under-21 Championship",
+      "category": "tournament",
+      "gender": "unspecified",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.euro_u21_qual",
+      "name": "UEFA European Under-21 Championship Qualifying",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.europa",
+      "name": "UEFA Europa League",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.europa.conf",
+      "name": "UEFA Conference League",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.europa.conf_qual",
+      "name": "UEFA Conference League Qualifying",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.europa_qual",
+      "name": "UEFA Europa League Qualifying",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.euroq",
+      "name": "UEFA European Championship Qualifying",
+      "category": "qualifiers",
+      "gender": "unspecified",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.nations",
+      "name": "UEFA Nations League",
+      "category": "tournament",
+      "gender": "unspecified",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.super_cup",
+      "name": "UEFA Super Cup",
+      "category": "super_cup",
+      "gender": "unspecified",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.w.europa",
+      "name": "UEFA Women's Europa Cup",
+      "category": "cup",
+      "gender": "female",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.w.nations",
+      "name": "UEFA Women's Nations League",
+      "category": "tournament",
+      "gender": "female",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.wchampions",
+      "name": "UEFA Women's Champions League",
+      "category": "cup",
+      "gender": "female",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 5,
+        "sample_event_date": "20261119",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.wchampions_qual",
+      "name": "UEFA Women's Champions League Qualifying",
+      "category": "qualifiers",
+      "gender": "female",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uefa.weuro",
+      "name": "UEFA Women's European Championship",
+      "category": "tournament",
+      "gender": "female",
+      "zone": "Europe (UEFA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uru.1",
+      "name": "Liga AUF Uruguaya",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Uruguay",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 3,
+        "sample_event_date": "20261119",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "uru.2",
+      "name": "Segunda División de Uruguay",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Uruguay",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "usa.1",
+      "name": "MLS",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "United States",
+      "status": "verified",
+      "collected": true,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 6,
+        "sample_event_date": "20261119",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "usa.ncaa.m.1",
+      "name": "NCAA Men's Soccer",
+      "category": "league",
+      "gender": "male",
+      "zone": "United States",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 16,
+        "sample_event_date": "20261119",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "usa.ncaa.w.1",
+      "name": "NCAA Women's Soccer",
+      "category": "league",
+      "gender": "female",
+      "zone": "United States",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "usa.nwsl",
+      "name": "NWSL",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "United States",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "usa.nwsl.cup",
+      "name": "NWSL Challenge Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "United States",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "usa.open",
+      "name": "U.S. Open Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "United States",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "usa.usl.1",
+      "name": "USL Championship",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "United States",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "usa.usl.l1",
+      "name": "USL League One",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "United States",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "usa.usl.l1.cup",
+      "name": "USL Cup",
+      "category": "cup",
+      "gender": "unspecified",
+      "zone": "United States",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "usa.w.usl.1",
+      "name": "USL Super League",
+      "category": "league",
+      "gender": "female",
+      "zone": "United States",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 4,
+        "sample_event_date": "20261128",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "soccer",
+      "competition_id": "ven.1",
+      "name": "Venezuelan Primera División",
+      "category": "league",
+      "gender": "unspecified",
+      "zone": "Venezuela",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 2,
+        "sample_event_date": "20261122",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "basketball",
+      "competition_id": "fiba",
+      "name": "FIBA World Cup",
+      "category": "tournament",
+      "gender": "unspecified",
+      "zone": "International (FIBA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "basketball",
+      "competition_id": "mens-college-basketball",
+      "name": "NCAA Men's Basketball",
+      "category": "league",
+      "gender": "male",
+      "zone": "United States (NCAA)",
+      "status": "verified",
+      "collected": true,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 76,
+        "sample_event_date": "20261119",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "basketball",
+      "competition_id": "mens-olympics-basketball",
+      "name": "Olympics Men's Basketball",
+      "category": "tournament",
+      "gender": "male",
+      "zone": "International (IOC)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "basketball",
+      "competition_id": "nba",
+      "name": "National Basketball Association",
+      "category": "league",
+      "gender": "male",
+      "zone": "United States & Canada",
+      "status": "verified",
+      "collected": true,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 9,
+        "sample_event_date": "20261119",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "basketball",
+      "competition_id": "nba-development",
+      "name": "NBA G League",
+      "category": "league",
+      "gender": "male",
+      "zone": "United States",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 8,
+        "sample_event_date": "20261119",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "basketball",
+      "competition_id": "nba-summer-california",
+      "name": "NBA California Classic Summer League",
+      "category": "tournament",
+      "gender": "male",
+      "zone": "United States",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "basketball",
+      "competition_id": "nba-summer-golden-state",
+      "name": "Golden State Summer League",
+      "category": "tournament",
+      "gender": "male",
+      "zone": "United States",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "basketball",
+      "competition_id": "nba-summer-las-vegas",
+      "name": "Las Vegas Summer League",
+      "category": "tournament",
+      "gender": "male",
+      "zone": "United States",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "basketball",
+      "competition_id": "nba-summer-orlando",
+      "name": "Orlando Summer League",
+      "category": "tournament",
+      "gender": "male",
+      "zone": "United States",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "basketball",
+      "competition_id": "nba-summer-sacramento",
+      "name": "Sacramento Summer League",
+      "category": "tournament",
+      "gender": "male",
+      "zone": "United States",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "basketball",
+      "competition_id": "nba-summer-utah",
+      "name": "Salt Lake City Summer League",
+      "category": "tournament",
+      "gender": "male",
+      "zone": "United States",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "basketball",
+      "competition_id": "nbl",
+      "name": "National Basketball League",
+      "category": "league",
+      "gender": "male",
+      "zone": "Australia",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 1,
+        "sample_event_date": "20261119",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "basketball",
+      "competition_id": "wnba",
+      "name": "Women's National Basketball Association",
+      "category": "league",
+      "gender": "female",
+      "zone": "United States",
+      "status": "verified",
+      "collected": true,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "basketball",
+      "competition_id": "womens-college-basketball",
+      "name": "NCAA Women's Basketball",
+      "category": "league",
+      "gender": "female",
+      "zone": "United States (NCAA)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 8,
+        "sample_event_date": "20261119",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "basketball",
+      "competition_id": "womens-olympics-basketball",
+      "name": "Olympics Women's Basketball",
+      "category": "tournament",
+      "gender": "female",
+      "zone": "International (IOC)",
+      "status": "verified",
+      "collected": false,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 0,
+        "sample_event_date": null,
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "tennis",
+      "competition_id": "atp",
+      "name": "ATP",
+      "category": "circuit",
+      "gender": "male",
+      "zone": "International",
+      "status": "verified",
+      "collected": true,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 1,
+        "sample_event_date": "20261119",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    },
+    {
+      "sport": "tennis",
+      "competition_id": "wta",
+      "name": "WTA",
+      "category": "circuit",
+      "gender": "female",
+      "zone": "International",
+      "status": "verified",
+      "collected": true,
+      "last_verified": "2026-11-19",
+      "classification": {
+        "method": "derived-from-espn-name-and-slug",
+        "registry_builder": "tools/build_registry.py v0.0.5"
+      },
+      "evidence": {
+        "windows": [
+          "20261119",
+          "20261122",
+          "20261125",
+          "20261128"
+        ],
+        "http_ok_windows": 4,
+        "events_seen_max": 1,
+        "sample_event_date": "20261119",
+        "last_error": null,
+        "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
+      }
+    }
+  ]
+}

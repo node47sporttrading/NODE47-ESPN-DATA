@@ -43,7 +43,7 @@ def main() -> None:
     )
     index = {
         "service": "NODE.47 ESPN DATA",
-        "version": "0.0.3",
+        "version": "0.0.5",
         "generated_at_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "latest_dataset": "data/latest.json",
         "manifest": "manifests/latest.json",

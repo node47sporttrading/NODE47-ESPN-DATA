@@ -10,84 +10,84 @@
       "league": "eng.1",
       "name": "English Premier League",
       "enabled": true,
-      "coverage_status": "candidate"
+      "coverage_status": "verified"
     },
     {
       "sport": "soccer",
       "league": "esp.1",
       "name": "Spanish LaLiga",
       "enabled": true,
-      "coverage_status": "candidate"
+      "coverage_status": "verified"
     },
     {
       "sport": "soccer",
       "league": "ger.1",
       "name": "German Bundesliga",
       "enabled": true,
-      "coverage_status": "candidate"
+      "coverage_status": "verified"
     },
     {
       "sport": "soccer",
       "league": "ita.1",
       "name": "Italian Serie A",
       "enabled": true,
-      "coverage_status": "candidate"
+      "coverage_status": "verified"
     },
     {
       "sport": "soccer",
       "league": "fra.1",
       "name": "French Ligue 1",
       "enabled": true,
-      "coverage_status": "candidate"
+      "coverage_status": "verified"
     },
     {
       "sport": "soccer",
       "league": "uefa.champions",
       "name": "UEFA Champions League",
       "enabled": true,
-      "coverage_status": "candidate"
+      "coverage_status": "verified"
     },
     {
       "sport": "soccer",
       "league": "usa.1",
       "name": "MLS",
       "enabled": true,
-      "coverage_status": "candidate"
+      "coverage_status": "verified"
     },
     {
       "sport": "basketball",
       "league": "nba",
       "name": "NBA",
       "enabled": true,
-      "coverage_status": "candidate"
+      "coverage_status": "verified"
     },
     {
       "sport": "basketball",
       "league": "wnba",
       "name": "WNBA",
       "enabled": true,
-      "coverage_status": "candidate"
+      "coverage_status": "verified"
     },
     {
       "sport": "basketball",
       "league": "mens-college-basketball",
       "name": "NCAA Men's Basketball",
       "enabled": true,
-      "coverage_status": "candidate"
+      "coverage_status": "verified"
     },
     {
       "sport": "tennis",
       "league": "atp",
       "name": "ATP Tour",
       "enabled": true,
-      "coverage_status": "exploratory"
+      "coverage_status": "verified"
     },
     {
       "sport": "tennis",
       "league": "wta",
       "name": "WTA Tour",
       "enabled": true,
-      "coverage_status": "exploratory"
+      "coverage_status": "verified"
     }
   ]
 }
