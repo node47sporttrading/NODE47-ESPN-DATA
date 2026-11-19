@@ -13,8 +13,8 @@ class PropLineModuleAdapterTests(unittest.TestCase):
     def test_football_catalogue_matches_documented_soccer_markets(self):
         module, key, markets, config = _propline_module("football", "soccer_england_premier_league")
         self.assertEqual(module, "football")
-        self.assertIn("both_teams_to_score", markets)
-        self.assertIn("total_corners", markets)
+        self.assertIn("both_teams_to_score", config["markets"])
+        self.assertIn("total_corners", config["markets"])
         self.assertEqual(_validate_propline_period(config, "h1"), "h1")
 
     def test_basketball_uses_dynamic_event_market_discovery(self):
