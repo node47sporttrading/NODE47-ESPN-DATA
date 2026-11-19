@@ -103,9 +103,23 @@ async def espn_health() -> dict[str, Any]:
 
 
 @mcp.tool()
-async def espn_competitions(sport: str | None = None, status: str | None = None) -> dict[str, Any]:
-    """List configured ESPN competitions, optionally filtered by sport and registry status."""
-    return await competitions(sport=sport, status=status)
+async def espn_competitions(
+    sport: str | None = None,
+    status: str | None = None,
+    category: str | None = None,
+    gender: str | None = None,
+    zone: str | None = None,
+    collection_enabled: bool | None = None,
+) -> dict[str, Any]:
+    """List the complete ESPN Core league census for soccer, basketball and tennis.
+
+    Filter by ESPN sport, scoreboard verification status, competition category,
+    gender, geographic zone, or whether the route is enabled in the collector.
+    """
+    return await competitions(
+        sport=sport, status=status, category=category, gender=gender,
+        zone=zone, collection_enabled=collection_enabled,
+    )
 
 
 @mcp.tool()
@@ -430,7 +444,7 @@ async def health():
             pass
     return {
         "service": "NODE.47 SPORT ANALYT DATA API",
-        "version": "0.0.13",
+        "version": "0.0.14",
         "status": "ok" if last and age is not None and age <= REFRESH_SECONDS * 2 else "degraded",
         "last_refresh_utc": last,
         "data_age_seconds": age,
@@ -442,7 +456,15 @@ async def health():
 
 
 @app.get("/v1/competitions", tags=["catalog"])
-async def competitions(sport: str | None = None, status: str | None = None):
+async def competitions(
+    sport: str | None = None,
+    status: str | None = None,
+    category: str | None = None,
+    gender: str | None = None,
+    zone: str | None = None,
+    collection_enabled: bool | None = None,
+):
+    """Return the ESPN Core census with live collector-activation metadata."""
     active = {
         (x["sport"], x["league"])
         for x in config.get("competitions", [])
@@ -454,10 +476,28 @@ async def competitions(sport: str | None = None, status: str | None = None):
             continue
         if status and entry.get("status") != status:
             continue
+        if category and entry.get("category") != category:
+            continue
+        if gender and entry.get("gender") != gender:
+            continue
+        if zone and entry.get("zone") != zone:
+            continue
+        is_enabled = (entry.get("sport"), entry.get("competition_id")) in active
+        if collection_enabled is not None and is_enabled != collection_enabled:
+            continue
         item = dict(entry)
-        item["collection_enabled"] = (item.get("sport"), item.get("competition_id")) in active
+        item["collection_enabled"] = is_enabled
         entries.append(item)
-    return {"count": len(entries), "registry_version": registry.get("version"), "competitions": entries}
+    by_sport = {}
+    for item in entries:
+        by_sport[item["sport"]] = by_sport.get(item["sport"], 0) + 1
+    return {
+        "count": len(entries),
+        "by_sport": by_sport,
+        "registry_version": registry.get("version"),
+        "generated_at_utc": registry.get("generated_at_utc"),
+        "competitions": entries,
+    }
 
 
 @app.get("/v1/coverage", tags=["catalog"])

@@ -6,6 +6,8 @@ on:
     branches: [main]
     paths:
       - "src/**"
+      - "config/**"
+      - "tools/**"
       - "tests/**"
       - "requirements.txt"
       - ".github/workflows/tests.yml"
