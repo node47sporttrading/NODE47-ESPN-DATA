@@ -215,6 +215,134 @@ async def propline_event_odds(sport_key: str, event_id: str, markets: str) -> di
                 "error": str(exc)}
 
 
+
+# Sport-specific PropLine adapters. Keys are provider keys, not ESPN league IDs.
+PROPLINE_MODULES = {
+    "football": {
+        "prefixes": ("soccer_",),
+        "sport_key": None,  # Must be selected per competition from propline_sports().
+        "markets": (
+            "h2h", "spreads", "totals", "both_teams_to_score",
+            "double_chance", "draw_no_bet", "correct_score",
+            "total_corners", "corners_spread", "team_corners",
+            "total_cards", "team_cards", "anytime_goal_scorer",
+            "first_goal_scorer", "player_assists", "player_cards",
+            "goal_or_assist",
+        ),
+        "periods": ("h1", "h2"),
+    },
+    "basketball": {
+        "prefixes": ("basketball_",),
+        "sport_key": None,  # NBA/WNBA/college keys are selected explicitly.
+        "markets": (
+            "h2h", "spreads", "totals", "player_points",
+            "player_rebounds", "player_assists", "player_threes",
+            "player_steals", "player_blocks", "player_turnovers",
+            "player_points_rebounds_assists", "player_double_double",
+        ),
+        "periods": ("q1", "q2", "q3", "q4", "h1", "h2"),
+    },
+    "tennis": {
+        "prefixes": (),
+        "sport_key": "tennis",
+        "markets": (
+            "h2h", "spreads", "totals", "total_sets",
+            "player_aces", "player_double_faults", "player_games_won",
+            "player_break_points_won", "total_tiebreaks", "total_aces",
+        ),
+        "periods": ("s1", "s2", "s3", "s4", "s5"),
+    },
+}
+
+
+def _propline_module(module: str, sport_key: str, markets: str | None = None):
+    name = (module or "").strip().lower()
+    if name not in PROPLINE_MODULES:
+        raise ValueError("module must be football, basketball or tennis")
+    config = PROPLINE_MODULES[name]
+    key = (sport_key or "").strip()
+    if config["sport_key"] and key != config["sport_key"]:
+        raise ValueError(f"{name} requires PropLine sport_key={config['sport_key']!r}")
+    if config["prefixes"] and not key.startswith(config["prefixes"]):
+        raise ValueError(f"{name} requires a provider sport_key beginning with {config['prefixes']}")
+    if not key:
+        raise ValueError("sport_key is required; select it from propline_sports()")
+    selected = tuple(x.strip() for x in markets.split(",") if x.strip()) if markets else config["markets"]
+    invalid = sorted(set(selected) - set(config["markets"]))
+    if not selected or invalid:
+        raise ValueError(f"markets not enabled for {name}: {invalid or ['empty market list']}")
+    return name, key, ",".join(selected), config
+
+
+@mcp.tool()
+async def propline_module_events(module: str, sport_key: str) -> dict[str, Any]:
+    """List PropLine fixtures through the football, basketball or tennis adapter."""
+    name, key, _, _ = _propline_module(module, sport_key)
+    try:
+        data = await asyncio.to_thread(_propline().events, key)
+        return {"status": "ok", "module": name, "sport_key": key, "events": data}
+    except PropLineError as exc:
+        return {"status": "error", "module": name, "sport_key": key, "error": str(exc)}
+
+
+@mcp.tool()
+async def propline_module_odds(
+    module: str,
+    sport_key: str,
+    markets: str | None = None,
+    bookmakers: str | None = None,
+    max_age_seconds: int | None = 180,
+) -> dict[str, Any]:
+    """Fetch sport-specific game and player markets using a validated module preset."""
+    name, key, selected, config = _propline_module(module, sport_key, markets)
+    try:
+        data = await asyncio.to_thread(
+            _propline().odds, key, selected, bookmakers, max_age_seconds
+        )
+        return {
+            "status": "ok", "module": name, "sport_key": key,
+            "markets": selected, "supported_periods": list(config["periods"]),
+            "odds": data,
+        }
+    except PropLineError as exc:
+        return {"status": "error", "module": name, "sport_key": key, "error": str(exc)}
+
+
+@mcp.tool()
+async def propline_module_event_markets(
+    module: str, sport_key: str, event_id: str
+) -> dict[str, Any]:
+    """Discover the markets actually available for one PropLine event."""
+    name, key, _, config = _propline_module(module, sport_key)
+    try:
+        data = await asyncio.to_thread(_propline().event_markets, key, event_id)
+        return {
+            "status": "ok", "module": name, "sport_key": key,
+            "event_id": event_id, "module_market_catalog": list(config["markets"]),
+            "available_markets": data,
+        }
+    except PropLineError as exc:
+        return {"status": "error", "module": name, "sport_key": key,
+                "event_id": event_id, "error": str(exc)}
+
+
+@mcp.tool()
+async def propline_module_event_odds(
+    module: str, sport_key: str, event_id: str, markets: str | None = None
+) -> dict[str, Any]:
+    """Fetch only validated football, basketball or tennis markets for one event."""
+    name, key, selected, _ = _propline_module(module, sport_key, markets)
+    try:
+        data = await asyncio.to_thread(_propline().event_odds, key, event_id, selected)
+        return {
+            "status": "ok", "module": name, "sport_key": key,
+            "event_id": event_id, "markets": selected, "odds": data,
+        }
+    except PropLineError as exc:
+        return {"status": "error", "module": name, "sport_key": key,
+                "event_id": event_id, "error": str(exc)}
+
+
 # Build the Streamable HTTP ASGI app with the configured FastMCP 1.x settings.
 mcp_http_app = mcp.streamable_http_app()
 
