@@ -16,6 +16,7 @@ from mcp.server.transport_security import TransportSecuritySettings
 
 from .client import ESPNClient
 from .collector import collect
+from .propline_client import PropLineClient, PropLineError
 from .store import DataStore
 
 if os.getenv("DATABASE_URL"):
@@ -82,8 +83,8 @@ mcp = FastMCP(
     name="NODE47 ESPN DATA",
     instructions=(
         "Read-only tools for NODE.47 event identity, competition registry, "
-        "scoreboard snapshots, data freshness and collection coverage. "
-        "This service does not provide odds, injuries, lineups or predictions."
+        "scoreboard snapshots and coverage. PropLine tools provide bookmaker odds, markets, "
+        "event ID crosswalks and bookmaker freshness. These are raw market data, not predictions."
     ),
     # FastMCP 1.x reads the endpoint path and transport security from its constructor.
     # The internal root path combines with FastAPI's /mcp mount to expose /mcp/.
@@ -145,6 +146,102 @@ async def espn_event_detail(event_id: str) -> dict[str, Any]:
     return await event_detail(event_id=event_id)
 
 
+
+
+def _propline() -> PropLineClient:
+    return PropLineClient(
+        timeout=int(os.getenv("PROPLINE_HTTP_TIMEOUT", "20")),
+    )
+
+
+@mcp.tool()
+async def propline_health() -> dict[str, Any]:
+    """Check PropLine authentication, available sports and bookmaker data freshness."""
+    if not os.getenv("PROPLINE_API_KEY", "").strip():
+        return {"configured": False, "status": "not_configured",
+                "required_environment_variable": "PROPLINE_API_KEY"}
+    try:
+        client = _propline()
+        sports, freshness = await asyncio.gather(
+            asyncio.to_thread(client.sports),
+            asyncio.to_thread(client.freshness),
+        )
+        return {"configured": True, "status": "ok", "sports": sports, "freshness": freshness}
+    except PropLineError as exc:
+        return {"configured": True, "status": "error", "error": str(exc)}
+
+
+@mcp.tool()
+async def propline_sports() -> dict[str, Any]:
+    """List sports supported by the connected PropLine account."""
+    try:
+        return {"status": "ok", "sports": await asyncio.to_thread(_propline().sports)}
+    except PropLineError as exc:
+        return {"status": "error", "error": str(exc)}
+
+
+@mcp.tool()
+async def propline_events(sport_key: str, commence_time_from: str | None = None,
+                          commence_time_to: str | None = None) -> dict[str, Any]:
+    """List PropLine events for a provider sport key, optionally bounded by UTC kickoff times."""
+    params = {}
+    if commence_time_from:
+        params["commence_time_from"] = commence_time_from
+    if commence_time_to:
+        params["commence_time_to"] = commence_time_to
+    try:
+        data = await asyncio.to_thread(_propline().events, sport_key, **params)
+        return {"status": "ok", "sport_key": sport_key, "events": data}
+    except PropLineError as exc:
+        return {"status": "error", "sport_key": sport_key, "error": str(exc)}
+
+
+@mcp.tool()
+async def propline_event_ids(sport_key: str) -> dict[str, Any]:
+    """Return PropLine's event ID crosswalk, including ESPN event IDs where available."""
+    try:
+        data = await asyncio.to_thread(_propline().event_ids, sport_key)
+        return {"status": "ok", "sport_key": sport_key, "crosswalk": data}
+    except PropLineError as exc:
+        return {"status": "error", "sport_key": sport_key, "error": str(exc)}
+
+
+@mcp.tool()
+async def propline_odds(sport_key: str, markets: str = "h2h,spreads,totals",
+                        bookmakers: str | None = None, max_age_seconds: int | None = 180) -> dict[str, Any]:
+    """Fetch bulk bookmaker odds; default markets are h2h, spreads and totals."""
+    try:
+        data = await asyncio.to_thread(
+            _propline().odds, sport_key, markets, bookmakers, max_age_seconds
+        )
+        return {"status": "ok", "sport_key": sport_key, "markets": markets, "odds": data}
+    except PropLineError as exc:
+        return {"status": "error", "sport_key": sport_key, "error": str(exc)}
+
+
+@mcp.tool()
+async def propline_event_odds(sport_key: str, event_id: str, markets: str) -> dict[str, Any]:
+    """Fetch requested game or player-prop markets for one exact PropLine event ID."""
+    try:
+        data = await asyncio.to_thread(_propline().event_odds, sport_key, event_id, markets)
+        return {"status": "ok", "sport_key": sport_key, "event_id": event_id,
+                "markets": markets, "odds": data}
+    except PropLineError as exc:
+        return {"status": "error", "sport_key": sport_key, "event_id": event_id,
+                "error": str(exc)}
+
+
+@mcp.tool()
+async def propline_markets(sport_key: str, event_id: str) -> dict[str, Any]:
+    """Discover which market keys are actually available for a PropLine event."""
+    try:
+        data = await asyncio.to_thread(_propline().markets, sport_key, event_id)
+        return {"status": "ok", "sport_key": sport_key, "event_id": event_id, "markets": data}
+    except PropLineError as exc:
+        return {"status": "error", "sport_key": sport_key, "event_id": event_id,
+                "error": str(exc)}
+
+
 # Build the Streamable HTTP ASGI app with the configured FastMCP 1.x settings.
 mcp_http_app = mcp.streamable_http_app()
 
@@ -166,7 +263,7 @@ async def lifespan(_: FastAPI):
 
 app = FastAPI(
     title="NODE.47 Multisport Data API",
-    version="0.0.10",
+    version="0.0.11",
     description="ESPN scoreboard ingestion, normalized events, competition registry, collection coverage and read-only MCP tools.",
     lifespan=lifespan,
 )
@@ -193,7 +290,7 @@ async def health():
             pass
     return {
         "service": "NODE.47 SPORT ANALYT DATA API",
-        "version": "0.0.10",
+        "version": "0.0.11",
         "status": "ok" if last and age is not None and age <= REFRESH_SECONDS * 2 else "degraded",
         "last_refresh_utc": last,
         "data_age_seconds": age,
