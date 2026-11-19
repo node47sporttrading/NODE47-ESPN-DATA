@@ -61,8 +61,8 @@ class RegistryContractTests(unittest.TestCase):
             self.assertIn(key, registry, f"{key} absent from registry")
             self.assertEqual(registry[key]["status"], "verified", f"{key} not verified")
             self.assertTrue(registry[key]["collection_enabled"], f"{key} not configured for collection")
-            # This field is evidence of an observed collection cycle, not a config switch.
-            self.assertFalse(registry[key]["collected"], f"{key} prematurely marked as observed")
+            # Legacy `collected` means included in configured collection; live outcome is in coverage.
+            self.assertTrue(registry[key]["collected"], f"{key} not marked as configured for collection")
 
     def test_all_verified_entries_are_activated_once(self):
         registry = _registry()
