@@ -17,6 +17,9 @@ from .client import ESPNClient
 from .collector import collect
 from .store import DataStore
 
+if os.getenv("DATABASE_URL"):
+    from .postgres_store import PostgresDataStore
+
 ROOT = Path(__file__).resolve().parents[2]
 CONFIG_PATH = Path(os.getenv("NODE47_CONFIG_PATH", ROOT / "config" / "competitions.json"))
 REGISTRY_PATH = Path(os.getenv("NODE47_REGISTRY_PATH", ROOT / "config" / "registry.json"))
@@ -28,7 +31,7 @@ def _read_json(path: Path) -> dict[str, Any]:
 
 config = _read_json(CONFIG_PATH)
 registry = _read_json(REGISTRY_PATH)
-store = DataStore(DATA_PATH)
+store = PostgresDataStore(os.environ["DATABASE_URL"]) if os.getenv("DATABASE_URL") else DataStore(DATA_PATH)
 refresh_lock = asyncio.Lock()
 
 def _client() -> ESPNClient:
