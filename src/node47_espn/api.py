@@ -85,6 +85,14 @@ mcp = FastMCP(
         "scoreboard snapshots, data freshness and collection coverage. "
         "This service does not provide odds, injuries, lineups or predictions."
     ),
+    # FastMCP 1.x reads the endpoint path and transport security from its constructor.
+    # The internal root path combines with FastAPI's /mcp mount to expose /mcp/.
+    streamable_http_path="/",
+    transport_security=TransportSecuritySettings(
+        enable_dns_rebinding_protection=True,
+        allowed_hosts=[MCP_PUBLIC_HOST, f"{MCP_PUBLIC_HOST}:*"],
+        allowed_origins=MCP_ALLOWED_ORIGINS,
+    ),
 )
 
 @mcp.tool()
@@ -137,19 +145,8 @@ async def espn_event_detail(event_id: str) -> dict[str, Any]:
     return await event_detail(event_id=event_id)
 
 
-# The MCP app has its own default /mcp route. Since it is mounted under
-# FastAPI's /mcp prefix, set its internal path to / so the public URL is
-# exactly /mcp/ rather than the accidental /mcp/mcp (or a 404 at /mcp/).
-# Keep DNS-rebinding protection enabled and allow only our public host and
-# the ChatGPT web origins that may initiate browser-based connections.
-mcp_http_app = mcp.streamable_http_app(
-    streamable_http_path="/",
-    transport_security=TransportSecuritySettings(
-        enable_dns_rebinding_protection=True,
-        allowed_hosts=[MCP_PUBLIC_HOST, f"{MCP_PUBLIC_HOST}:*"],
-        allowed_origins=MCP_ALLOWED_ORIGINS,
-    ),
-)
+# Build the Streamable HTTP ASGI app with the configured FastMCP 1.x settings.
+mcp_http_app = mcp.streamable_http_app()
 
 
 @asynccontextmanager
