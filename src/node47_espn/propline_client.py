@@ -24,7 +24,7 @@ class PropLineClient:
         self.session.headers.update({
             "Accept": "application/json",
             "X-API-Key": self.api_key,
-            "User-Agent": "NODE47-SPORT-ANALYT/0.0.12",
+            "User-Agent": "NODE47-SPORT-ANALYT/0.0.13",
         })
 
     def _get(self, path: str, params: dict[str, Any] | None = None) -> Any:
