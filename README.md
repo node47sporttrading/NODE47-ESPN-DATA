@@ -1,4 +1,4 @@
-# NODE.47 ESPN DATA — V0.0.9
+# NODE.47 ESPN DATA — V0.0.11
 
 Service de données multisport pour NODE.47 SPORT ANALYT. Collecte les scoreboards ESPN, normalise les événements, conserve les snapshots courants et expose une API REST ainsi qu'un serveur MCP Streamable HTTP en lecture seule.
 
