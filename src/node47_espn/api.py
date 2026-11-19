@@ -288,3 +288,8 @@ async def manual_refresh():
 
 # Public MCP endpoint: https://node47-espn-data.onrender.com/mcp/
 app.mount("/mcp", mcp_http_app)
+
+
+# Explicit-input prediction endpoint; the ESPN MCP surface remains read-only.
+from .prediction_api import router as prediction_router
+app.include_router(prediction_router)
