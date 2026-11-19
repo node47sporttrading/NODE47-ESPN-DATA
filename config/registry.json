@@ -67,7 +67,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -95,7 +96,8 @@
         "sample_event_date": "20261125",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -123,7 +125,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -151,7 +154,8 @@
         "sample_event_date": "20261125",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -179,7 +183,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -207,7 +212,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -235,7 +241,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -263,7 +270,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -291,7 +299,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -319,7 +328,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -347,7 +357,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -375,7 +386,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -403,7 +415,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -431,7 +444,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -459,7 +473,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -487,7 +502,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -515,7 +531,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -543,7 +560,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -571,7 +589,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -599,7 +618,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -627,7 +647,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -655,7 +676,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -683,7 +705,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -711,7 +734,8 @@
         "sample_event_date": "20261125",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -739,7 +763,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -767,7 +792,8 @@
         "sample_event_date": "20261119",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -795,7 +821,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -823,7 +850,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -851,7 +879,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -879,7 +908,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -907,7 +937,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -935,7 +966,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -963,7 +995,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -991,7 +1024,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1019,7 +1053,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1047,7 +1082,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1075,7 +1111,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1103,7 +1140,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1131,7 +1169,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1159,7 +1198,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1187,7 +1227,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1215,7 +1256,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1243,7 +1285,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1271,7 +1314,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1299,7 +1343,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1327,7 +1372,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1355,7 +1401,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1383,7 +1430,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1411,7 +1459,8 @@
         "sample_event_date": "20261119",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1439,7 +1488,8 @@
         "sample_event_date": "20261125",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1467,7 +1517,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1495,7 +1546,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1523,7 +1575,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1551,7 +1604,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1579,7 +1633,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1607,7 +1662,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1635,7 +1691,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1663,7 +1720,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1691,7 +1749,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1719,7 +1778,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1747,7 +1807,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1775,7 +1836,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1803,7 +1865,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1831,7 +1894,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1859,7 +1923,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1887,7 +1952,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1915,7 +1981,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1943,7 +2010,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1971,7 +2039,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -1999,7 +2068,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2027,7 +2097,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2055,7 +2126,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2083,7 +2155,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2111,7 +2184,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2139,7 +2213,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2167,7 +2242,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2195,7 +2271,8 @@
         "sample_event_date": "20261125",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2223,7 +2300,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2251,7 +2329,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2279,7 +2358,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2307,7 +2387,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2335,7 +2416,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2363,7 +2445,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2391,7 +2474,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2419,7 +2503,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2447,7 +2532,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2475,7 +2561,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2503,7 +2590,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2531,7 +2619,8 @@
         "sample_event_date": "20261119",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2559,7 +2648,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2587,7 +2677,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2615,7 +2706,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2643,7 +2735,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2671,7 +2764,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2699,7 +2793,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2727,7 +2822,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2755,7 +2851,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2783,7 +2880,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2811,7 +2909,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2839,7 +2938,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2867,7 +2967,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2895,7 +2996,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2923,7 +3025,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2951,7 +3054,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -2979,7 +3083,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3007,7 +3112,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3035,7 +3141,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3063,7 +3170,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3091,7 +3199,8 @@
         "sample_event_date": "20261119",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3119,7 +3228,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3147,7 +3257,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3175,7 +3286,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3203,7 +3315,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3231,7 +3344,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3259,7 +3373,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3287,7 +3402,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3315,7 +3431,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3343,7 +3460,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3371,7 +3489,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3399,7 +3518,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3427,7 +3547,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3455,7 +3576,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3483,7 +3605,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3511,7 +3634,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3539,7 +3663,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3567,7 +3692,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3595,7 +3721,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3623,7 +3750,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3651,7 +3779,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3679,7 +3808,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3707,7 +3837,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3735,7 +3866,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3763,7 +3895,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3791,7 +3924,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3819,7 +3953,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3847,7 +3982,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3875,7 +4011,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3903,7 +4040,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3931,7 +4069,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3959,7 +4098,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -3987,7 +4127,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4015,7 +4156,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4043,7 +4185,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4071,7 +4214,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4099,7 +4243,8 @@
         "sample_event_date": "20261119",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4127,7 +4272,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4155,7 +4301,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4183,7 +4330,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4211,7 +4359,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4239,7 +4388,8 @@
         "sample_event_date": "20261125",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4267,7 +4417,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4295,7 +4446,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4323,7 +4475,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4351,7 +4504,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4379,7 +4533,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4407,7 +4562,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4435,7 +4591,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4463,7 +4620,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4491,7 +4649,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4519,7 +4678,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4547,7 +4707,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4575,7 +4736,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4603,7 +4765,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4631,7 +4794,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4659,7 +4823,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4687,7 +4852,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4715,7 +4881,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4743,7 +4910,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4771,7 +4939,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4799,7 +4968,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4827,7 +4997,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4855,7 +5026,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4883,7 +5055,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4911,7 +5084,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4939,7 +5113,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4967,7 +5142,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -4995,7 +5171,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5023,7 +5200,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5051,7 +5229,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5079,7 +5258,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5107,7 +5287,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5135,7 +5316,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5163,7 +5345,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5191,7 +5374,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5219,7 +5403,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5247,7 +5432,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5275,7 +5461,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5303,7 +5490,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5331,7 +5519,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5359,7 +5548,8 @@
         "sample_event_date": "20261125",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5387,7 +5577,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5415,7 +5606,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5443,7 +5635,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5471,7 +5664,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5499,7 +5693,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5527,7 +5722,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5555,7 +5751,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5583,7 +5780,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5611,7 +5809,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5639,7 +5838,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5667,7 +5867,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5695,7 +5896,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5723,7 +5925,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5751,7 +5954,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5779,7 +5983,8 @@
         "sample_event_date": "20261119",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5807,7 +6012,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5835,7 +6041,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5863,7 +6070,8 @@
         "sample_event_date": "20261119",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5891,7 +6099,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5919,7 +6128,8 @@
         "sample_event_date": "20261119",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5947,7 +6157,8 @@
         "sample_event_date": "20261119",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -5975,7 +6186,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -6003,7 +6215,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -6031,7 +6244,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -6059,7 +6273,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -6087,7 +6302,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -6115,7 +6331,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -6143,7 +6360,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -6171,7 +6389,8 @@
         "sample_event_date": "20261128",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "soccer",
@@ -6199,7 +6418,8 @@
         "sample_event_date": "20261122",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "basketball",
@@ -6227,7 +6447,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "basketball",
@@ -6255,7 +6476,8 @@
         "sample_event_date": "20261119",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "basketball",
@@ -6283,7 +6505,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "basketball",
@@ -6311,7 +6534,8 @@
         "sample_event_date": "20261119",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "basketball",
@@ -6339,7 +6563,8 @@
         "sample_event_date": "20261119",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "basketball",
@@ -6367,7 +6592,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "basketball",
@@ -6395,7 +6621,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "basketball",
@@ -6423,7 +6650,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "basketball",
@@ -6451,7 +6679,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "basketball",
@@ -6479,7 +6708,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "basketball",
@@ -6507,7 +6737,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "basketball",
@@ -6535,7 +6766,8 @@
         "sample_event_date": "20261119",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "basketball",
@@ -6563,7 +6795,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "basketball",
@@ -6591,7 +6824,8 @@
         "sample_event_date": "20261119",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "basketball",
@@ -6619,7 +6853,8 @@
         "sample_event_date": null,
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "tennis",
@@ -6647,7 +6882,8 @@
         "sample_event_date": "20261119",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     },
     {
       "sport": "tennis",
@@ -6675,7 +6911,19 @@
         "sample_event_date": "20261119",
         "last_error": null,
         "source": "site.api.espn.com scoreboard probes via tools/probe_registry.py"
-      }
+      },
+      "collection_enabled": true
     }
-  ]
+  ],
+  "collection_activation": {
+    "enabled_at_version": "0.0.7",
+    "mode": "all_verified_registry_entries",
+    "enabled_count": 237,
+    "by_sport": {
+      "soccer": 220,
+      "basketball": 15,
+      "tennis": 2
+    },
+    "semantics": "collection_enabled means the collector is configured to query this route; collected remains false until a successful collection cycle observes it."
+  }
 }
