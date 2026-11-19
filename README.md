@@ -11,7 +11,7 @@ Service de données multisport pour NODE.47 SPORT ANALYT. Il collecte les tablea
 - Source primaire : ESPN scoreboard (site.api.espn.com/apis/site/v2/sports/{sport}/{league}/scoreboard).
 - Batch : GitHub Actions et GitHub Pages.
 - Service : FastAPI, SQLite et rafraîchissement périodique (15 minutes par défaut).
-- `verified` décrit la validation antérieure de l'endpoint ; `enabled` décrit son activation dans le collecteur ; `collected` ne devient vrai qu'après observation réelle par un cycle de collecte. Ces états ne sont jamais confondus.
+- `verified` décrit la validation antérieure de l’endpoint ; `enabled`, `collection_enabled` et le champ historique `collected` décrivent son inclusion dans la configuration du collecteur. Le résultat réel du dernier appel est conservé séparément dans le manifeste de couverture (`ok`, `empty` ou `unavailable`).
 
 ## API V0.0.7
 Python 3.11+ recommandé.
