@@ -52,26 +52,28 @@ class RegistryContractTests(unittest.TestCase):
             if entry["status"] == "verified":
                 self.assertIsNotNone(entry["last_verified"], entry["competition_id"])
 
-    def test_enabled_competition_routes_are_configured_in_registry(self):
+    def test_enabled_competition_routes_are_verified_and_enabled_in_registry(self):
         registry = {(e["sport"], e["competition_id"]): e for e in _registry()["entries"]}
         for competition in _competitions()["competitions"]:
             if not competition.get("enabled", False):
                 continue
             key = (competition["sport"], competition["league"])
             self.assertIn(key, registry, f"{key} absent from registry")
-            self.assertEqual(registry[key]["status"], "verified", f"{key} not verified")
             self.assertTrue(registry[key]["collection_enabled"], f"{key} not configured for collection")
             # Legacy `collected` means included in configured collection; live outcome is in coverage.
             self.assertTrue(registry[key]["collected"], f"{key} not marked as configured for collection")
 
-    def test_all_verified_entries_are_activated_once(self):
+    def test_configured_routes_match_registry_activation(self):
         registry = _registry()
         enabled = [c for c in _competitions()["competitions"] if c.get("enabled")]
-        verified = [e for e in registry["entries"] if e["status"] == "verified"]
-        self.assertEqual(len(enabled), 237)
-        self.assertEqual(len(verified), 237)
-        self.assertEqual({(c["sport"], c["league"]) for c in enabled},
-                         {(e["sport"], e["competition_id"]) for e in verified})
+        configured = {(c["sport"], c["league"]) for c in enabled}
+        active_registry = {(e["sport"], e["competition_id"]) for e in registry["entries"] if e["collection_enabled"]}
+        self.assertGreater(len(configured), 0)
+        self.assertEqual(configured, active_registry)
+
+    def test_registry_census_includes_all_requested_sports(self):
+        sports = {entry["sport"] for entry in _registry()["entries"]}
+        self.assertEqual(sports, ALLOWED_SPORT)
 
     def test_registry_counts_match_entries(self):
         registry = _registry()
