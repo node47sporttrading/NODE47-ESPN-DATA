@@ -17,27 +17,31 @@ def _utc(value: str | None) -> str | None:
         return None
 
 
+def _participant(item: dict[str, Any]) -> dict[str, Any]:
+    entity = item.get("team") or item.get("athlete") or {}
+    return {
+        "id": entity.get("id") or item.get("id"),
+        "name": entity.get("displayName") or entity.get("fullName") or entity.get("name")
+                or item.get("displayName") or item.get("name"),
+        "abbreviation": entity.get("abbreviation"),
+        "score": item.get("score"),
+        "winner": item.get("winner"),
+        "home_away": item.get("homeAway"),
+    }
+
+
 def normalize_event(raw: dict[str, Any], sport: str, league: str, competition_name: str) -> dict[str, Any]:
-    competitors = []
     competitions = raw.get("competitions") or []
-    if competitions and isinstance(competitions[0], dict):
-        competitors = competitions[0].get("competitors") or []
+    competition = competitions[0] if competitions and isinstance(competitions[0], dict) else {}
+    raw_competitors = competition.get("competitors") or []
+    participants = [_participant(item) for item in raw_competitors if isinstance(item, dict)]
 
-    teams: dict[str, Any] = {"home": None, "away": None}
-    for item in competitors:
-        side = item.get("homeAway")
-        if side not in teams:
-            continue
-        team = item.get("team") or {}
-        score = item.get("score")
-        teams[side] = {
-            "id": team.get("id"),
-            "name": team.get("displayName") or team.get("name"),
-            "abbreviation": team.get("abbreviation"),
-            "score": score,
-        }
-
+    home = next((p for p in participants if p["home_away"] == "home"), None)
+    away = next((p for p in participants if p["home_away"] == "away"), None)
     status = (raw.get("status") or {}).get("type") or {}
+    links = raw.get("links") or []
+    event_url = next((link.get("href") for link in links if isinstance(link, dict) and link.get("href")), None)
+
     return {
         "event_id": str(raw.get("id")) if raw.get("id") is not None else None,
         "sport": sport,
@@ -52,12 +56,9 @@ def normalize_event(raw: dict[str, Any], sport: str, league: str, competition_na
             "description": status.get("description"),
             "completed": status.get("completed"),
         },
-        "participants": teams,
-        "venue": (competitions[0].get("venue") or {}).get("fullName") if competitions else None,
-        "source": {
-            "provider": "ESPN",
-            "event_url": raw.get("links", [{}])[0].get("href") if raw.get("links") else None,
-        },
+        "participants": {"home": home, "away": away, "competitors": participants},
+        "venue": (competition.get("venue") or {}).get("fullName"),
+        "source": {"provider": "ESPN", "event_url": event_url},
         "quality_flags": [],
     }
 
