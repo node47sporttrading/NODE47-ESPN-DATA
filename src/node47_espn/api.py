@@ -113,19 +113,7 @@ async def espn_event_detail(event_id: str) -> dict[str, Any]:
     """Return the normalized ESPN record for one exact event ID."""
     return await event_detail(event_id=event_id)
 
-mcp_http_app = mcp.streamable_http_app(
-    streamable_http_path="/",
-    stateless_http=True,
-    json_response=True,
-    transport_security=TransportSecuritySettings(
-        enable_dns_rebinding_protection=True,
-        allowed_hosts=[
-            "node47-espn-data.onrender.com",
-            "node47-espn-data.onrender.com:*",
-        ],
-        allowed_origins=[],
-    ),
-)
+mcp_http_app = mcp.streamable_http_app()
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
