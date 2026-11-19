@@ -7,11 +7,11 @@ Service de données multisport pour NODE.47 SPORT ANALYT. Il collecte les tablea
 ## Périmètre
 - Sports : football, basketball et tennis.
 - Registre ESPN : 237 compétitions répertoriées dans la base V0.0.5.
-- Collecte réellement activée dans la configuration de référence : 12 routes (voir config/competitions.json).
+- Collecte configurée : les 237 routes du registre dont le statut est `verified` sont activées (220 football, 15 basketball, 2 tennis). Les statuts `ok`, `empty` et `unavailable` sont mesurés à chaque cycle ; `empty` signifie réponse valide sans événement, pas flux défectueux.
 - Source primaire : ESPN scoreboard (site.api.espn.com/apis/site/v2/sports/{sport}/{league}/scoreboard).
 - Batch : GitHub Actions et GitHub Pages.
 - Service : FastAPI, SQLite et rafraîchissement périodique (15 minutes par défaut).
-- La présence dans le registre ou le statut verified ne signifie pas que la compétition est activement collectée.
+- `verified` décrit la validation antérieure de l’endpoint ; `enabled`, `collection_enabled` et le champ historique `collected` décrivent son inclusion dans la configuration du collecteur. Le résultat réel du dernier appel est conservé séparément dans le manifeste de couverture (`ok`, `empty` ou `unavailable`).
 
 ## API V0.0.7
 Python 3.11+ recommandé.
@@ -44,7 +44,7 @@ Les routes de lecture exposent uniquement les données publiques collectées. Le
 - empty : réponse valide sans événement.
 - unavailable dans le manifeste de collecte : échec de la route lors du dernier cycle.
 
-Le registre reste distinct de la collecte active. Le service ne prétend donc pas collecter les 237 compétitions simplement parce qu'elles sont recensées.
+Les 237 routes `verified` sont activées dans `config/competitions.json`. Le collecteur exécute jusqu'à 4 requêtes en parallèle (réglable via `max_workers`, plafond 12), conserve un ordre de résultat stable et isole les échecs. Une route peut répondre `empty` en intersaison tout en restant activement interrogée. Le manifeste indique le résultat de chaque route à chaque cycle.
 
 ## Reconstruire le registre
 ~~~bash
@@ -67,7 +67,7 @@ Dans Settings → Pages → Build and deployment, choisir GitHub Actions. Le wor
 - ESPN utilise ici des endpoints non officiels/non documentés, sans SLA.
 - Pas de cotes, blessures, rosters complets, compositions ou statistiques avancées en V0.0.7.
 - Les routes tennis sont vérifiées au niveau tournoi ; cela ne garantit pas une couverture des matchs.
-- Les 12 routes actives ne représentent pas les 237 compétitions du registre.
+- Les 237 routes sont activées dans la configuration, mais leur disponibilité doit rester confirmée à chaque collecte ; les endpoints ESPN sont non officiels et peuvent évoluer.
 - L'API REST ne prouve pas, à elle seule, une connexion MCP native au plugin ; cette connexion doit être configurée et testée séparément.
 
 ## Roadmap

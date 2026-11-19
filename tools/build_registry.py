@@ -246,6 +246,7 @@ def main() -> None:
                 "zone": derive_zone(sport, competition_id, espn_name),
                 "status": status,
                 "collected": key in collected_keys,
+                "collection_enabled": key in collected_keys,
                 "last_verified": last_verified,
                 "classification": {
                     "method": "derived-from-espn-name-and-slug",
@@ -302,6 +303,11 @@ def main() -> None:
             "nothing is guessed. This layer never feeds the decision engine."
         ),
         "counts": counts,
+        "collection_activation": {
+            "mode": "enabled_routes_from_competitions_config",
+            "enabled_count": len(collected_keys),
+            "semantics": "collected and collection_enabled indicate inclusion in the configured collector; observed request outcomes are recorded separately in the coverage manifest.",
+        },
         "total": len(entries),
         "entries": entries,
     }

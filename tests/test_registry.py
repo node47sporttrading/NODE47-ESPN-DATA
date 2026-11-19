@@ -1,4 +1,4 @@
-"""Registry contract tests: the census must stay consistent with the collection layer."""
+"""Registry contract tests: census, activation and observed collection stay distinct."""
 import json
 import unittest
 from pathlib import Path
@@ -6,18 +6,14 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 REGISTRY_PATH = REPO / "config" / "registry.json"
 COMPETITIONS_PATH = REPO / "config" / "competitions.json"
-
 ALLOWED_STATUS = {"verified", "candidate", "unavailable"}
 ALLOWED_SPORT = {"soccer", "basketball", "tennis"}
-
 
 def _registry():
     return json.loads(REGISTRY_PATH.read_text(encoding="utf-8"))
 
-
 def _competitions():
     return json.loads(COMPETITIONS_PATH.read_text(encoding="utf-8"))
-
 
 class RegistryContractTests(unittest.TestCase):
     def test_registry_exists_and_parses(self):
@@ -27,7 +23,8 @@ class RegistryContractTests(unittest.TestCase):
 
     def test_all_entries_have_required_fields(self):
         required = {"sport", "competition_id", "name", "category", "gender",
-                    "zone", "status", "collected", "last_verified", "evidence"}
+                    "zone", "status", "collected", "last_verified", "evidence",
+                    "collection_enabled"}
         for entry in _registry()["entries"]:
             missing = required - set(entry)
             self.assertEqual(missing, set(), f"entry {entry.get('competition_id')} misses {missing}")
@@ -55,7 +52,7 @@ class RegistryContractTests(unittest.TestCase):
             if entry["status"] == "verified":
                 self.assertIsNotNone(entry["last_verified"], entry["competition_id"])
 
-    def test_enabled_competition_routes_are_verified_in_registry(self):
+    def test_enabled_competition_routes_are_verified_and_enabled_in_registry(self):
         registry = {(e["sport"], e["competition_id"]): e for e in _registry()["entries"]}
         for competition in _competitions()["competitions"]:
             if not competition.get("enabled", False):
@@ -63,7 +60,18 @@ class RegistryContractTests(unittest.TestCase):
             key = (competition["sport"], competition["league"])
             self.assertIn(key, registry, f"{key} absent from registry")
             self.assertEqual(registry[key]["status"], "verified", f"{key} not verified")
-            self.assertTrue(registry[key]["collected"], f"{key} not flagged collected")
+            self.assertTrue(registry[key]["collection_enabled"], f"{key} not configured for collection")
+            # Legacy `collected` means included in configured collection; live outcome is in coverage.
+            self.assertTrue(registry[key]["collected"], f"{key} not marked as configured for collection")
+
+    def test_all_verified_entries_are_activated_once(self):
+        registry = _registry()
+        enabled = [c for c in _competitions()["competitions"] if c.get("enabled")]
+        verified = [e for e in registry["entries"] if e["status"] == "verified"]
+        self.assertEqual(len(enabled), 237)
+        self.assertEqual(len(verified), 237)
+        self.assertEqual({(c["sport"], c["league"]) for c in enabled},
+                         {(e["sport"], e["competition_id"]) for e in verified})
 
     def test_registry_counts_match_entries(self):
         registry = _registry()
@@ -75,7 +83,6 @@ class RegistryContractTests(unittest.TestCase):
             for status in ("verified", "candidate", "unavailable"):
                 self.assertEqual(block[status], counted[sport][status],
                                  f"{sport}/{status} counts mismatch")
-
 
 if __name__ == "__main__":
     unittest.main()
