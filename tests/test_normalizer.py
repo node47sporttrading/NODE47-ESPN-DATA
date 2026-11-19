@@ -18,6 +18,19 @@ class NormalizerTests(unittest.TestCase):
         self.assertEqual(events[0]["participants"]["home"]["name"], "Home")
         self.assertEqual(events[0]["start_time_utc"], "2026-11-19T18:00:00Z")
 
+    def test_tennis_athlete_participants_are_supported(self):
+        payload = {"events": [{
+            "id": "tennis-1", "date": "2026-11-19T10:00:00Z",
+            "competitions": [{"competitors": [
+                {"homeAway": "home", "athlete": {"id": "a1", "displayName": "Player A"}, "score": "6"},
+                {"homeAway": "away", "athlete": {"id": "b1", "displayName": "Player B"}, "score": "4"}
+            ]}]
+        }]}
+        event = normalize_scoreboard(payload, "tennis", "atp", "ATP")[0]
+        self.assertEqual(event["participants"]["home"]["name"], "Player A")
+        self.assertEqual(event["participants"]["away"]["name"], "Player B")
+        self.assertEqual(len(event["participants"]["competitors"]), 2)
+
     def test_empty_scoreboard(self):
         self.assertEqual(normalize_scoreboard({"events": []}, "tennis", "atp", "ATP"), [])
 
