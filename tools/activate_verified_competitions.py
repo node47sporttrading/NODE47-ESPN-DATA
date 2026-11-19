@@ -32,10 +32,10 @@ def build_activation(registry: dict, config: dict, expected_total: int = 237):
         "mode": "all_verified_registry_entries",
         "enabled_count": len(verified),
         "by_sport": counts,
-        "semantics": "collection_enabled means configured for polling; collected is reserved for observed collection evidence."
+        "semantics": "collected and collection_enabled indicate inclusion in the configured collector; observed request outcomes are recorded separately in the coverage manifest."
     }
     activated_registry["entries"] = [
-        {**entry, "collection_enabled": entry.get("status") == "verified"}
+        {**entry, "collected": entry.get("status") == "verified", "collection_enabled": entry.get("status") == "verified"}
         for entry in entries
     ]
     return activated_config, activated_registry
