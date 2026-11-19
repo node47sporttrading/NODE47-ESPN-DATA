@@ -234,13 +234,10 @@ PROPLINE_MODULES = {
     "basketball": {
         "prefixes": ("basketball_",),
         "sport_key": None,
-        "markets": (
-            "h2h", "spreads", "totals", "player_points",
-            "player_rebounds", "player_assists", "player_threes",
-            "player_steals", "player_blocks", "player_turnovers",
-            "player_points_rebounds_assists", "player_double_double",
-        ),
+        # Basketball player props vary by event and book; discover them per event.
+        "markets": ("h2h", "spreads", "totals"),
         "periods": ("q1", "q2", "q3", "q4", "h1", "h2"),
+        "dynamic_event_markets": True,
     },
     "tennis": {
         "prefixes": (),
