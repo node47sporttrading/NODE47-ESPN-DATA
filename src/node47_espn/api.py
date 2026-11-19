@@ -12,6 +12,7 @@ from typing import Any
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Query
 from mcp.server.fastmcp import FastMCP
+from mcp.server.transport_security import TransportSecuritySettings
 
 from .client import ESPNClient
 from .collector import collect
@@ -25,14 +26,26 @@ CONFIG_PATH = Path(os.getenv("NODE47_CONFIG_PATH", ROOT / "config" / "competitio
 REGISTRY_PATH = Path(os.getenv("NODE47_REGISTRY_PATH", ROOT / "config" / "registry.json"))
 DATA_PATH = os.getenv("NODE47_DATA_PATH", str(ROOT / "data" / "node47.sqlite3"))
 REFRESH_SECONDS = max(60, int(os.getenv("NODE47_REFRESH_SECONDS", "900")))
+MCP_PUBLIC_HOST = os.getenv("NODE47_MCP_PUBLIC_HOST", "node47-espn-data.onrender.com")
+MCP_ALLOWED_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv(
+        "NODE47_MCP_ALLOWED_ORIGINS",
+        "https://chatgpt.com,https://chat.openai.com",
+    ).split(",")
+    if origin.strip()
+]
+
 
 def _read_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
+
 
 config = _read_json(CONFIG_PATH)
 registry = _read_json(REGISTRY_PATH)
 store = PostgresDataStore(os.environ["DATABASE_URL"]) if os.getenv("DATABASE_URL") else DataStore(DATA_PATH)
 refresh_lock = asyncio.Lock()
+
 
 def _client() -> ESPNClient:
     return ESPNClient(
@@ -41,14 +54,17 @@ def _client() -> ESPNClient:
         retries=int(os.getenv("NODE47_HTTP_RETRIES", config.get("retries", 2))),
     )
 
+
 def _now() -> datetime:
     return datetime.now(timezone.utc)
+
 
 async def refresh_data():
     async with refresh_lock:
         dataset = await asyncio.to_thread(collect, config, _client())
         store.save_dataset(dataset)
         return dataset
+
 
 async def _refresh_loop():
     while True:
@@ -58,6 +74,7 @@ async def _refresh_loop():
             # Health/coverage endpoints expose the last successful snapshot.
             pass
         await asyncio.sleep(REFRESH_SECONDS)
+
 
 # Read-only MCP surface. Refresh remains available only through the API-key
 # protected REST endpoint and is deliberately not exposed as an MCP tool.
@@ -75,15 +92,18 @@ async def espn_health() -> dict[str, Any]:
     """Return API status, last successful ESPN refresh time, data age and event count."""
     return await health()
 
+
 @mcp.tool()
 async def espn_competitions(sport: str | None = None, status: str | None = None) -> dict[str, Any]:
     """List configured ESPN competitions, optionally filtered by sport and registry status."""
     return await competitions(sport=sport, status=status)
 
+
 @mcp.tool()
 async def espn_coverage() -> dict[str, Any]:
     """Return the latest collection status for every configured competition route."""
     return await coverage()
+
 
 @mcp.tool()
 async def espn_events(
@@ -110,12 +130,27 @@ async def espn_events(
         offset=offset,
     )
 
+
 @mcp.tool()
 async def espn_event_detail(event_id: str) -> dict[str, Any]:
     """Return the normalized ESPN record for one exact event ID."""
     return await event_detail(event_id=event_id)
 
-mcp_http_app = mcp.streamable_http_app()
+
+# The MCP app has its own default /mcp route. Since it is mounted under
+# FastAPI's /mcp prefix, set its internal path to / so the public URL is
+# exactly /mcp/ rather than the accidental /mcp/mcp (or a 404 at /mcp/).
+# Keep DNS-rebinding protection enabled and allow only our public host and
+# the ChatGPT web origins that may initiate browser-based connections.
+mcp_http_app = mcp.streamable_http_app(
+    streamable_http_path="/",
+    transport_security=TransportSecuritySettings(
+        enable_dns_rebinding_protection=True,
+        allowed_hosts=[MCP_PUBLIC_HOST, f"{MCP_PUBLIC_HOST}:*"],
+        allowed_origins=MCP_ALLOWED_ORIGINS,
+    ),
+)
+
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
@@ -131,12 +166,14 @@ async def lifespan(_: FastAPI):
                 except asyncio.CancelledError:
                     pass
 
+
 app = FastAPI(
     title="NODE.47 Multisport Data API",
-    version="0.0.9",
+    version="0.0.10",
     description="ESPN scoreboard ingestion, normalized events, competition registry, collection coverage and read-only MCP tools.",
     lifespan=lifespan,
 )
+
 
 async def require_api_key(x_api_key: str | None = Header(default=None)):
     expected = os.getenv("NODE47_API_KEY", "")
@@ -144,6 +181,7 @@ async def require_api_key(x_api_key: str | None = Header(default=None)):
         raise HTTPException(503, detail="Refresh endpoint is disabled: NODE47_API_KEY is not configured")
     if not x_api_key or not hmac.compare_digest(x_api_key, expected):
         raise HTTPException(401, detail="Invalid or missing API key")
+
 
 @app.get("/health", tags=["system"])
 @app.get("/v1/health", tags=["system"])
@@ -158,7 +196,7 @@ async def health():
             pass
     return {
         "service": "NODE.47 SPORT ANALYT DATA API",
-        "version": "0.0.9",
+        "version": "0.0.10",
         "status": "ok" if last and age is not None and age <= REFRESH_SECONDS * 2 else "degraded",
         "last_refresh_utc": last,
         "data_age_seconds": age,
@@ -167,6 +205,7 @@ async def health():
         "refresh_interval_seconds": REFRESH_SECONDS,
         "source": "ESPN public scoreboard endpoints",
     }
+
 
 @app.get("/v1/competitions", tags=["catalog"])
 async def competitions(sport: str | None = None, status: str | None = None):
@@ -186,6 +225,7 @@ async def competitions(sport: str | None = None, status: str | None = None):
         entries.append(item)
     return {"count": len(entries), "registry_version": registry.get("version"), "competitions": entries}
 
+
 @app.get("/v1/coverage", tags=["catalog"])
 async def coverage():
     rows = store.get_coverage()
@@ -200,6 +240,7 @@ async def coverage():
         "routes": rows,
         "last_refresh_utc": store.get_meta().get("last_refresh_utc"),
     }
+
 
 @app.get("/v1/events", tags=["events"])
 async def events(
@@ -228,12 +269,14 @@ async def events(
         "events": rows,
     }
 
+
 @app.get("/v1/events/{event_id}", tags=["events"])
 async def event_detail(event_id: str):
     event = store.get_event(event_id)
     if event is None:
         raise HTTPException(404, detail="Event not found in the collected dataset")
     return event
+
 
 @app.post("/v1/refresh", tags=["operations"], dependencies=[Depends(require_api_key)])
 async def manual_refresh():
@@ -245,5 +288,6 @@ async def manual_refresh():
         "coverage": dataset["coverage"],
     }
 
-# Keep the REST routes first; the mounted MCP application handles only /mcp/.
+
+# Public MCP endpoint: https://node47-espn-data.onrender.com/mcp/
 app.mount("/mcp", mcp_http_app)
