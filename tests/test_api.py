@@ -9,7 +9,7 @@ class ApiTests(unittest.TestCase):
  def setUp(self): self.client=TestClient(api.app)
  def tearDown(self): self.client.close()
  def test_health_endpoint(self):
-  r=self.client.get("/v1/health"); self.assertEqual(r.status_code,200); self.assertEqual(r.json()["version"],"0.0.7")
+  r=self.client.get("/v1/health"); self.assertEqual(r.status_code,200); self.assertEqual(r.json()["version"],"0.0.8")
  def test_competitions_separates_registry_from_active_collection(self):
   r=self.client.get("/v1/competitions?sport=basketball"); self.assertEqual(r.status_code,200)
   data=r.json(); self.assertGreaterEqual(data["count"],1)

@@ -35,7 +35,7 @@ async def lifespan(_:FastAPI):
         task.cancel()
         try: await task
         except asyncio.CancelledError: pass
-app=FastAPI(title="NODE.47 Multisport Data API",version="0.0.7",description="ESPN scoreboard ingestion, normalized events, competition registry and collection coverage.",lifespan=lifespan)
+app=FastAPI(title="NODE.47 Multisport Data API",version="0.0.8",description="ESPN scoreboard ingestion, normalized events, competition registry and collection coverage.",lifespan=lifespan)
 async def require_api_key(x_api_key:str|None=Header(default=None)):
     expected=os.getenv("NODE47_API_KEY","")
     if not expected: raise HTTPException(503,detail="Refresh endpoint is disabled: NODE47_API_KEY is not configured")
@@ -47,7 +47,7 @@ async def health():
     if last:
         try: age=max(0,int((_now()-datetime.fromisoformat(last.replace("Z","+00:00"))).total_seconds()))
         except ValueError: pass
-    return {"service":"NODE.47 SPORT ANALYT DATA API","version":"0.0.7","status":"ok" if last and age is not None and age<=REFRESH_SECONDS*2 else "degraded","last_refresh_utc":last,"data_age_seconds":age,"event_count":store.count_events(),"refresh_interval_seconds":REFRESH_SECONDS,"source":"ESPN public scoreboard endpoints"}
+    return {"service":"NODE.47 SPORT ANALYT DATA API","version":"0.0.8","status":"ok" if last and age is not None and age<=REFRESH_SECONDS*2 else "degraded","last_refresh_utc":last,"data_age_seconds":age,"event_count":store.count_events(),"deleted_stale_count":int(meta.get("last_pruned_count","0")),"refresh_interval_seconds":REFRESH_SECONDS,"source":"ESPN public scoreboard endpoints"}
 @app.get("/v1/competitions",tags=["catalog"])
 async def competitions(sport:str|None=None,status:str|None=None):
     active={(x["sport"],x["league"]) for x in config.get("competitions",[]) if x.get("enabled")}; entries=[]

@@ -1,77 +1,59 @@
-# NODE.47 ESPN DATA — V0.0.7
+# NODE.47 ESPN DATA — V0.0.8
 
-Service de données multisport pour NODE.47 SPORT ANALYT. Il collecte les tableaux de scores ESPN, normalise les événements, les conserve dans SQLite et expose une API HTTP versionnée. GitHub Pages reste disponible pour les snapshots et le manifeste de couverture.
+Service de données multisport pour NODE.47 SPORT ANALYT. Collecte les scoreboards ESPN, normalise les événements, conserve les snapshots courants dans SQLite et expose une API FastAPI versionnée.
 
-> Important : les endpoints ESPN utilisés sont non officiels et non documentés. Vérifier les conditions d'utilisation ESPN avant toute collecte, republication ou réutilisation. Une réponse vide ou une erreur HTTP n'est jamais transformée en donnée supposée.
+> Les endpoints ESPN utilisés sont non officiels et non documentés. Ils peuvent changer sans préavis et ne disposent d'aucun SLA. Respecter les conditions d'utilisation ESPN. Une réponse vide ou une erreur ne doit jamais être convertie en donnée supposée.
 
-## Périmètre
+## Périmètre et couverture
 - Sports : football, basketball et tennis.
-- Registre ESPN : 237 compétitions répertoriées dans la base V0.0.5.
-- Collecte configurée : les 237 routes du registre dont le statut est `verified` sont activées (220 football, 15 basketball, 2 tennis). Les statuts `ok`, `empty` et `unavailable` sont mesurés à chaque cycle ; `empty` signifie réponse valide sans événement, pas flux défectueux.
-- Source primaire : ESPN scoreboard (site.api.espn.com/apis/site/v2/sports/{sport}/{league}/scoreboard).
-- Batch : GitHub Actions et GitHub Pages.
-- Service : FastAPI, SQLite et rafraîchissement périodique (15 minutes par défaut).
-- `verified` décrit la validation antérieure de l’endpoint ; `enabled`, `collection_enabled` et le champ historique `collected` décrivent son inclusion dans la configuration du collecteur. Le résultat réel du dernier appel est conservé séparément dans le manifeste de couverture (`ok`, `empty` ou `unavailable`).
+- Registre : 237 compétitions (220 football, 15 basketball, 2 tennis).
+- Les routes activées sont des routes configurées, pas une garantie d'événements disponibles à chaque collecte.
+- Statuts de collecte : `ok` (événements reçus), `empty` (réponse valide sans événement), `unavailable` (échec de la route).
+- ESPN scoreboard est la source primaire des calendriers, participants, statuts et scores effectivement présents.
 
-## API V0.0.7
+## API V0.0.8
 Python 3.11+ recommandé.
 
-~~~bash
+```bash
 pip install -r requirements.txt
 PYTHONPATH=src NODE47_DATA_PATH=./data/node47.sqlite3 uvicorn node47_espn.api:app --host 0.0.0.0 --port 8000
-~~~
+```
 
-La documentation OpenAPI est disponible sur /docs.
+OpenAPI : `/docs`.
 
 | Route | Fonction |
 |---|---|
-| GET /v1/health | État du service, fraîcheur, nombre d'événements |
-| GET /v1/competitions?sport=soccer | Registre avec collection_enabled distinct de verified |
+| GET /v1/health | État, fraîcheur, événements conservés et nombre de suppressions obsolètes |
+| GET /v1/competitions?sport=soccer | Registre et activation |
 | GET /v1/coverage | Résultat du dernier cycle par route |
 | GET /v1/events?sport=basketball&league=nba | Événements filtrables et paginés |
 | GET /v1/events/{event_id} | Détail d'un événement |
 | POST /v1/refresh | Rafraîchissement manuel protégé par X-API-Key |
 
-Variables de production : NODE47_API_KEY (requise pour le refresh manuel), NODE47_DATA_PATH=/data/node47.sqlite3, NODE47_REFRESH_SECONDS=900, PORT (fourni par l'hébergeur). Monter un volume persistant sur /data.
+Variables : `NODE47_API_KEY`, `NODE47_DATA_PATH=/data/node47.sqlite3`, `NODE47_REFRESH_SECONDS=900`, `PORT`. Monter un volume persistant sur `/data`.
 
-Les routes de lecture exposent uniquement les données publiques collectées. Les événements et la couverture sont conservés dans SQLite ; les champs absents restent nuls et les anomalies restent signalées.
+## Persistance et nettoyage des événements obsolètes
+Les événements sont upsertés par identifiant ESPN. Après un snapshot complet (sans filtre date), le service supprime les anciens événements uniquement pour les routes dont la collecte a réussi (`ok` ou `empty`). Les routes `unavailable` conservent leurs données précédentes. Les collectes datées sont partielles et ne déclenchent jamais de suppression. Le nombre supprimé est exposé par `/v1/health`.
 
-## Registre et collecte
-- verified : endpoint sondé et schéma validé.
-- candidate : endpoint identifié mais non sondé.
-- unavailable : endpoint sondé et non exploitable.
-- ok : route collectée avec événements.
-- empty : réponse valide sans événement.
-- unavailable dans le manifeste de collecte : échec de la route lors du dernier cycle.
+## Tennis — matchs individuels
+Les réponses ATP/WTA regroupent les matchs à l'intérieur de `events[].groupings[].competitions[]`. Le normaliseur développe chaque compétition en événement individuel et conserve l'identifiant du match, l'identifiant du tournoi, le tableau/draw, le tour, l'horaire, le court et les deux joueurs lorsque les champs sont présents. Les tableaux sans deux participants identifiables sont exclus ou signalés ; aucun match n'est inventé. Les réponses tennis déjà structurées en événements individuels restent prises en charge.
 
-Les 237 routes `verified` sont activées dans `config/competitions.json`. Le collecteur exécute jusqu'à 4 requêtes en parallèle (réglable via `max_workers`, plafond 12), conserve un ordre de résultat stable et isole les échecs. Une route peut répondre `empty` en intersaison tout en restant activement interrogée. Le manifeste indique le résultat de chaque route à chaque cycle.
-
-## Reconstruire le registre
-~~~bash
-python3 tools/discover.py
-python3 tools/probe_registry.py --dates 20261122,20261125,20261128
-python3 tools/build_registry.py
-~~~
-
-Les champs category, gender et zone sont dérivés des noms/slugs ESPN et ne sont pas des signaux du moteur décisionnel.
+Les champs disponibles restent tributaires des réponses ESPN. La surface, les statistiques service/retour et les cotes doivent être enrichies depuis des sources indépendantes avant une analyse NODE.47 complète.
 
 ## Tests
-~~~bash
+```bash
 PYTHONPATH=src python -m unittest discover -s tests -v
-~~~
+```
 
-## GitHub Pages
-Dans Settings → Pages → Build and deployment, choisir GitHub Actions. Le workflow publie les snapshots sous site/. Ne jamais publier de secrets.
+## GitHub Pages et API de production
+Le workflow `.github/workflows/espn-pages.yml` publie des snapshots JSON et un manifeste de couverture sur GitHub Pages. Cela ne déploie pas l'application FastAPI. L'API REST nécessite un hébergement distinct (par exemple un service conteneurisé) et une URL de base configurée dans l'environnement MCP/plugin. Ne pas considérer le snapshot Pages comme une API FastAPI.
 
-## Limites connues
-- ESPN utilise ici des endpoints non officiels/non documentés, sans SLA.
-- Pas de cotes, blessures, rosters complets, compositions ou statistiques avancées en V0.0.7.
-- Les routes tennis sont vérifiées au niveau tournoi ; cela ne garantit pas une couverture des matchs.
-- Les 237 routes sont activées dans la configuration, mais leur disponibilité doit rester confirmée à chaque collecte ; les endpoints ESPN sont non officiels et peuvent évoluer.
-- L'API REST ne prouve pas, à elle seule, une connexion MCP native au plugin ; cette connexion doit être configurée et testée séparément.
+## Limites
+- Pas de cotes, blessures, compositions, rosters complets ou statistiques avancées garanties.
+- Les données ESPN ne remplacent pas les sources spécialisées propres aux modèles NODE.47.
+- La connexion MCP native au plugin doit être configurée et testée séparément.
+- Sans cote actuelle, ligne exacte et règles de règlement vérifiées, le moteur décisionnel doit conclure NO BET.
 
-## Roadmap
-- V0.0.3 à V0.0.5 : collecte initiale, registre, découverte et sondes.
-- V0.0.6 : extension progressive des routes de collecte (à poursuivre).
-- V0.0.7 : API HTTP, SQLite, endpoints de consultation, fraîcheur, couverture et authentification du refresh.
-- V0.0.8 : connexion MCP native du plugin, extension vérifiée de la couverture et métriques de service.
+## Historique
+- V0.0.7 : API HTTP, SQLite, catalogue et couverture.
+- V0.0.8 : suppression prudente des événements obsolètes et normalisation des matchs individuels de tennis.
