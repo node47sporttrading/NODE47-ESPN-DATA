@@ -251,7 +251,7 @@ PROPLINE_MODULES = {
 }
 
 
-def _propline_module(module: str, sport_key: str, markets: str | None = None):
+def _propline_module(module: str, sport_key: str, markets: str | None = None, allow_dynamic: bool = False):
     name = (module or "").strip().lower()
     if name not in PROPLINE_MODULES:
         raise ValueError("module must be football, basketball or tennis")
@@ -267,7 +267,7 @@ def _propline_module(module: str, sport_key: str, markets: str | None = None):
     if not selected:
         raise ValueError("at least one market must be requested")
     invalid = sorted(set(selected) - set(config["markets"]))
-    if invalid and not config.get("dynamic_event_markets"):
+    if invalid and not (allow_dynamic and config.get("dynamic_event_markets")):
         raise ValueError(f"markets not enabled for {name}: {invalid}")
     return name, key, ",".join(selected), config
 
@@ -355,7 +355,7 @@ async def propline_module_event_odds(
 ) -> dict[str, Any]:
     """Discover and validate event markets before fetching event odds."""
     try:
-        name, key, selected, config = _propline_module(module, sport_key, markets)
+        name, key, selected, config = _propline_module(module, sport_key, markets, allow_dynamic=True)
         selected_period = _validate_propline_period(config, period)
         client = _propline()
         available_payload = await asyncio.to_thread(client.event_markets, key, event_id)
