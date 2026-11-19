@@ -63,7 +63,7 @@ Outils MCP en lecture seule :
 - `espn_events` : recherche paginée par sport, ligue, statut et période UTC.
 - `espn_event_detail` : détail d'un événement par identifiant exact.
 
-Le rafraîchissement manuel n'est volontairement pas exposé en MCP. Il reste protégé par `X-API-Key` sur l'API REST. Aucune clé n'est embarquée dans le plugin NODE.47. Le serveur MCP n'expose que des données de calendrier, d'identité, de statut et de scoreboard ; pas de cotes, blessures, compositions ou prédictions.
+Le rafraîchissement manuel n'est volontairement pas exposé en MCP. Il reste protégé par `X-API-Key` sur l'API REST. Aucune clé n'est embarquée dans le plugin NODE.47. Le serveur MCP expose les outils ESPN en lecture seule et les outils PropLine suivants : `propline_health`, `propline_sports`, `propline_events`, `propline_odds` et `propline_event_odds`. PropLine fournit les cotes et marchés bruts ; il ne produit pas les prédictions NODE.47. Les endpoints payants (historique/closing/+EV) ne sont pas activés dans cette intégration Free.
 
 La connexion plugin doit pointer vers l'URL MCP ci-dessus (et non vers la racine REST ou GitHub Pages). Après déploiement Render, vérifier le handshake MCP et la présence des cinq outils avant de déclarer l'intégration opérationnelle.
 
@@ -104,5 +104,6 @@ Le workflow `.github/workflows/espn-pages.yml` publie des snapshots JSON et un m
 
 - V0.0.7 : API HTTP, SQLite, catalogue et couverture.
 - V0.0.8 : suppression prudente des événements obsolètes et normalisation des matchs individuels de tennis.
-- V0.0.9 : outils MCP Streamable HTTP en lecture seule pour connexion native à NODE.47.
+- V0.0.9 : outils MCP Streamable HTTP ESPN.
+- V0.0.11 : client PropLine avec authentification par variable d'environnement et outils MCP de consultation des événements/cotes.
 - Branche de migration PostgreSQL : backend psycopg optionnel, importateur SQLite idempotent et tests d'intégration PostgreSQL.
