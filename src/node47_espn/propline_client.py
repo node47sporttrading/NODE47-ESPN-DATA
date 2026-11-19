@@ -61,17 +61,24 @@ class PropLineClient:
         return self._get(f"/sports/{quote(sport_key, safe='_')}/events", params)
 
     def odds(self, sport_key: str, markets: str = "h2h,spreads,totals",
-             bookmakers: str | None = None, max_age: int | None = None) -> Any:
+             bookmakers: str | None = None, max_age: int | None = None,
+             period: str | None = None) -> Any:
         params: dict[str, Any] = {"markets": markets}
         if bookmakers:
             params["bookmakers"] = bookmakers
         if max_age is not None:
             params["max_age"] = max(1, int(max_age))
+        if period:
+            params["period"] = period
         return self._get(f"/sports/{quote(sport_key, safe='_')}/odds", params)
 
-    def event_odds(self, sport_key: str, event_id: str, markets: str) -> Any:
+    def event_odds(self, sport_key: str, event_id: str, markets: str,
+                   period: str | None = None) -> Any:
         path = f"/sports/{quote(sport_key, safe='_')}/events/{quote(str(event_id), safe='')}/odds"
-        return self._get(path, {"markets": markets})
+        params = {"markets": markets}
+        if period:
+            params["period"] = period
+        return self._get(path, params)
 
     def event_markets(self, sport_key: str, event_id: str) -> Any:
         path = f"/sports/{quote(sport_key, safe='_')}/events/{quote(str(event_id), safe='')}/markets"
