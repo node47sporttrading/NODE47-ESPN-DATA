@@ -107,3 +107,14 @@ Le workflow `.github/workflows/espn-pages.yml` publie des snapshots JSON et un m
 - V0.0.9 : outils MCP Streamable HTTP ESPN.
 - V0.0.11 : client PropLine avec authentification par variable d'environnement et outils MCP de consultation des événements/cotes.
 - Branche de migration PostgreSQL : backend psycopg optionnel, importateur SQLite idempotent et tests d'intégration PostgreSQL.
+
+
+## PropLine sport modules (v0.0.11)
+
+PropLine is exposed through three validated adapters:
+
+- **Football:** pass the exact PropLine soccer key returned by `propline_sports` (for example, a `soccer_...` key). The adapter offers 1X2/moneyline, spreads, totals, BTTS, double chance, draw-no-bet, corners, cards and supported player markets.
+- **Basketball:** pass the exact `basketball_...` provider key (NBA, WNBA or college when available). The adapter offers moneyline, spreads, totals and documented player props.
+- **Tennis:** use the single provider key `tennis` across ATP, WTA, Challenger and ITF. The adapter offers match winner, game handicap/total, total sets, aces, double faults and other documented tennis props.
+
+MCP tools: `propline_module_events`, `propline_module_odds`, `propline_module_event_markets`, and `propline_module_event_odds`. Discover actual per-event offerings before requesting optional markets. ESPN event IDs and PropLine event IDs are provider-specific and must not be interchanged. Historical odds, closing lines and paid +EV endpoints are not part of the Free-tier integration.
