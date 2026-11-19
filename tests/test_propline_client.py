@@ -34,6 +34,19 @@ class PropLineClientTests(unittest.TestCase):
             "max_age": 90,
         })
 
+    def test_event_market_discovery_uses_exact_provider_event(self):
+        session = Mock()
+        session.headers = {}
+        session.get.return_value = FakeResponse(payload=[{"key": "h2h", "outcomes_count": 2}])
+        client = PropLineClient(api_key="test-key", session=session)
+
+        result = client.event_markets("tennis", "event-123")
+
+        self.assertEqual(result, [{"key": "h2h", "outcomes_count": 2}])
+        args, kwargs = session.get.call_args
+        self.assertTrue(args[0].endswith("/sports/tennis/events/event-123/markets"))
+        self.assertEqual(kwargs["params"], {})
+
     def test_missing_key_fails_closed(self):
         with self.assertRaisesRegex(PropLineError, "PROPLINE_API_KEY"):
             PropLineClient(api_key="")
