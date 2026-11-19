@@ -114,7 +114,7 @@ Le workflow `.github/workflows/espn-pages.yml` publie des snapshots JSON et un m
 PropLine is exposed through three validated adapters:
 
 - **Football:** pass the exact PropLine soccer key returned by `propline_sports` (for example, a `soccer_...` key). The adapter offers 1X2/moneyline, spreads, totals, BTTS, double chance, draw-no-bet, corners, cards and supported player markets.
-- **Basketball:** pass the exact `basketball_...` provider key (NBA, WNBA or college when available). The adapter offers moneyline, spreads, totals and documented player props.
+- **Basketball:** pass the exact `basketball_...` provider key. The stable defaults are moneyline, spreads and totals; optional player props are discovered per event and requested only when that event actually offers them.
 - **Tennis:** use the single provider key `tennis` across ATP, WTA, Challenger and ITF. Stable defaults are match winner, game handicap and game total. Optional tennis markets are discovered per event before any odds request; no unverified tennis prop key is assumed.
 
 MCP tools: `propline_module_events`, `propline_module_odds`, `propline_module_event_markets`, and `propline_module_event_odds`. Event-specific odds requests first discover and validate actual per-event offerings. Period filters are forwarded to PropLine only when supported by the selected sport. ESPN event IDs and PropLine event IDs are provider-specific and must not be interchanged. Historical odds, closing lines and paid +EV endpoints are not part of the Free-tier integration.
