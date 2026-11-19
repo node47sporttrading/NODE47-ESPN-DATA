@@ -33,6 +33,12 @@ class ApiTests(unittest.TestCase):
     def test_mcp_endpoint_is_mounted(self):
         self.assertTrue(any(getattr(route, "path", None) == "/mcp" for route in api.app.routes))
 
+    def test_browser_dashboard_is_served(self):
+        response = self.client.get("/app/")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("NODE.47", response.text)
+        self.assertIn("copyDossier", response.text)
+
     def test_refresh_requires_configured_api_key(self):
         data = {
             "fetched_at_utc": "2026-11-19T12:00:00Z",
