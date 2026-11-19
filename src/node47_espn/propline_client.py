@@ -24,7 +24,7 @@ class PropLineClient:
         self.session.headers.update({
             "Accept": "application/json",
             "X-API-Key": self.api_key,
-            "User-Agent": "NODE47-SPORT-ANALYT/0.0.11",
+            "User-Agent": "NODE47-SPORT-ANALYT/0.0.12",
         })
 
     def _get(self, path: str, params: dict[str, Any] | None = None) -> Any:
@@ -72,6 +72,10 @@ class PropLineClient:
     def event_odds(self, sport_key: str, event_id: str, markets: str) -> Any:
         path = f"/sports/{quote(sport_key, safe='_')}/events/{quote(str(event_id), safe='')}/odds"
         return self._get(path, {"markets": markets})
+
+    def event_markets(self, sport_key: str, event_id: str) -> Any:
+        path = f"/sports/{quote(sport_key, safe='_')}/events/{quote(str(event_id), safe='')}/markets"
+        return self._get(path)
 
     def freshness(self) -> Any:
         return self._get("/freshness")
