@@ -15,7 +15,7 @@ class ESPNClient:
         self.session = session or requests.Session()
         self.session.headers.update({
             "Accept": "application/json",
-            "User-Agent": "NODE47-ESPN-DATA/0.3.0 (+https://github.com/node47sporttrading/NODE47-ESPN-DATA)",
+            "User-Agent": "NODE47-ESPN-DATA/0.0.3 (+https://github.com/node47sporttrading/NODE47-ESPN-DATA)",
         })
 
     def scoreboard(self, sport: str, league: str, date: str | None = None) -> dict[str, Any]:

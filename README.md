@@ -9,7 +9,7 @@ Connecteur multisport expérimental pour NODE.47 SPORT ANALYT. Il collecte les t
 - Basketball : NBA, WNBA et NCAA men configurés comme candidats.
 - Tennis : ATP et WTA configurés comme candidats.
 - Source primaire actuelle : scoreboard ESPN.
-- Sortie : `site/data/latest.json` et `site/index.json`.
+- Sorties : `site/data/latest.json`, `site/manifests/latest.json`, `site/index.json`, `site/index.html`.
 - Exécution : GitHub Actions (planifiée et manuelle), publication GitHub Pages.
 
 La configuration initiale est un **catalogue de routes candidates**, pas une déclaration de couverture ESPN garantie. Le rapport `coverage` conserve le statut de chaque compétition.

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -20,8 +21,8 @@ def main() -> None:
     config = json.loads(Path(args.config).read_text(encoding="utf-8"))
     client = ESPNClient(
         config["base_url"],
-        timeout=int(config.get("request_timeout_seconds", 20)),
-        retries=int(config.get("retries", 2)),
+        timeout=int(os.environ.get("NODE47_HTTP_TIMEOUT", config.get("request_timeout_seconds", 20))),
+        retries=int(os.environ.get("NODE47_HTTP_RETRIES", config.get("retries", 2))),
     )
     dataset = collect(config, client, date=args.date)
     output = Path(args.output)
@@ -47,7 +48,7 @@ def main() -> None:
         "latest_dataset": "data/latest.json",
         "manifest": "manifests/latest.json",
     }
-    (output / "index.json").write_text(json.dumps(index, indent=2) + "\n", encoding="utf-8")
+    (output / "index.json").write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (output / "index.html").write_text(
         "<!doctype html><html lang='en'><meta charset='utf-8'><title>NODE.47 ESPN DATA</title>"
         "<h1>NODE.47 ESPN DATA</h1><p>Multisport snapshot. See <a href='data/latest.json'>latest.json</a> "
