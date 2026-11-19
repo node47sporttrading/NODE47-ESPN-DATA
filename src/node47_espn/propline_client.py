@@ -60,10 +60,6 @@ class PropLineClient:
     def events(self, sport_key: str, **params: Any) -> Any:
         return self._get(f"/sports/{quote(sport_key, safe='_')}/events", params)
 
-    def event_ids(self, sport_key: str) -> Any:
-        # Free-tier crosswalk includes ESPN event IDs; prefer it to fuzzy team matching.
-        return self._get(f"/sports/{quote(sport_key, safe='_')}/ids")
-
     def odds(self, sport_key: str, markets: str = "h2h,spreads,totals",
              bookmakers: str | None = None, max_age: int | None = None) -> Any:
         params: dict[str, Any] = {"markets": markets}
@@ -76,10 +72,6 @@ class PropLineClient:
     def event_odds(self, sport_key: str, event_id: str, markets: str) -> Any:
         path = f"/sports/{quote(sport_key, safe='_')}/events/{quote(str(event_id), safe='')}/odds"
         return self._get(path, {"markets": markets})
-
-    def markets(self, sport_key: str, event_id: str) -> Any:
-        path = f"/sports/{quote(sport_key, safe='_')}/events/{quote(str(event_id), safe='')}/markets"
-        return self._get(path)
 
     def freshness(self) -> Any:
         return self._get("/freshness")
