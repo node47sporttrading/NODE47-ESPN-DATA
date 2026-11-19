@@ -7,87 +7,1664 @@
   "competitions": [
     {
       "sport": "soccer",
+      "league": "afc.asian.cup",
+      "name": "AFC Asian Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "afc.champions",
+      "name": "AFC Champions League Elite",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "afc.champions_qual",
+      "name": "AFC Champions League Elite Qualifying",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "afc.cup",
+      "name": "AFC Champions League Two",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "afc.cup_qual",
+      "name": "AFC Champions League Two Qualifying",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "afc.cupq",
+      "name": "AFC Asian Cup Qualifiers",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "afc.saff.championship",
+      "name": "SAFF Championship",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "afc.w.asian.cup",
+      "name": "AFC Women's Asian Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "aff.championship",
+      "name": "ASEAN Championship",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "arg.1",
+      "name": "Argentine Liga Profesional de Fútbol",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "arg.2",
+      "name": "Argentine Nacional B",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "arg.3",
+      "name": "Argentine Primera B",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "arg.copa",
+      "name": "Copa Argentina",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "arg.copa_de_la_superliga",
+      "name": "Argentine Copa de la Superliga",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "arg.supercopa",
+      "name": "Argentine Supercopa",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "arg.supercopa.internacional",
+      "name": "Argentine Supercopa Internacional",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "arg.trofeo_de_la_campeones",
+      "name": "Argentine Trofeo de Campeones",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "aus.1",
+      "name": "Australian A-League Men",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "aus.w.1",
+      "name": "Australian A-League Women",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "aut.1",
+      "name": "Austrian Bundesliga",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "bel.1",
+      "name": "Belgian Pro League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "bel.promotion.relegation",
+      "name": "Belgian Pro League Promotion/Relegation Playoffs",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "bol.1",
+      "name": "Bolivian Liga Profesional",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "bol.copa",
+      "name": "Copa Bolivia",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "bol.ply.rel",
+      "name": "Bolivian Liga Profesional Promotion/Relegation Playoffs",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "bra.1",
+      "name": "Brazilian Serie A",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "bra.2",
+      "name": "Brazilian Serie B",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "bra.camp.carioca",
+      "name": "Brazilian Campeonato Carioca",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "bra.camp.gaucho",
+      "name": "Brazilian Campeonato Gaucho",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "bra.camp.mineiro",
+      "name": "Brazilian Campeonato Mineiro",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "bra.camp.paulista",
+      "name": "Brazilian Campeonato Paulista",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "bra.copa_do_brazil",
+      "name": "Copa do Brasil",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "bra.supercopa_do_brazil",
+      "name": "Brazilian Supercopa Rei",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "caf.champions",
+      "name": "CAF Champions League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "caf.championship",
+      "name": "African Nations Championship",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "caf.confed",
+      "name": "CAF Confederation Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "caf.cosafa",
+      "name": "COSAFA Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "caf.nations",
+      "name": "Africa Cup of Nations",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "caf.nations_qual",
+      "name": "Africa Cup of Nations Qualifying",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "caf.w.nations",
+      "name": "Women's Africa Cup of Nations",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "campeones.cup",
+      "name": "Campeones Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "can.w.nsl",
+      "name": "Northern Super League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "chi.1",
+      "name": "Chilean Primera División",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "chi.1.promotion.relegation",
+      "name": "Chilean Primera División Promotion/Relegation Playoffs",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "chi.copa_chi",
+      "name": "Copa Chile",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "chi.super_cup",
+      "name": "Chilean Supercopa",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "chn.1",
+      "name": "Chinese Super League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "chn.1.promotion.relegation",
+      "name": "Chinese Super League Promotion/Relegation Playoffs",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "club.friendly",
+      "name": "Club Friendly",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "col.1",
+      "name": "Colombian Primera A",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "col.copa",
+      "name": "Copa Colombia",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "col.superliga",
+      "name": "Colombian Superliga",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "concacaf.central.american.cup",
+      "name": "Concacaf Central American Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "concacaf.champions",
+      "name": "Concacaf Champions Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "concacaf.champions_cup",
+      "name": "CONCACAF Champions Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "concacaf.confederations_playoff",
+      "name": "Concacaf Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "concacaf.gold",
+      "name": "Concacaf Gold Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "concacaf.gold_qual",
+      "name": "Concacaf Gold Cup Qualifying",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "concacaf.leagues.cup",
+      "name": "Leagues Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "concacaf.nations.league",
+      "name": "Concacaf Nations League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "concacaf.u23",
+      "name": "CONCACAF U23 Tournament",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "concacaf.w.champions_cup",
+      "name": "Concacaf W Champions Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "concacaf.w.gold",
+      "name": "Concacaf W Gold Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "concacaf.womens.championship",
+      "name": "Concacaf W Championship",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "conmebol.america",
+      "name": "Copa América",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "conmebol.america.femenina",
+      "name": "Copa América Femenina",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "conmebol.libertadores",
+      "name": "CONMEBOL Libertadores",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "conmebol.recopa",
+      "name": "CONMEBOL Recopa",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "conmebol.sudamericana",
+      "name": "CONMEBOL Sudamericana",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "crc.1",
+      "name": "Costa Rican Primera Division",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "den.1",
+      "name": "Danish Superliga",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ecu.1",
+      "name": "LigaPro Ecuador",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
       "league": "eng.1",
       "name": "English Premier League",
       "enabled": true,
-      "coverage_status": "verified"
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "eng.2",
+      "name": "English League Championship",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "eng.3",
+      "name": "English League One",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "eng.4",
+      "name": "English League Two",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "eng.5",
+      "name": "English National League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "eng.charity",
+      "name": "English FA Community Shield",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "eng.fa",
+      "name": "English FA Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "eng.fa_qual",
+      "name": "English FA Cup Qualifying",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "eng.league_cup",
+      "name": "English Carabao Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "eng.trophy",
+      "name": "English EFL Trophy",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "eng.w.1",
+      "name": "English Women's Super League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "eng.w.fa",
+      "name": "English Women's FA Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "eng.w.league_cup",
+      "name": "English WSL Players Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "eng.w.promotion.relegation",
+      "name": "English Women's Super League Promotion/Relegation Playoff",
+      "enabled": true,
+      "registry_status": "verified"
     },
     {
       "sport": "soccer",
       "league": "esp.1",
-      "name": "Spanish LaLiga",
+      "name": "Spanish LALIGA",
       "enabled": true,
-      "coverage_status": "verified"
+      "registry_status": "verified"
     },
     {
       "sport": "soccer",
-      "league": "ger.1",
-      "name": "German Bundesliga",
+      "league": "esp.2",
+      "name": "Spanish LALIGA 2",
       "enabled": true,
-      "coverage_status": "verified"
+      "registry_status": "verified"
     },
     {
       "sport": "soccer",
-      "league": "ita.1",
-      "name": "Italian Serie A",
+      "league": "esp.copa_de_la_reina",
+      "name": "Spanish Copa de la Reina",
       "enabled": true,
-      "coverage_status": "verified"
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "esp.copa_del_rey",
+      "name": "Spanish Copa del Rey",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "esp.joan_gamper",
+      "name": "Trofeo Joan Gamper",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "esp.super_cup",
+      "name": "Spanish Supercopa",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "esp.w.1",
+      "name": "Spanish Liga F",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.concacaf.olympicsq",
+      "name": "Men's Olympic Qualifying Playoff",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.conmebol.olympicsq",
+      "name": "CONMEBOL Pre-Olympic Tournament",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.cwc",
+      "name": "FIFA Club World Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.friendly",
+      "name": "International Friendly",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.friendly.w",
+      "name": "Women's International Friendly",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.friendly_u21",
+      "name": "Under-21 International Friendly",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.intercontinental.cup",
+      "name": "Intercontinental Cup (India)",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.intercontinental_cup",
+      "name": "FIFA Intercontinental Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.olympics",
+      "name": "Men's Olympic Soccer Tournament",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.shebelieves",
+      "name": "SheBelieves Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.w.champions_cup",
+      "name": "FIFA Women's Champions Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.w.concacaf.olympicsq",
+      "name": "Concacaf Women's Olympic Qualifying",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.w.olympics",
+      "name": "Women's Olympic Soccer Tournament",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.wcq.ply",
+      "name": "FIFA World Cup Qualifying - Playoff Tournament",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.world",
+      "name": "FIFA World Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.world.u17",
+      "name": "FIFA Under-17 World Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.world.u20",
+      "name": "FIFA Under-20 World Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.worldq.afc",
+      "name": "FIFA World Cup Qualifying - AFC",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.worldq.caf",
+      "name": "FIFA World Cup Qualifying - CAF",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.worldq.concacaf",
+      "name": "FIFA World Cup Qualifying - Concacaf",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.worldq.conmebol",
+      "name": "FIFA World Cup Qualifying - CONMEBOL",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.worldq.ofc",
+      "name": "FIFA World Cup Qualifying - OFC",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.worldq.uefa",
+      "name": "FIFA World Cup Qualifying - UEFA",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.wwc",
+      "name": "FIFA Women's World Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.wwcq.ply",
+      "name": "FIFA Women's World Cup Qualifying - Playoff Tournament",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.wworld.u17",
+      "name": "FIFA Under-17 Women's World Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fifa.wworldq.uefa",
+      "name": "FIFA Women's World Cup Qualifying - UEFA",
+      "enabled": true,
+      "registry_status": "verified"
     },
     {
       "sport": "soccer",
       "league": "fra.1",
       "name": "French Ligue 1",
       "enabled": true,
-      "coverage_status": "verified"
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fra.1.promotion.relegation",
+      "name": "French Ligue 1 Promotion/Relegation Playoffs",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fra.2",
+      "name": "French Ligue 2",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fra.coupe_de_france",
+      "name": "Coupe de France",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fra.super_cup",
+      "name": "French Trophee des Champions",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "fra.w.1",
+      "name": "French Première Ligue",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "friendly.emirates_cup",
+      "name": "Emirates Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ger.1",
+      "name": "German Bundesliga",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ger.2",
+      "name": "German 2. Bundesliga",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ger.2.promotion.relegation",
+      "name": "German Bundesliga 2. Promotion/Relegation Playoffs",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ger.dfb_pokal",
+      "name": "German Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ger.playoff.relegation",
+      "name": "German Bundesliga Promotion/Relegation Playoff",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ger.super_cup",
+      "name": "German Supercup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "global.arnold.clark_cup",
+      "name": "Arnold Clark Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "global.club_challenge",
+      "name": "CONMEBOL-UEFA Club Challenge",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "global.finalissima",
+      "name": "CONMEBOL-UEFA Cup of Champions",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "global.gulf_cup",
+      "name": "Arabian Gulf Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "global.pinatar_cup",
+      "name": "Pinatar Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "global.u20.intercontinental_cup",
+      "name": "CONMEBOL-UEFA U20 Intercontinental Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "global.w.finalissima",
+      "name": "CONMEBOL-UEFA Women's Cup of Champions",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "gre.1",
+      "name": "Greek Super League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "gua.1",
+      "name": "Guatemalan Liga Nacional",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "hon.1",
+      "name": "Honduran Liga Nacional",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ind.1",
+      "name": "Indian Super League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ind.2",
+      "name": "Indian Football League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ita.1",
+      "name": "Italian Serie A",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ita.2",
+      "name": "Italian Serie B",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ita.coppa_italia",
+      "name": "Coppa Italia",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ita.super_cup",
+      "name": "Italian Supercoppa",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "jpn.1",
+      "name": "Japanese J.League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "jpn.world_challenge",
+      "name": "Japanese J.League World Challenge",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ksa.1",
+      "name": "Saudi Pro League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ksa.kings.cup",
+      "name": "Saudi King's Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "mex.1",
+      "name": "Mexican Liga BBVA MX",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "mex.2",
+      "name": "Mexican Liga de Expansión MX",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "mex.campeon",
+      "name": "Mexican Campeon de Campeones",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "mex.w.1",
+      "name": "Mexican Liga BBVA MX Femenil",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ned.1",
+      "name": "Dutch Eredivisie",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ned.2",
+      "name": "Dutch Keuken Kampioen Divisie",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ned.3.promotion.relegation",
+      "name": "Dutch Tweede Divisie Promotion/Relegation Playoffs",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ned.cup",
+      "name": "Dutch KNVB Beker",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ned.playoff.relegation",
+      "name": "Dutch Eredivisie Promotion/Relegation Playoffs",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ned.supercup",
+      "name": "Dutch Johan Cruyff Shield",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ned.w.1",
+      "name": "Dutch Vrouwen Eredivisie",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ned.w.knvb_cup",
+      "name": "Dutch KNVB Beker Vrouwen",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "nonfifa",
+      "name": "Non-FIFA Friendly",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "nor.1",
+      "name": "Norwegian Eliteserien",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "nor.1.promotion.relegation",
+      "name": "Norwegian Eliteserien Promotion/Relegation Playoffs",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "par.1",
+      "name": "Paraguayan Primera División",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "par.1.supercopa",
+      "name": "Paraguayan Supercopa",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "per.1",
+      "name": "Peruvian Liga 1",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "por.1",
+      "name": "Portuguese Primeira Liga",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "por.1.promotion.relegation",
+      "name": "Portuguese Primeira Liga Promotion/Relegation Playoffs",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "por.taca.portugal",
+      "name": "Taca de Portugal",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "rsa.1",
+      "name": "South African Premiership",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "rus.1",
+      "name": "Russian Premier League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "rus.1.promotion.relegation",
+      "name": "Russian Premier League Relegation/Promotion Playoffs",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "sco.1",
+      "name": "Scottish Premiership",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "sco.1.promotion.relegation",
+      "name": "Scottish Premiership Promotion/Relegation Playoffs",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "sco.2",
+      "name": "Scottish Championship",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "sco.2.promotion.relegation",
+      "name": "Scottish Championship Promotion/Relegation Playoffs",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "sco.challenge",
+      "name": "Scottish League Challenge Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "sco.cis",
+      "name": "Scottish League Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "sco.tennents",
+      "name": "Scottish Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "sco.tennents_qual",
+      "name": "Scottish Cup Qualifying",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "slv.1",
+      "name": "Salvadoran Primera Division",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "swe.1",
+      "name": "Swedish Allsvenskan",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "swe.1.promotion.relegation",
+      "name": "Swedish Allsvenskan Promotion/Relegation Playoffs",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "tur.1",
+      "name": "Turkish Super Lig",
+      "enabled": true,
+      "registry_status": "verified"
     },
     {
       "sport": "soccer",
       "league": "uefa.champions",
       "name": "UEFA Champions League",
       "enabled": true,
-      "coverage_status": "verified"
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uefa.champions_qual",
+      "name": "UEFA Champions League Qualifying",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uefa.euro",
+      "name": "UEFA European Championship",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uefa.euro.u19",
+      "name": "UEFA European Under-19 Championship",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uefa.euro_u21",
+      "name": "UEFA European Under-21 Championship",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uefa.euro_u21_qual",
+      "name": "UEFA European Under-21 Championship Qualifying",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uefa.europa",
+      "name": "UEFA Europa League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uefa.europa.conf",
+      "name": "UEFA Conference League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uefa.europa.conf_qual",
+      "name": "UEFA Conference League Qualifying",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uefa.europa_qual",
+      "name": "UEFA Europa League Qualifying",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uefa.euroq",
+      "name": "UEFA European Championship Qualifying",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uefa.nations",
+      "name": "UEFA Nations League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uefa.super_cup",
+      "name": "UEFA Super Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uefa.w.europa",
+      "name": "UEFA Women's Europa Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uefa.w.nations",
+      "name": "UEFA Women's Nations League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uefa.wchampions",
+      "name": "UEFA Women's Champions League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uefa.wchampions_qual",
+      "name": "UEFA Women's Champions League Qualifying",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uefa.weuro",
+      "name": "UEFA Women's European Championship",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uru.1",
+      "name": "Liga AUF Uruguaya",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "uru.2",
+      "name": "Segunda División de Uruguay",
+      "enabled": true,
+      "registry_status": "verified"
     },
     {
       "sport": "soccer",
       "league": "usa.1",
       "name": "MLS",
       "enabled": true,
-      "coverage_status": "verified"
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "usa.ncaa.m.1",
+      "name": "NCAA Men's Soccer",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "usa.ncaa.w.1",
+      "name": "NCAA Women's Soccer",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "usa.nwsl",
+      "name": "NWSL",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "usa.nwsl.cup",
+      "name": "NWSL Challenge Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "usa.open",
+      "name": "U.S. Open Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "usa.usl.1",
+      "name": "USL Championship",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "usa.usl.l1",
+      "name": "USL League One",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "usa.usl.l1.cup",
+      "name": "USL Cup",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "usa.w.usl.1",
+      "name": "USL Super League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "soccer",
+      "league": "ven.1",
+      "name": "Venezuelan Primera División",
+      "enabled": true,
+      "registry_status": "verified"
     },
     {
       "sport": "basketball",
-      "league": "nba",
-      "name": "NBA",
+      "league": "fiba",
+      "name": "FIBA World Cup",
       "enabled": true,
-      "coverage_status": "verified"
-    },
-    {
-      "sport": "basketball",
-      "league": "wnba",
-      "name": "WNBA",
-      "enabled": true,
-      "coverage_status": "verified"
+      "registry_status": "verified"
     },
     {
       "sport": "basketball",
       "league": "mens-college-basketball",
       "name": "NCAA Men's Basketball",
       "enabled": true,
-      "coverage_status": "verified"
+      "registry_status": "verified"
+    },
+    {
+      "sport": "basketball",
+      "league": "mens-olympics-basketball",
+      "name": "Olympics Men's Basketball",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "basketball",
+      "league": "nba",
+      "name": "National Basketball Association",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "basketball",
+      "league": "nba-development",
+      "name": "NBA G League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "basketball",
+      "league": "nba-summer-california",
+      "name": "NBA California Classic Summer League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "basketball",
+      "league": "nba-summer-golden-state",
+      "name": "Golden State Summer League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "basketball",
+      "league": "nba-summer-las-vegas",
+      "name": "Las Vegas Summer League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "basketball",
+      "league": "nba-summer-orlando",
+      "name": "Orlando Summer League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "basketball",
+      "league": "nba-summer-sacramento",
+      "name": "Sacramento Summer League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "basketball",
+      "league": "nba-summer-utah",
+      "name": "Salt Lake City Summer League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "basketball",
+      "league": "nbl",
+      "name": "National Basketball League",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "basketball",
+      "league": "wnba",
+      "name": "Women's National Basketball Association",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "basketball",
+      "league": "womens-college-basketball",
+      "name": "NCAA Women's Basketball",
+      "enabled": true,
+      "registry_status": "verified"
+    },
+    {
+      "sport": "basketball",
+      "league": "womens-olympics-basketball",
+      "name": "Olympics Women's Basketball",
+      "enabled": true,
+      "registry_status": "verified"
     },
     {
       "sport": "tennis",
       "league": "atp",
-      "name": "ATP Tour",
+      "name": "ATP",
       "enabled": true,
-      "coverage_status": "verified"
+      "registry_status": "verified"
     },
     {
       "sport": "tennis",
       "league": "wta",
-      "name": "WTA Tour",
+      "name": "WTA",
       "enabled": true,
-      "coverage_status": "verified"
+      "registry_status": "verified"
     }
-  ]
+  ],
+  "max_workers": 4,
+  "collection_mode": "all_verified_registry_entries"
 }
