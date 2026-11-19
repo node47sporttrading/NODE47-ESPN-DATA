@@ -63,5 +63,20 @@ class CollectorTests(unittest.TestCase):
         self.assertEqual(client.scoreboard.call_count, 3)
 
 
+    def test_parallel_collection_keeps_registry_order(self):
+        client = Mock()
+        client.scoreboard.side_effect = lambda sport, league, date=None: {"events": []}
+        config = {"max_workers": 3, "competitions": [
+            {"sport": "soccer", "league": "eng.1", "enabled": True},
+            {"sport": "basketball", "league": "nba", "enabled": True},
+            {"sport": "tennis", "league": "atp", "enabled": True},
+        ]}
+        dataset = collect(config, client)
+        self.assertEqual([row["league"] for row in dataset["coverage"]], ["eng.1", "nba", "atp"])
+        self.assertEqual(dataset["configured_route_count"], 3)
+        self.assertEqual(dataset["worker_count"], 3)
+        self.assertEqual([row["status"] for row in dataset["coverage"]], ["empty", "empty", "empty"])
+
+
 if __name__ == "__main__":
     unittest.main()
