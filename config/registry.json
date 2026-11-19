@@ -49,7 +49,7 @@
       "gender": "unspecified",
       "zone": "Asia (AFC)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -78,7 +78,7 @@
       "gender": "unspecified",
       "zone": "Asia (AFC)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -107,7 +107,7 @@
       "gender": "unspecified",
       "zone": "Asia (AFC)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -136,7 +136,7 @@
       "gender": "unspecified",
       "zone": "Asia (AFC)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -165,7 +165,7 @@
       "gender": "unspecified",
       "zone": "Asia (AFC)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -194,7 +194,7 @@
       "gender": "unspecified",
       "zone": "Asia (AFC)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -223,7 +223,7 @@
       "gender": "unspecified",
       "zone": "Asia (AFC)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -252,7 +252,7 @@
       "gender": "female",
       "zone": "Asia (AFC)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -281,7 +281,7 @@
       "gender": "unspecified",
       "zone": "Southeast Asia (AFF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -310,7 +310,7 @@
       "gender": "unspecified",
       "zone": "Argentina",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -339,7 +339,7 @@
       "gender": "unspecified",
       "zone": "Argentina",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -368,7 +368,7 @@
       "gender": "unspecified",
       "zone": "Argentina",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -397,7 +397,7 @@
       "gender": "unspecified",
       "zone": "Argentina",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -426,7 +426,7 @@
       "gender": "unspecified",
       "zone": "Argentina",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -455,7 +455,7 @@
       "gender": "unspecified",
       "zone": "Argentina",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -484,7 +484,7 @@
       "gender": "unspecified",
       "zone": "Argentina",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -513,7 +513,7 @@
       "gender": "unspecified",
       "zone": "Argentina",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -542,7 +542,7 @@
       "gender": "male",
       "zone": "Australia",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -571,7 +571,7 @@
       "gender": "female",
       "zone": "Australia",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -600,7 +600,7 @@
       "gender": "unspecified",
       "zone": "Austria",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -629,7 +629,7 @@
       "gender": "unspecified",
       "zone": "Belgium",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -658,7 +658,7 @@
       "gender": "unspecified",
       "zone": "Belgium",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -687,7 +687,7 @@
       "gender": "unspecified",
       "zone": "Bolivia",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -716,7 +716,7 @@
       "gender": "unspecified",
       "zone": "Bolivia",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -745,7 +745,7 @@
       "gender": "unspecified",
       "zone": "Bolivia",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -774,7 +774,7 @@
       "gender": "unspecified",
       "zone": "Brazil",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -803,7 +803,7 @@
       "gender": "unspecified",
       "zone": "Brazil",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -832,7 +832,7 @@
       "gender": "unspecified",
       "zone": "Brazil",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -861,7 +861,7 @@
       "gender": "unspecified",
       "zone": "Brazil",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -890,7 +890,7 @@
       "gender": "unspecified",
       "zone": "Brazil",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -919,7 +919,7 @@
       "gender": "unspecified",
       "zone": "Brazil",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -948,7 +948,7 @@
       "gender": "unspecified",
       "zone": "Brazil",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -977,7 +977,7 @@
       "gender": "unspecified",
       "zone": "Brazil",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1006,7 +1006,7 @@
       "gender": "unspecified",
       "zone": "Africa (CAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1035,7 +1035,7 @@
       "gender": "unspecified",
       "zone": "Africa (CAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1064,7 +1064,7 @@
       "gender": "unspecified",
       "zone": "Africa (CAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1093,7 +1093,7 @@
       "gender": "unspecified",
       "zone": "Africa (CAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1122,7 +1122,7 @@
       "gender": "unspecified",
       "zone": "Africa (CAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1151,7 +1151,7 @@
       "gender": "unspecified",
       "zone": "Africa (CAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1180,7 +1180,7 @@
       "gender": "female",
       "zone": "Africa (CAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1209,7 +1209,7 @@
       "gender": "unspecified",
       "zone": "International (clubs)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1238,7 +1238,7 @@
       "gender": "female",
       "zone": "Canada",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1267,7 +1267,7 @@
       "gender": "unspecified",
       "zone": "Chile",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1296,7 +1296,7 @@
       "gender": "unspecified",
       "zone": "Chile",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1325,7 +1325,7 @@
       "gender": "unspecified",
       "zone": "Chile",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1354,7 +1354,7 @@
       "gender": "unspecified",
       "zone": "Chile",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1383,7 +1383,7 @@
       "gender": "unspecified",
       "zone": "China",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1412,7 +1412,7 @@
       "gender": "unspecified",
       "zone": "China",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1441,7 +1441,7 @@
       "gender": "unspecified",
       "zone": "International (clubs)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1470,7 +1470,7 @@
       "gender": "unspecified",
       "zone": "Colombia",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1499,7 +1499,7 @@
       "gender": "unspecified",
       "zone": "Colombia",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1528,7 +1528,7 @@
       "gender": "unspecified",
       "zone": "Colombia",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1557,7 +1557,7 @@
       "gender": "unspecified",
       "zone": "North & Central America Caribbean (CONCACAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1586,7 +1586,7 @@
       "gender": "unspecified",
       "zone": "North & Central America Caribbean (CONCACAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1615,7 +1615,7 @@
       "gender": "unspecified",
       "zone": "North & Central America Caribbean (CONCACAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1644,7 +1644,7 @@
       "gender": "unspecified",
       "zone": "North & Central America Caribbean (CONCACAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1673,7 +1673,7 @@
       "gender": "unspecified",
       "zone": "North & Central America Caribbean (CONCACAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1702,7 +1702,7 @@
       "gender": "unspecified",
       "zone": "North & Central America Caribbean (CONCACAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1731,7 +1731,7 @@
       "gender": "unspecified",
       "zone": "North & Central America Caribbean (CONCACAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1760,7 +1760,7 @@
       "gender": "unspecified",
       "zone": "North & Central America Caribbean (CONCACAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1789,7 +1789,7 @@
       "gender": "unspecified",
       "zone": "North & Central America Caribbean (CONCACAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1818,7 +1818,7 @@
       "gender": "female",
       "zone": "North & Central America Caribbean (CONCACAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1847,7 +1847,7 @@
       "gender": "female",
       "zone": "North & Central America Caribbean (CONCACAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1876,7 +1876,7 @@
       "gender": "unspecified",
       "zone": "North & Central America Caribbean (CONCACAF)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1905,7 +1905,7 @@
       "gender": "unspecified",
       "zone": "South America (CONMEBOL)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1934,7 +1934,7 @@
       "gender": "female",
       "zone": "South America (CONMEBOL)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1963,7 +1963,7 @@
       "gender": "unspecified",
       "zone": "South America (CONMEBOL)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -1992,7 +1992,7 @@
       "gender": "unspecified",
       "zone": "South America (CONMEBOL)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2021,7 +2021,7 @@
       "gender": "unspecified",
       "zone": "South America (CONMEBOL)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2050,7 +2050,7 @@
       "gender": "unspecified",
       "zone": "Costa Rica",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2079,7 +2079,7 @@
       "gender": "unspecified",
       "zone": "Denmark",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2108,7 +2108,7 @@
       "gender": "unspecified",
       "zone": "Ecuador",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2166,7 +2166,7 @@
       "gender": "unspecified",
       "zone": "England",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2195,7 +2195,7 @@
       "gender": "unspecified",
       "zone": "England",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2224,7 +2224,7 @@
       "gender": "unspecified",
       "zone": "England",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2253,7 +2253,7 @@
       "gender": "unspecified",
       "zone": "England",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2282,7 +2282,7 @@
       "gender": "unspecified",
       "zone": "England",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2311,7 +2311,7 @@
       "gender": "unspecified",
       "zone": "England",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2340,7 +2340,7 @@
       "gender": "unspecified",
       "zone": "England",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2369,7 +2369,7 @@
       "gender": "unspecified",
       "zone": "England",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2398,7 +2398,7 @@
       "gender": "unspecified",
       "zone": "England",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2427,7 +2427,7 @@
       "gender": "female",
       "zone": "England",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2456,7 +2456,7 @@
       "gender": "female",
       "zone": "England",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2485,7 +2485,7 @@
       "gender": "female",
       "zone": "England",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2514,7 +2514,7 @@
       "gender": "female",
       "zone": "England",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2572,7 +2572,7 @@
       "gender": "unspecified",
       "zone": "Spain",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2601,7 +2601,7 @@
       "gender": "female",
       "zone": "Spain",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2630,7 +2630,7 @@
       "gender": "unspecified",
       "zone": "Spain",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2659,7 +2659,7 @@
       "gender": "unspecified",
       "zone": "Spain",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2688,7 +2688,7 @@
       "gender": "unspecified",
       "zone": "Spain",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2717,7 +2717,7 @@
       "gender": "female",
       "zone": "Spain",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2746,7 +2746,7 @@
       "gender": "male",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2775,7 +2775,7 @@
       "gender": "unspecified",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2804,7 +2804,7 @@
       "gender": "unspecified",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2833,7 +2833,7 @@
       "gender": "unspecified",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2862,7 +2862,7 @@
       "gender": "female",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2891,7 +2891,7 @@
       "gender": "unspecified",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2920,7 +2920,7 @@
       "gender": "unspecified",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2949,7 +2949,7 @@
       "gender": "unspecified",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -2978,7 +2978,7 @@
       "gender": "male",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3007,7 +3007,7 @@
       "gender": "female",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3036,7 +3036,7 @@
       "gender": "female",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3065,7 +3065,7 @@
       "gender": "female",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3094,7 +3094,7 @@
       "gender": "female",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3123,7 +3123,7 @@
       "gender": "unspecified",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3152,7 +3152,7 @@
       "gender": "unspecified",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3181,7 +3181,7 @@
       "gender": "unspecified",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3210,7 +3210,7 @@
       "gender": "unspecified",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3239,7 +3239,7 @@
       "gender": "unspecified",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3268,7 +3268,7 @@
       "gender": "unspecified",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3297,7 +3297,7 @@
       "gender": "unspecified",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3326,7 +3326,7 @@
       "gender": "unspecified",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3355,7 +3355,7 @@
       "gender": "unspecified",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3384,7 +3384,7 @@
       "gender": "unspecified",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3413,7 +3413,7 @@
       "gender": "female",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3442,7 +3442,7 @@
       "gender": "female",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3471,7 +3471,7 @@
       "gender": "female",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3500,7 +3500,7 @@
       "gender": "female",
       "zone": "International (FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3558,7 +3558,7 @@
       "gender": "unspecified",
       "zone": "France",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3587,7 +3587,7 @@
       "gender": "unspecified",
       "zone": "France",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3616,7 +3616,7 @@
       "gender": "unspecified",
       "zone": "France",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3645,7 +3645,7 @@
       "gender": "unspecified",
       "zone": "France",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3674,7 +3674,7 @@
       "gender": "female",
       "zone": "France",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3703,7 +3703,7 @@
       "gender": "unspecified",
       "zone": "International (clubs)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3761,7 +3761,7 @@
       "gender": "unspecified",
       "zone": "Germany",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3790,7 +3790,7 @@
       "gender": "unspecified",
       "zone": "Germany",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3819,7 +3819,7 @@
       "gender": "unspecified",
       "zone": "Germany",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3848,7 +3848,7 @@
       "gender": "unspecified",
       "zone": "Germany",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3877,7 +3877,7 @@
       "gender": "unspecified",
       "zone": "Germany",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3906,7 +3906,7 @@
       "gender": "female",
       "zone": "International",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3935,7 +3935,7 @@
       "gender": "unspecified",
       "zone": "International",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3964,7 +3964,7 @@
       "gender": "unspecified",
       "zone": "International",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -3993,7 +3993,7 @@
       "gender": "unspecified",
       "zone": "International",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4022,7 +4022,7 @@
       "gender": "unspecified",
       "zone": "International",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4051,7 +4051,7 @@
       "gender": "unspecified",
       "zone": "International",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4080,7 +4080,7 @@
       "gender": "female",
       "zone": "International",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4109,7 +4109,7 @@
       "gender": "unspecified",
       "zone": "Greece",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4138,7 +4138,7 @@
       "gender": "unspecified",
       "zone": "Guatemala",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4167,7 +4167,7 @@
       "gender": "unspecified",
       "zone": "Honduras",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4196,7 +4196,7 @@
       "gender": "unspecified",
       "zone": "India",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4225,7 +4225,7 @@
       "gender": "unspecified",
       "zone": "India",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4283,7 +4283,7 @@
       "gender": "unspecified",
       "zone": "Italy",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4312,7 +4312,7 @@
       "gender": "unspecified",
       "zone": "Italy",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4341,7 +4341,7 @@
       "gender": "unspecified",
       "zone": "Italy",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4370,7 +4370,7 @@
       "gender": "unspecified",
       "zone": "Japan",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4399,7 +4399,7 @@
       "gender": "unspecified",
       "zone": "Japan",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4428,7 +4428,7 @@
       "gender": "unspecified",
       "zone": "Saudi Arabia",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4457,7 +4457,7 @@
       "gender": "unspecified",
       "zone": "Saudi Arabia",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4486,7 +4486,7 @@
       "gender": "unspecified",
       "zone": "Mexico",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4515,7 +4515,7 @@
       "gender": "unspecified",
       "zone": "Mexico",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4544,7 +4544,7 @@
       "gender": "unspecified",
       "zone": "Mexico",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4573,7 +4573,7 @@
       "gender": "female",
       "zone": "Mexico",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4602,7 +4602,7 @@
       "gender": "unspecified",
       "zone": "Netherlands",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4631,7 +4631,7 @@
       "gender": "unspecified",
       "zone": "Netherlands",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4660,7 +4660,7 @@
       "gender": "unspecified",
       "zone": "Netherlands",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4689,7 +4689,7 @@
       "gender": "unspecified",
       "zone": "Netherlands",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4718,7 +4718,7 @@
       "gender": "unspecified",
       "zone": "Netherlands",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4747,7 +4747,7 @@
       "gender": "unspecified",
       "zone": "Netherlands",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4776,7 +4776,7 @@
       "gender": "female",
       "zone": "Netherlands",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4805,7 +4805,7 @@
       "gender": "female",
       "zone": "Netherlands",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4834,7 +4834,7 @@
       "gender": "unspecified",
       "zone": "International (non-FIFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4863,7 +4863,7 @@
       "gender": "unspecified",
       "zone": "Norway",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4892,7 +4892,7 @@
       "gender": "unspecified",
       "zone": "Norway",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4921,7 +4921,7 @@
       "gender": "unspecified",
       "zone": "Paraguay",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4950,7 +4950,7 @@
       "gender": "unspecified",
       "zone": "Paraguay",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -4979,7 +4979,7 @@
       "gender": "unspecified",
       "zone": "Peru",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5008,7 +5008,7 @@
       "gender": "unspecified",
       "zone": "Portugal",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5037,7 +5037,7 @@
       "gender": "unspecified",
       "zone": "Portugal",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5066,7 +5066,7 @@
       "gender": "unspecified",
       "zone": "Portugal",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5095,7 +5095,7 @@
       "gender": "unspecified",
       "zone": "South Africa",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5124,7 +5124,7 @@
       "gender": "unspecified",
       "zone": "Russia",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5153,7 +5153,7 @@
       "gender": "unspecified",
       "zone": "Russia",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5182,7 +5182,7 @@
       "gender": "unspecified",
       "zone": "Scotland",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5211,7 +5211,7 @@
       "gender": "unspecified",
       "zone": "Scotland",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5240,7 +5240,7 @@
       "gender": "unspecified",
       "zone": "Scotland",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5269,7 +5269,7 @@
       "gender": "unspecified",
       "zone": "Scotland",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5298,7 +5298,7 @@
       "gender": "unspecified",
       "zone": "Scotland",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5327,7 +5327,7 @@
       "gender": "unspecified",
       "zone": "Scotland",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5356,7 +5356,7 @@
       "gender": "unspecified",
       "zone": "Scotland",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5385,7 +5385,7 @@
       "gender": "unspecified",
       "zone": "Scotland",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5414,7 +5414,7 @@
       "gender": "unspecified",
       "zone": "El Salvador",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5443,7 +5443,7 @@
       "gender": "unspecified",
       "zone": "Sweden",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5472,7 +5472,7 @@
       "gender": "unspecified",
       "zone": "Sweden",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5501,7 +5501,7 @@
       "gender": "unspecified",
       "zone": "Turkey",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5559,7 +5559,7 @@
       "gender": "unspecified",
       "zone": "Europe (UEFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5588,7 +5588,7 @@
       "gender": "unspecified",
       "zone": "Europe (UEFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5617,7 +5617,7 @@
       "gender": "unspecified",
       "zone": "Europe (UEFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5646,7 +5646,7 @@
       "gender": "unspecified",
       "zone": "Europe (UEFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5675,7 +5675,7 @@
       "gender": "unspecified",
       "zone": "Europe (UEFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5704,7 +5704,7 @@
       "gender": "unspecified",
       "zone": "Europe (UEFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5733,7 +5733,7 @@
       "gender": "unspecified",
       "zone": "Europe (UEFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5762,7 +5762,7 @@
       "gender": "unspecified",
       "zone": "Europe (UEFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5791,7 +5791,7 @@
       "gender": "unspecified",
       "zone": "Europe (UEFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5820,7 +5820,7 @@
       "gender": "unspecified",
       "zone": "Europe (UEFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5849,7 +5849,7 @@
       "gender": "unspecified",
       "zone": "Europe (UEFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5878,7 +5878,7 @@
       "gender": "unspecified",
       "zone": "Europe (UEFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5907,7 +5907,7 @@
       "gender": "female",
       "zone": "Europe (UEFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5936,7 +5936,7 @@
       "gender": "female",
       "zone": "Europe (UEFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5965,7 +5965,7 @@
       "gender": "female",
       "zone": "Europe (UEFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -5994,7 +5994,7 @@
       "gender": "female",
       "zone": "Europe (UEFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6023,7 +6023,7 @@
       "gender": "female",
       "zone": "Europe (UEFA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6052,7 +6052,7 @@
       "gender": "unspecified",
       "zone": "Uruguay",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6081,7 +6081,7 @@
       "gender": "unspecified",
       "zone": "Uruguay",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6139,7 +6139,7 @@
       "gender": "male",
       "zone": "United States",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6168,7 +6168,7 @@
       "gender": "female",
       "zone": "United States",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6197,7 +6197,7 @@
       "gender": "unspecified",
       "zone": "United States",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6226,7 +6226,7 @@
       "gender": "unspecified",
       "zone": "United States",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6255,7 +6255,7 @@
       "gender": "unspecified",
       "zone": "United States",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6284,7 +6284,7 @@
       "gender": "unspecified",
       "zone": "United States",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6313,7 +6313,7 @@
       "gender": "unspecified",
       "zone": "United States",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6342,7 +6342,7 @@
       "gender": "unspecified",
       "zone": "United States",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6371,7 +6371,7 @@
       "gender": "female",
       "zone": "United States",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6400,7 +6400,7 @@
       "gender": "unspecified",
       "zone": "Venezuela",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6429,7 +6429,7 @@
       "gender": "unspecified",
       "zone": "International (FIBA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6487,7 +6487,7 @@
       "gender": "male",
       "zone": "International (IOC)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6545,7 +6545,7 @@
       "gender": "male",
       "zone": "United States",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6574,7 +6574,7 @@
       "gender": "male",
       "zone": "United States",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6603,7 +6603,7 @@
       "gender": "male",
       "zone": "United States",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6632,7 +6632,7 @@
       "gender": "male",
       "zone": "United States",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6661,7 +6661,7 @@
       "gender": "male",
       "zone": "United States",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6690,7 +6690,7 @@
       "gender": "male",
       "zone": "United States",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6719,7 +6719,7 @@
       "gender": "male",
       "zone": "United States",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6748,7 +6748,7 @@
       "gender": "male",
       "zone": "Australia",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6806,7 +6806,7 @@
       "gender": "female",
       "zone": "United States (NCAA)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6835,7 +6835,7 @@
       "gender": "female",
       "zone": "International (IOC)",
       "status": "verified",
-      "collected": false,
+      "collected": true,
       "last_verified": "2026-11-19",
       "classification": {
         "method": "derived-from-espn-name-and-slug",
@@ -6924,6 +6924,6 @@
       "basketball": 15,
       "tennis": 2
     },
-    "semantics": "collection_enabled means the collector is configured to query this route; collected remains false until a successful collection cycle observes it."
+    "semantics": "collected and collection_enabled indicate inclusion in the configured collector; the latest observed request outcome is recorded separately in the collection coverage manifest."
   }
 }
