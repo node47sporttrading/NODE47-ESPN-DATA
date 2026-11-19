@@ -47,6 +47,18 @@ class PropLineClientTests(unittest.TestCase):
         self.assertTrue(args[0].endswith("/sports/tennis/events/event-123/markets"))
         self.assertEqual(kwargs["params"], {})
 
+    def test_period_filter_is_forwarded_for_event_odds(self):
+        session = Mock()
+        session.headers = {}
+        session.get.return_value = FakeResponse(payload={"id": "event-1"})
+        client = PropLineClient(api_key="test-key", session=session)
+
+        client.event_odds("tennis", "event-1", "h2h", period="s1")
+
+        self.assertEqual(session.get.call_args.kwargs["params"], {
+            "markets": "h2h", "period": "s1"
+        })
+
     def test_missing_key_fails_closed(self):
         with self.assertRaisesRegex(PropLineError, "PROPLINE_API_KEY"):
             PropLineClient(api_key="")

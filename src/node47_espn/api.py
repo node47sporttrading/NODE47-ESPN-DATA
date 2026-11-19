@@ -216,46 +216,42 @@ async def propline_event_odds(sport_key: str, event_id: str, markets: str) -> di
 
 
 
-# Sport-specific PropLine adapters. Keys are provider keys, not ESPN league IDs.
+# Sport-specific PropLine adapters. Provider keys are not ESPN league IDs.
 PROPLINE_MODULES = {
     "football": {
         "prefixes": ("soccer_",),
-        "sport_key": None,  # Must be selected per competition from propline_sports().
+        "sport_key": None,
         "markets": (
             "h2h", "spreads", "totals", "both_teams_to_score",
             "double_chance", "draw_no_bet", "correct_score",
             "total_corners", "corners_spread", "team_corners",
             "total_cards", "team_cards", "anytime_goal_scorer",
-            "first_goal_scorer", "player_assists", "player_cards",
-            "goal_or_assist",
+            "first_goal_scorer", "2plus_goals", "player_assists",
+            "player_2plus_assists", "player_cards", "goal_or_assist",
         ),
         "periods": ("h1", "h2"),
     },
     "basketball": {
         "prefixes": ("basketball_",),
-        "sport_key": None,  # NBA/WNBA/college keys are selected explicitly.
-        "markets": (
-            "h2h", "spreads", "totals", "player_points",
-            "player_rebounds", "player_assists", "player_threes",
-            "player_steals", "player_blocks", "player_turnovers",
-            "player_points_rebounds_assists", "player_double_double",
-        ),
+        "sport_key": None,
+        # Basketball player props vary by event and book; discover them per event.
+        "markets": ("h2h", "spreads", "totals"),
         "periods": ("q1", "q2", "q3", "q4", "h1", "h2"),
+        "dynamic_event_markets": True,
     },
     "tennis": {
         "prefixes": (),
         "sport_key": "tennis",
-        "markets": (
-            "h2h", "spreads", "totals", "total_sets",
-            "player_aces", "player_double_faults", "player_games_won",
-            "player_break_points_won", "total_tiebreaks", "total_aces",
-        ),
+        # PropLine's public market catalogue does not enumerate tennis prop keys.
+        # Event-market discovery is the source of truth for optional tennis markets.
+        "markets": ("h2h", "spreads", "totals"),
         "periods": ("s1", "s2", "s3", "s4", "s5"),
+        "dynamic_event_markets": True,
     },
 }
 
 
-def _propline_module(module: str, sport_key: str, markets: str | None = None):
+def _propline_module(module: str, sport_key: str, markets: str | None = None, allow_dynamic: bool = False):
     name = (module or "").strip().lower()
     if name not in PROPLINE_MODULES:
         raise ValueError("module must be football, basketball or tennis")
@@ -267,22 +263,44 @@ def _propline_module(module: str, sport_key: str, markets: str | None = None):
         raise ValueError(f"{name} requires a provider sport_key beginning with {config['prefixes']}")
     if not key:
         raise ValueError("sport_key is required; select it from propline_sports()")
-    selected = tuple(x.strip() for x in markets.split(",") if x.strip()) if markets else config["markets"]
+    selected = tuple(x.strip() for x in markets.split(",") if x.strip()) if markets else ("h2h", "spreads", "totals")
+    if not selected:
+        raise ValueError("at least one market must be requested")
     invalid = sorted(set(selected) - set(config["markets"]))
-    if not selected or invalid:
-        raise ValueError(f"markets not enabled for {name}: {invalid or ['empty market list']}")
+    if invalid and not (allow_dynamic and config.get("dynamic_event_markets")):
+        raise ValueError(f"markets not enabled for {name}: {invalid}")
     return name, key, ",".join(selected), config
+
+
+def _propline_market_keys(payload: Any) -> set[str]:
+    rows = payload.get("markets", []) if isinstance(payload, dict) else payload
+    if not isinstance(rows, list):
+        return set()
+    return {
+        str(row.get("key")).strip()
+        for row in rows
+        if isinstance(row, dict) and row.get("key")
+    }
+
+
+def _validate_propline_period(config: dict[str, Any], period: str | None) -> str | None:
+    if period is None or period == "":
+        return None
+    value = period.strip().lower()
+    if value != "all" and value not in config["periods"]:
+        raise ValueError(f"period {value!r} is not supported for this module")
+    return value
 
 
 @mcp.tool()
 async def propline_module_events(module: str, sport_key: str) -> dict[str, Any]:
     """List PropLine fixtures through the football, basketball or tennis adapter."""
-    name, key, _, _ = _propline_module(module, sport_key)
     try:
+        name, key, _, _ = _propline_module(module, sport_key)
         data = await asyncio.to_thread(_propline().events, key)
         return {"status": "ok", "module": name, "sport_key": key, "events": data}
-    except PropLineError as exc:
-        return {"status": "error", "module": name, "sport_key": key, "error": str(exc)}
+    except (PropLineError, ValueError) as exc:
+        return {"status": "error", "module": module, "sport_key": sport_key, "error": str(exc)}
 
 
 @mcp.tool()
@@ -292,54 +310,75 @@ async def propline_module_odds(
     markets: str | None = None,
     bookmakers: str | None = None,
     max_age_seconds: int | None = 180,
+    period: str | None = None,
 ) -> dict[str, Any]:
-    """Fetch sport-specific game and player markets using a validated module preset."""
-    name, key, selected, config = _propline_module(module, sport_key, markets)
+    """Fetch validated bulk odds; tennis optional props require per-event market discovery."""
     try:
+        name, key, selected, config = _propline_module(module, sport_key, markets)
+        selected_period = _validate_propline_period(config, period)
         data = await asyncio.to_thread(
-            _propline().odds, key, selected, bookmakers, max_age_seconds
+            _propline().odds, key, selected, bookmakers, max_age_seconds, selected_period
         )
         return {
             "status": "ok", "module": name, "sport_key": key,
-            "markets": selected, "supported_periods": list(config["periods"]),
-            "odds": data,
+            "markets": selected, "period": selected_period, "odds": data,
         }
-    except PropLineError as exc:
-        return {"status": "error", "module": name, "sport_key": key, "error": str(exc)}
+    except (PropLineError, ValueError) as exc:
+        return {"status": "error", "module": module, "sport_key": sport_key, "error": str(exc)}
 
 
 @mcp.tool()
 async def propline_module_event_markets(
     module: str, sport_key: str, event_id: str
 ) -> dict[str, Any]:
-    """Discover the markets actually available for one PropLine event."""
-    name, key, _, config = _propline_module(module, sport_key)
+    """Discover the markets actually available for one exact PropLine event."""
     try:
+        name, key, _, config = _propline_module(module, sport_key)
         data = await asyncio.to_thread(_propline().event_markets, key, event_id)
         return {
             "status": "ok", "module": name, "sport_key": key,
             "event_id": event_id, "module_market_catalog": list(config["markets"]),
             "available_markets": data,
         }
-    except PropLineError as exc:
-        return {"status": "error", "module": name, "sport_key": key,
+    except (PropLineError, ValueError) as exc:
+        return {"status": "error", "module": module, "sport_key": sport_key,
                 "event_id": event_id, "error": str(exc)}
 
 
 @mcp.tool()
 async def propline_module_event_odds(
-    module: str, sport_key: str, event_id: str, markets: str | None = None
+    module: str,
+    sport_key: str,
+    event_id: str,
+    markets: str | None = None,
+    period: str | None = None,
 ) -> dict[str, Any]:
-    """Fetch only validated football, basketball or tennis markets for one event."""
-    name, key, selected, _ = _propline_module(module, sport_key, markets)
+    """Discover and validate event markets before fetching event odds."""
     try:
-        data = await asyncio.to_thread(_propline().event_odds, key, event_id, selected)
+        name, key, selected, config = _propline_module(module, sport_key, markets, allow_dynamic=True)
+        selected_period = _validate_propline_period(config, period)
+        client = _propline()
+        available_payload = await asyncio.to_thread(client.event_markets, key, event_id)
+        available = _propline_market_keys(available_payload)
+        requested = set(selected.split(","))
+        invalid = sorted(requested - available)
+        if invalid:
+            return {
+                "status": "market_unavailable", "module": name, "sport_key": key,
+                "event_id": event_id, "requested_markets": sorted(requested),
+                "unavailable_markets": invalid, "available_markets": sorted(available),
+                "odds": None,
+            }
+        data = await asyncio.to_thread(
+            client.event_odds, key, event_id, selected, selected_period
+        )
         return {
             "status": "ok", "module": name, "sport_key": key,
-            "event_id": event_id, "markets": selected, "odds": data,
+            "event_id": event_id, "markets": selected, "period": selected_period,
+            "available_markets": sorted(available), "odds": data,
         }
-    except PropLineError as exc:
-        return {"status": "error", "module": name, "sport_key": key,
+    except (PropLineError, ValueError) as exc:
+        return {"status": "error", "module": module, "sport_key": sport_key,
                 "event_id": event_id, "error": str(exc)}
 
 
@@ -364,7 +403,7 @@ async def lifespan(_: FastAPI):
 
 app = FastAPI(
     title="NODE.47 Multisport Data API",
-    version="0.0.12",
+    version="0.0.13",
     description="ESPN scoreboard ingestion, normalized events, competition registry, collection coverage and read-only MCP tools.",
     lifespan=lifespan,
 )
@@ -391,7 +430,7 @@ async def health():
             pass
     return {
         "service": "NODE.47 SPORT ANALYT DATA API",
-        "version": "0.0.12",
+        "version": "0.0.13",
         "status": "ok" if last and age is not None and age <= REFRESH_SECONDS * 2 else "degraded",
         "last_refresh_utc": last,
         "data_age_seconds": age,
