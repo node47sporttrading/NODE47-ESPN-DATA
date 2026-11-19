@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NODE.47 — Centre de données ESPN</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#141d32;--line:#293650;--text:#edf2ff;--muted:#aab7cf;--accent:#77a9ff;--ok:#55d6a0;--warn:#ffd166;--bad:#ff7b83}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,Segoe UI,Arial,sans-serif}
+main{max-width:1100px;margin:auto;padding:28px 18px 60px}header{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:22px}
+h1{font-size:clamp(24px,4vw,34px);margin:0}h2{font-size:18px;margin:0 0 14px}.sub{color:var(--muted);margin:4px 0 0}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.metric{padding:12px;border:1px solid var(--line);border-radius:10px}.metric small{display:block;color:var(--muted)}.metric strong{font-size:19px;overflow-wrap:anywhere}
+label{display:block;color:var(--muted);font-size:13px;margin-bottom:5px}input,select,button{font:inherit;border-radius:8px;border:1px solid var(--line);padding:10px;background:#0e1729;color:var(--text);width:100%}
+button{background:#244b83;border-color:#3767a8;cursor:pointer;font-weight:600}button.secondary{background:#1b2941}button:hover{filter:brightness(1.15)}
+.filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;align-items:end}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.actions button{width:auto;min-width:140px}
+.status{font-weight:700}.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+.note{color:var(--muted);font-size:13px}.scroll{overflow:auto}table{width:100%;border-collapse:collapse;min-width:650px}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-weight:600}
+a{color:var(--accent)}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#0b1425;border:1px solid var(--line);border-radius:9px;padding:12px;max-height:420px;overflow:auto}
+.hidden{display:none}.eventname{font-weight:650}.tag{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:2px 8px;color:var(--muted);font-size:12px}
+footer{color:var(--muted);font-size:12px;margin-top:24px}
+</style>
+</head>
+<body><main>
+<header><div><h1>NODE.47 — Centre de données</h1><p class="sub">Interface Web de consultation ESPN · Football · Basketball · Tennis</p></div><button id="refreshHealth" class="secondary" style="width:auto">Actualiser l'état</button></header>
+<section class="panel"><h2>État du service Render</h2><div class="grid">
+<div class="metric"><small>État API</small><strong id="apiStatus">Vérification…</strong></div>
+<div class="metric"><small>Dernière collecte UTC</small><strong id="lastRefresh">—</strong></div>
+<div class="metric"><small>Âge des données</small><strong id="dataAge">—</strong></div>
+<div class="metric"><small>Événements stockés</small><strong id="eventCount">—</strong></div>
+</div><p class="note" id="healthMessage">Cette page lit les données déjà collectées par l'API. Elle ne déclenche pas de rafraîchissement manuel.</p></section>
+<section class="panel"><h2>Rechercher un événement</h2>
+<div class="filters">
+<div><label for="sport">Sport</label><select id="sport"><option value="">Tous</option><option value="soccer">Football</option><option value="basketball">Basketball</option><option value="tennis">Tennis</option></select></div>
+<div><label for="league">Compétition / ligue (facultatif)</label><input id="league" placeholder="ex. nba, eng.1, atp"></div>
+<div><label for="status">Statut</label><select id="status"><option value="">Tous</option><option value="pre">À venir</option><option value="in">En cours</option><option value="post">Terminé</option></select></div>
+<div><label for="dateFrom">Début (UTC)</label><input id="dateFrom" type="date"></div>
+<div><label for="dateTo">Fin (UTC)</label><input id="dateTo" type="date"></div>
+<div><label for="limit">Nombre de résultats</label><select id="limit"><option>25</option><option selected>100</option><option>250</option><option>500</option></select></div>
+</div><div class="actions"><button id="search">Rechercher les événements</button><button id="clear" class="secondary">Effacer les filtres</button></div>
+<p class="note">Les dates sont interprétées en UTC. Les résultats dépendent de la dernière collecte disponible.</p></section>
+<section class="panel"><h2>Résultats</h2><p id="resultsMessage" class="note">Lance une recherche pour afficher les événements disponibles.</p><div class="scroll"><table id="resultsTable" class="hidden"><thead><tr><th>Événement</th><th>Sport / ligue</th><th>Date UTC</th><th>Statut</th><th>Score</th><th>Détail</th></tr></thead><tbody id="resultsBody"></tbody></table></div></section>
+<section class="panel hidden" id="detailPanel"><h2>Détail de l'événement</h2><p id="detailTitle" class="sub"></p><pre id="detailJson"></pre></section>
+<footer>NODE.47 ESPN DATA · Consultation en lecture seule · Les données ESPN ne fournissent pas automatiquement les cotes, blessures, compositions ou statistiques avancées.</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const api=async(path)=>{const r=await fetch(path,{headers:{Accept:"application/json"}});if(!r.ok)throw new Error("HTTP "+r.status+" — "+(await r.text()).slice(0,240));return r.json()};
+function fmtDate(v){if(!v)return "—";const d=new Date(v);return isNaN(d)?"—":d.toISOString().replace("T"," ").replace(".000Z"," UTC").replace("Z"," UTC")}
+function setStatus(el,text,cls){el.textContent=text;el.className=cls||""}
+async function loadHealth(){try{const h=await api("/v1/health");setStatus($("apiStatus"),String(h.status||"inconnu").toUpperCase(),h.status==="ok"?"ok":"warn");$("lastRefresh").textContent=fmtDate(h.last_refresh_utc);$("dataAge").textContent=h.data_age_seconds==null?"—":Math.round(h.data_age_seconds/60)+" min";$("eventCount").textContent=h.event_count??"—";$("healthMessage").textContent=h.status==="ok"?"API joignable. Les données proviennent du dernier snapshot enregistré.":"API joignable, mais le snapshot n'est pas considéré comme frais. Vérifie l'âge des données avant toute analyse."; }catch(e){setStatus($("apiStatus"),"INDISPONIBLE","bad");$("healthMessage").textContent="Impossible de joindre l'API : "+e.message}}
+function dateParam(id,end){const v=$(id).value;if(!v)return "";return encodeURIComponent(v+(end?"T23:59:59Z":"T00:00:00Z"))}
+async function searchEvents(){const p=new URLSearchParams();const vals={sport:$("sport").value,league:$("league").value.trim(),status:$("status").value,limit:$("limit").value,offset:"0"};for(const [k,v] of Object.entries(vals))if(v)p.set(k,v);const a=dateParam("dateFrom",false),b=dateParam("dateTo",true);if(a)p.set("date_from",decodeURIComponent(a));if(b)p.set("date_to",decodeURIComponent(b));$("resultsMessage").textContent="Recherche en cours…";$("resultsTable").classList.add("hidden");$("detailPanel").classList.add("hidden");try{const d=await api("/v1/events?"+p.toString());const rows=d.events||[];$("resultsMessage").textContent=rows.length+" événement(s) retourné(s) · dernière collecte : "+fmtDate(d.last_refresh_utc);$("resultsBody").innerHTML="";for(const e of rows){const tr=document.createElement("tr");const name=e.name||e.short_name||e.event_id||"Événement sans nom";const participants=Array.isArray(e.participants)?e.participants.map(x=>x.name||x.display_name||x.abbreviation||"").filter(Boolean).join(" — "):"";const score=e.competitors?JSON.stringify(e.competitors):((e.home_score??"")+" - "+(e.away_score??""));const cells=[name+(participants?"<br><span class='note'>"+esc(participants)+"</span>":""),esc((e.sport||"")+" / "+(e.league||"")),esc(fmtDate(e.start_time_utc)),esc(e.status||"—"),esc(score)];for(let i=0;i<cells.length;i++){const td=document.createElement("td");td.innerHTML=i===0?cells[i]:cells[i];tr.appendChild(td)}const td=document.createElement("td"),btn=document.createElement("button");btn.textContent="Voir";btn.className="secondary";btn.onclick=()=>loadDetail(e.event_id,name);td.appendChild(btn);tr.appendChild(td);$("resultsBody").appendChild(tr)}if(rows.length)$("resultsTable").classList.remove("hidden");}catch(e){$("resultsMessage").textContent="Erreur de recherche : "+e.message}}
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+async function loadDetail(id,name){try{const d=await api("/v1/events/"+encodeURIComponent(id));$("detailTitle").textContent=name+" · ID "+id;$("detailJson").textContent=JSON.stringify(d,null,2);$("detailPanel").classList.remove("hidden");$("detailPanel").scrollIntoView({behavior:"smooth",block:"start"})}catch(e){$("detailTitle").textContent="Détail indisponible";$("detailJson").textContent=e.message;$("detailPanel").classList.remove("hidden")}}
+$("refreshHealth").onclick=loadHealth;$("search").onclick=searchEvents;$("clear").onclick=()=>{["sport","league","status","dateFrom","dateTo"].forEach(id=>$(id).value="");$("limit").value="100";$("resultsMessage").textContent="Filtres effacés. Lance une nouvelle recherche.";$("resultsTable").classList.add("hidden");$("detailPanel").classList.add("hidden")};
+loadHealth();
+</script></body></html>
