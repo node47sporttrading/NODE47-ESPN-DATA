@@ -21,7 +21,7 @@ def _collect_one(competition: dict, client, date: str | None) -> tuple[dict, lis
 def collect(config: dict, client, date: str | None = None) -> dict:
     fetched_at=datetime.now(timezone.utc).isoformat().replace("+00:00","Z")
     enabled=[c for c in config.get("competitions",[]) if c.get("enabled",False)]
-    workers=max(1,min(int(config.get("max_workers",4)),12))
+    workers=max(1,min(int(config.get("max_workers",1)),12))
     records: list[tuple[dict,list] | None]=[None]*len(enabled)
     if workers==1:
         for index,competition in enumerate(enabled):
