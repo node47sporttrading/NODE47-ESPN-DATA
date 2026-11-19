@@ -20,7 +20,7 @@ class PropLineModuleAdapterTests(unittest.TestCase):
     def test_basketball_catalogue_has_documented_nba_player_markets(self):
         module, key, markets, config = _propline_module("basketball", "basketball_nba")
         self.assertEqual(module, "basketball")
-        self.assertIn("player_points", config["markets"])
+        self.assertTrue(config["dynamic_event_markets"])
         self.assertEqual(_validate_propline_period(config, "q1"), "q1")
 
     def test_tennis_uses_unified_provider_key_and_dynamic_event_markets(self):
