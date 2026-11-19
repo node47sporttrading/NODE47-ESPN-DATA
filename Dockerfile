@@ -5,6 +5,5 @@ COPY requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 COPY config ./config
 COPY src ./src
-COPY web ./web
 EXPOSE 8000
 CMD ["sh","-c","uvicorn node47_espn.api:app --host 0.0.0.0 --port $PORT"]
