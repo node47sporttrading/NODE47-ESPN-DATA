@@ -1,0 +1,24 @@
+# NODE.47 private SearXNG instance.
+# JSON output is required by the NODE.47 MCP client.
+use_default_settings: true
+
+general:
+  debug: false
+  instance_name: "NODE.47 Private Search"
+
+search:
+  safe_search: 1
+  default_lang: "fr"
+  autocomplete: ""
+  formats:
+    - html
+    - json
+
+server:
+  # Overridden at runtime by the Render-generated SEARXNG_SECRET.
+  secret_key: "replace-at-deploy"
+  port: 8080
+  bind_address: "0.0.0.0"
+  limiter: false
+  public_instance: false
+  image_proxy: false
