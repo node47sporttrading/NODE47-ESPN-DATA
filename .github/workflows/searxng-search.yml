@@ -247,23 +247,23 @@ jobs:
                   })
               log(f"Normalized results={len(results)}; results_by_engine={json.dumps(engines, ensure_ascii=False)}")
 
-          fetch_pages = os.environ.get("FETCH_PAGES", "true").lower() == "true"
-          fetched_count = 0
-          if fetch_pages:
-              stage = "source-page-extraction"
-              for result in results[:6]:
-                  source_url = result.get("url")
-                  if not source_url:
-                      result.update({"fetch_status": "missing_url", "page_content": ""})
-                      continue
-                  extracted = fetch_public_page(source_url)
-                  result.update(extracted)
-                  fetched_count += 1 if extracted.get("fetch_status") in ("ok", "limited_text") else 0
-                  log(f"Page extraction: status={extracted.get('fetch_status')}; host={urlsplit(source_url).netloc[:120]}; chars={len(extracted.get('page_content', ''))}")
-          else:
-              for result in results:
-                  result.update({"fetch_status": "not_requested", "page_content": ""})
-          log(f"Page extraction complete: attempted={min(6, len(results)) if fetch_pages else 0}; usable={fetched_count}; fetch_pages={fetch_pages}")
+              fetch_pages = os.environ.get("FETCH_PAGES", "true").lower() == "true"
+              fetched_count = 0
+              if fetch_pages:
+                  stage = "source-page-extraction"
+                  for result in results[:6]:
+                      source_url = result.get("url")
+                      if not source_url:
+                          result.update({"fetch_status": "missing_url", "page_content": ""})
+                          continue
+                      extracted = fetch_public_page(source_url)
+                      result.update(extracted)
+                      fetched_count += 1 if extracted.get("fetch_status") in ("ok", "limited_text") else 0
+                      log(f"Page extraction: status={extracted.get('fetch_status')}; host={urlsplit(source_url).netloc[:120]}; chars={len(extracted.get('page_content', ''))}")
+              else:
+                  for result in results:
+                      result.update({"fetch_status": "not_requested", "page_content": ""})
+              log(f"Page extraction complete: attempted={min(6, len(results)) if fetch_pages else 0}; usable={fetched_count}; fetch_pages={fetch_pages}")
 
               stage = "render-callback"
               callback({
