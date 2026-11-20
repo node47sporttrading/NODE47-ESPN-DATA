@@ -110,6 +110,7 @@ jobs:
           TIME_RANGE: ${{ inputs.time_range }}
           SAFESEARCH: ${{ inputs.safesearch }}
           MAX_RESULTS: ${{ inputs.max_results }}
+          FETCH_PAGES: ${{ inputs.fetch_pages }}
           CALLBACK_URL: ${{ inputs.callback_url }}
           CALLBACK_SECRET: ${{ secrets.NODE47_RENDER_CALLBACK_SECRET }}
         run: |
