@@ -68,11 +68,11 @@ class ApiTests(unittest.TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertTrue(event.is_set())
             self.assertEqual(
-                api.searxng_actions._PENDING[request_id]["payload"]["status"], "ok"
+                searxng_actions._PENDING[request_id]["payload"]["status"], "ok"
             )
         finally:
-            with api.searxng_actions._PENDING_LOCK:
-                api.searxng_actions._PENDING.pop(request_id, None)
+            with searxng_actions._PENDING_LOCK:
+                searxng_actions._PENDING.pop(request_id, None)
 
     def test_refresh_requires_configured_api_key(self):
         data = {
