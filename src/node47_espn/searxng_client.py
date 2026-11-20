@@ -2,6 +2,9 @@
 from __future__ import annotations
 
 import os
+import time
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 from typing import Any
 from urllib.parse import urlsplit
 
@@ -13,7 +16,17 @@ class SearXNGError(RuntimeError):
 
 
 class SearXNGClient:
-    def __init__(self, base_url: str | None = None, timeout: int = 20, session=None):
+    RETRYABLE_STATUS_CODES = {429, 500, 502, 503, 504}
+
+    def __init__(
+        self,
+        base_url: str | None = None,
+        timeout: int = 20,
+        session=None,
+        max_attempts: int = 5,
+        backoff_seconds: float = 1.0,
+        max_retry_after: float = 5.0,
+    ):
         raw_url = (base_url if base_url is not None else os.getenv("SEARXNG_URL", "")).strip()
         if not raw_url:
             raise SearXNGError("SEARXNG_URL is not configured")
@@ -26,34 +39,85 @@ class SearXNGClient:
             raise SearXNGError("SEARXNG_URL must not contain credentials, query parameters or fragments")
         self.base_url = raw_url.rstrip("/")
         self.timeout = min(60, max(3, int(timeout)))
+        self.max_attempts = min(5, max(1, int(max_attempts)))
+        self.backoff_seconds = min(3.0, max(0.0, float(backoff_seconds)))
+        self.max_retry_after = min(10.0, max(0.0, float(max_retry_after)))
         self.session = session or requests.Session()
-        self.session.headers.update({"Accept": "application/json", "User-Agent": "NODE47-SPORT-ANALYT/0.0.15"})
+        self.session.headers.update({
+            "Accept": "application/json",
+            "User-Agent": "NODE47-SPORT-ANALYT/0.0.17",
+        })
+
+    def _retry_delay(self, attempt: int, response=None) -> float:
+        """Return a bounded delay; honor Retry-After when the server provides it."""
+        headers = getattr(response, "headers", {}) or {}
+        retry_after = headers.get("Retry-After")
+        if retry_after:
+            try:
+                return min(self.max_retry_after, max(0.0, float(retry_after)))
+            except (TypeError, ValueError):
+                try:
+                    retry_at = parsedate_to_datetime(str(retry_after))
+                    if retry_at.tzinfo is None:
+                        retry_at = retry_at.replace(tzinfo=timezone.utc)
+                    seconds = (retry_at - datetime.now(timezone.utc)).total_seconds()
+                    return min(self.max_retry_after, max(0.0, seconds))
+                except (TypeError, ValueError, OverflowError):
+                    pass
+        return min(self.max_retry_after, self.backoff_seconds * (2 ** attempt))
 
     def _get(self, path: str, params: dict[str, Any] | None = None) -> dict[str, Any]:
-        try:
-            response = self.session.get(
-                f"{self.base_url}{path}",
-                params=params or {},
-                timeout=self.timeout,
-            )
-        except requests.RequestException as exc:
-            raise SearXNGError(f"SearXNG network error: {type(exc).__name__}") from None
+        last_network_error = None
+        for attempt in range(self.max_attempts):
+            try:
+                response = self.session.get(
+                    f"{self.base_url}{path}",
+                    params=params or {},
+                    timeout=self.timeout,
+                )
+            except requests.RequestException as exc:
+                last_network_error = type(exc).__name__
+                if attempt + 1 >= self.max_attempts:
+                    raise SearXNGError(
+                        f"SearXNG network error after {self.max_attempts} attempts: {last_network_error}."
+                    ) from None
+                time.sleep(self._retry_delay(attempt))
+                continue
 
-        if response.status_code == 403:
-            raise SearXNGError("SearXNG refused the JSON API (403); verify search.formats includes json.")
-        if response.status_code == 429:
-            raise SearXNGError("SearXNG rate limit reached (429); reduce search frequency.")
-        if response.status_code >= 500:
-            raise SearXNGError(f"SearXNG server error ({response.status_code}).")
-        if not response.ok:
-            raise SearXNGError(f"SearXNG request failed ({response.status_code}).")
-        try:
-            payload = response.json()
-        except ValueError:
-            raise SearXNGError("SearXNG returned invalid JSON.") from None
-        if not isinstance(payload, dict):
-            raise SearXNGError("SearXNG returned an unexpected JSON structure.")
-        return payload
+            status = response.status_code
+            if status in self.RETRYABLE_STATUS_CODES:
+                if attempt + 1 < self.max_attempts:
+                    time.sleep(self._retry_delay(attempt, response))
+                    continue
+                if status == 429:
+                    raise SearXNGError(
+                        f"SearXNG rate limit reached (429) after {self.max_attempts} attempts."
+                    )
+                raise SearXNGError(
+                    f"SearXNG server error ({status}) after {self.max_attempts} attempts."
+                )
+
+            if status == 403:
+                raise SearXNGError(
+                    "SearXNG refused the JSON API (403); verify search.formats includes json."
+                )
+            if not response.ok:
+                if status >= 500:
+                    raise SearXNGError(f"SearXNG server error ({status}).")
+                raise SearXNGError(f"SearXNG request failed ({status}).")
+
+            try:
+                payload = response.json()
+            except ValueError:
+                raise SearXNGError("SearXNG returned invalid JSON.") from None
+            if not isinstance(payload, dict):
+                raise SearXNGError("SearXNG returned an unexpected JSON structure.")
+            return payload
+
+        # Defensive guard: the loop always returns or raises.
+        if last_network_error:
+            raise SearXNGError(f"SearXNG network error: {last_network_error}.")
+        raise SearXNGError("SearXNG request failed after retry attempts.")
 
     def health(self) -> dict[str, Any]:
         payload = self._get(
