@@ -39,6 +39,11 @@ class GitHubActionsReportClient:
     def __init__(self, timeout: int = 240, session=None):
         self.token = os.getenv("GITHUB_ACTIONS_TOKEN", "").strip()
         self.callback_url = os.getenv("NODE47_REPORT_CALLBACK_URL", "").strip()
+        if not self.callback_url:
+            base_callback = os.getenv("NODE47_RENDER_CALLBACK_URL", "").strip()
+            base = urlsplit(base_callback)
+            if base.scheme == "https" and base.netloc:
+                self.callback_url = f"{base.scheme}://{base.netloc}/v1/reports/callback"
         self.timeout = min(300, max(30, int(timeout)))
         self.session = session or requests.Session()
         if not self.token:
