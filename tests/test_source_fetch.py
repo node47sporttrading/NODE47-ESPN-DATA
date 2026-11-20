@@ -51,7 +51,7 @@ class SourceFetchTests(unittest.TestCase):
         response = MagicMock()
         response.geturl.return_value = "https://example.org/report.txt"
         response.headers = {"Content-Type": "text/plain; charset=utf-8"}
-        response.read.return_value = b"alpha   beta\\n gamma"
+        response.read.return_value = b"alpha   beta\n gamma"
         opener = MagicMock()
         opener.open.return_value.__enter__.return_value = response
         with patch("node47_espn.source_fetch.validate_public_url", return_value="https://example.org/report.txt"):
