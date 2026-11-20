@@ -23,8 +23,8 @@ class SearXNGClient:
         base_url: str | None = None,
         timeout: int = 20,
         session=None,
-        max_attempts: int = 3,
-        backoff_seconds: float = 0.5,
+        max_attempts: int = 5,
+        backoff_seconds: float = 1.0,
         max_retry_after: float = 5.0,
     ):
         raw_url = (base_url if base_url is not None else os.getenv("SEARXNG_URL", "")).strip()
