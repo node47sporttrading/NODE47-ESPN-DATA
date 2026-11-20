@@ -19,7 +19,8 @@ class SearXNGWorkflowContractTests(unittest.TestCase):
     def test_page_fetch_is_enabled_by_default_and_passed_to_runner(self):
         workflow_path = Path(__file__).parents[1] / ".github" / "workflows" / "searxng-search.yml"
         workflow = yaml.safe_load(workflow_path.read_text(encoding="utf-8"))
-        inputs = workflow["on"]["workflow_dispatch"]["inputs"]
+        trigger = workflow.get("on", workflow.get(True))
+        inputs = trigger["workflow_dispatch"]["inputs"]
         self.assertEqual(inputs["fetch_pages"]["default"], "true")
         steps = workflow["jobs"]["search"]["steps"]
         runner = next(step for step in steps if step.get("name") == "Execute search and return results to Render")
