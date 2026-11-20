@@ -13,6 +13,7 @@ on:
       - ".github/workflows/espn-pages.yml"
   schedule:
     - cron: "17 */6 * * *"
+      timezone: "Africa/Douala"
   push:
     branches: [main, feature/node47-data-api-v0.0.7]
     paths:
