@@ -113,7 +113,7 @@ class GitHubActionsSearXNGClient:
             "query": query,
             "categories": (categories or "general,news")[:100],
             "language": (language or "fr")[:16],
-            "time_range": time_range or "none",
+            "time_range": time_range or "week",
             "safesearch": str(int(safesearch)),
             "max_results": str(int(max_results)),
             "callback_url": self.callback_url,
