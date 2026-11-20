@@ -11,6 +11,8 @@ on:
       - "tests/**"
       - "requirements.txt"
       - ".github/workflows/tests.yml"
+      - ".github/workflows/searxng/**"
+      - ".github/workflows/searxng-deploy.yml"
 
 permissions:
   contents: read
