@@ -8,7 +8,7 @@ os.environ["NODE47_DATA_PATH"] = os.path.join(_TMP.name, "api-test.sqlite3")
 os.environ["NODE47_DISABLE_SCHEDULER"] = "1"
 
 from fastapi.testclient import TestClient
-from node47_espn import api
+from node47_espn import api, searxng_actions
 
 
 class ApiTests(unittest.TestCase):
@@ -40,6 +40,39 @@ class ApiTests(unittest.TestCase):
 
     def test_mcp_endpoint_is_mounted(self):
         self.assertTrue(any(getattr(route, "path", None) == "/mcp" for route in api.app.routes))
+
+    def test_searxng_callback_rejects_invalid_secret(self):
+        with patch.dict(os.environ, {"SEARXNG_CALLBACK_SECRET": "correct-secret"}):
+            response = self.client.post(
+                "/v1/searxng/callback",
+                headers={"X-NODE47-Callback-Secret": "wrong-secret"},
+                json={"request_id": "request-1", "status": "ok", "results": []},
+            )
+        self.assertEqual(response.status_code, 401)
+
+    def test_searxng_callback_accepts_only_pending_request(self):
+        import threading
+        event = threading.Event()
+        request_id = "request-api-test"
+        with searxng_actions._PENDING_LOCK:
+            searxng_actions._PENDING[request_id] = {
+                "event": event, "payload": None, "created": 0,
+            }
+        try:
+            with patch.dict(os.environ, {"SEARXNG_CALLBACK_SECRET": "correct-secret"}):
+                response = self.client.post(
+                    "/v1/searxng/callback",
+                    headers={"X-NODE47-Callback-Secret": "correct-secret"},
+                    json={"request_id": request_id, "status": "ok", "results": []},
+                )
+            self.assertEqual(response.status_code, 200)
+            self.assertTrue(event.is_set())
+            self.assertEqual(
+                searxng_actions._PENDING[request_id]["payload"]["status"], "ok"
+            )
+        finally:
+            with searxng_actions._PENDING_LOCK:
+                searxng_actions._PENDING.pop(request_id, None)
 
     def test_refresh_requires_configured_api_key(self):
         data = {
