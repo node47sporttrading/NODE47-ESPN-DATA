@@ -1,5 +1,6 @@
-# Public NODE.47 SearXNG instance. No access authentication is configured.
-# JSON output is required by the NODE.47 MCP client.
+# Public NODE.47 SearXNG instance. HTTP access remains unauthenticated.
+# public_instance is deliberately false: enabling it forces SearXNG's limiter,
+# which requires Valkey and would terminate this deployment without that backend.
 use_default_settings: true
 
 general:
@@ -19,7 +20,6 @@ server:
   secret_key: "replace-at-deploy"
   port: 8080
   bind_address: "0.0.0.0"
-  # Public unauthenticated service. SearXNG limiter needs a Valkey database.
   limiter: false
-  public_instance: true
+  public_instance: false
   image_proxy: false
