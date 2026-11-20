@@ -171,7 +171,7 @@ def _searxng() -> SearXNGClient:
 
 @mcp.tool()
 async def searxng_health() -> dict[str, Any]:
-    """Check the private SearXNG service and verify that its JSON search API is enabled."""
+    """Check the public SearXNG service and verify that its JSON search API is enabled."""
     if not os.getenv("SEARXNG_URL", "").strip():
         return {
             "configured": False,
@@ -193,7 +193,7 @@ async def searxng_search(
     safesearch: int = 1,
     max_results: int = 10,
 ) -> dict[str, Any]:
-    """Search the private SearXNG metasearch engine for verifiable web sources.
+    """Search the public SearXNG metasearch engine for verifiable web sources.
 
     Use for tactical and qualitative research (team style, formations, pressing,
     injuries, suspensions, coach comments, match context and recent reporting).
