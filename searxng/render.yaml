@@ -11,6 +11,8 @@ services:
     envVars:
       - key: SEARXNG_SECRET
         generateValue: true
+      - key: PORT
+        value: "8080"
       - key: SEARXNG_PORT
         value: "8080"
       - key: SEARXNG_BIND_ADDRESS
