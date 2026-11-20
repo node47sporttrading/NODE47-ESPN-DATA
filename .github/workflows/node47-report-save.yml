@@ -138,3 +138,32 @@ jobs:
                   raise SystemExit(f"Render callback failed: HTTP {response.status}")
               print("Render confirmed report archival callback.")
           PY
+
+      - name: Report archival failure callback
+        if: failure()
+        env:
+          REQUEST_ID: ${{ inputs.request_id }}
+          CALLBACK_URL: ${{ inputs.callback_url }}
+          CALLBACK_SECRET: ${{ secrets.NODE47_RENDER_CALLBACK_SECRET }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from urllib.request import Request, urlopen
+          secret = os.environ.get("CALLBACK_SECRET", "")
+          if not secret:
+              raise SystemExit("NODE47_RENDER_CALLBACK_SECRET is missing")
+          payload = {
+              "request_id": os.environ["REQUEST_ID"],
+              "status": "error",
+              "error": "GitHub Actions failed before report archival could be confirmed."
+          }
+          req = Request(
+              os.environ["CALLBACK_URL"],
+              data=json.dumps(payload).encode("utf-8"),
+              headers={"Content-Type": "application/json", "X-NODE47-Callback-Secret": secret},
+              method="POST",
+          )
+          with urlopen(req, timeout=20) as response:
+              if response.status != 200:
+                  raise SystemExit(f"Render failure callback failed: HTTP {response.status}")
+          PY
