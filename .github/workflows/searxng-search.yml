@@ -56,18 +56,16 @@ jobs:
       - name: Checkout NODE.47 SearXNG configuration
         uses: actions/checkout@v4
 
-      - name: Build ephemeral SearXNG container
-        run: docker build --pull -t node47-searxng:actions ./searxng
-
-      - name: Start ephemeral SearXNG
+      - name: Start pinned ephemeral SearXNG image
         run: |
           docker run -d --name node47-searxng-actions -p 127.0.0.1:8080:8080 \
+            -v "$GITHUB_WORKSPACE/searxng/settings.yml:/etc/searxng/settings.yml:ro" \
             -e SEARXNG_SECRET="$(python -c 'import secrets; print(secrets.token_urlsafe(48))')" \
             -e SEARXNG_BIND_ADDRESS=0.0.0.0 \
             -e SEARXNG_PORT=8080 \
             -e SEARXNG_LIMITER=false \
             -e SEARXNG_PUBLIC_INSTANCE=false \
-            node47-searxng:actions
+            searxng/searxng:2026.11.20-a7959eeaf
 
       - name: Execute search and return results to Render
         env:
