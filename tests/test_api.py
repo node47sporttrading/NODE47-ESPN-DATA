@@ -8,7 +8,7 @@ os.environ["NODE47_DATA_PATH"] = os.path.join(_TMP.name, "api-test.sqlite3")
 os.environ["NODE47_DISABLE_SCHEDULER"] = "1"
 
 from fastapi.testclient import TestClient
-from node47_espn import api
+from node47_espn import api, searxng_actions
 
 
 class ApiTests(unittest.TestCase):
@@ -54,8 +54,8 @@ class ApiTests(unittest.TestCase):
         import threading
         event = threading.Event()
         request_id = "request-api-test"
-        with api.searxng_actions._PENDING_LOCK:
-            api.searxng_actions._PENDING[request_id] = {
+        with searxng_actions._PENDING_LOCK:
+            searxng_actions._PENDING[request_id] = {
                 "event": event, "payload": None, "created": 0,
             }
         try:
