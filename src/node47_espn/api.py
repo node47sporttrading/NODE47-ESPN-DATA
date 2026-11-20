@@ -514,8 +514,8 @@ async def lifespan(_: FastAPI):
 
 app = FastAPI(
     title="NODE.47 Multisport Data API",
-    version="0.0.14",
-    description="ESPN scoreboard ingestion, normalized events, competition registry, collection coverage and read-only MCP tools.",
+    version="0.0.15",
+    description="ESPN scoreboard ingestion, multisport odds and research MCP tools, plus GitHub-archived NODE.47 analysis reports.",
     lifespan=lifespan,
 )
 
@@ -593,7 +593,7 @@ async def health():
             pass
     return {
         "service": "NODE.47 SPORT ANALYT DATA API",
-        "version": "0.0.14",
+        "version": "0.0.15",
         "status": "ok" if last and age is not None and age <= REFRESH_SECONDS * 2 else "degraded",
         "last_refresh_utc": last,
         "data_age_seconds": age,
