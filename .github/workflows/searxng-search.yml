@@ -115,11 +115,12 @@ jobs:
           CALLBACK_SECRET: ${{ secrets.NODE47_RENDER_CALLBACK_SECRET }}
         run: |
           python - <<'PY'
-          import html, ipaddress, json, os, re, socket, sys, time
-          from html.parser import HTMLParser
-          from urllib.parse import urlencode, urlsplit, urljoin
-          from urllib.request import Request, urlopen, build_opener, HTTPRedirectHandler
+          import json, os, sys, time
+          from urllib.parse import urlencode, urlsplit
+          from urllib.request import Request, urlopen
           from urllib.error import URLError, HTTPError
+          sys.path.insert(0, os.path.join(os.getcwd(), "src"))
+          from node47_espn.source_fetch import fetch_public_page
 
           request_id = os.environ["REQUEST_ID"]
           started = time.monotonic()
@@ -138,105 +139,6 @@ jobs:
               if isinstance(exc, URLError):
                   return f"URL/network error: {exc.reason}"
               return f"{type(exc).__name__}: {str(exc)[:1200]}"
-
-          class SafeTextParser(HTMLParser):
-              def __init__(self):
-                  super().__init__(convert_charrefs=True)
-                  self.parts = []
-                  self.title_parts = []
-                  self.meta = {}
-                  self.in_title = False
-                  self.skip_depth = 0
-                  self.skip_tags = {"script", "style", "noscript", "svg", "nav", "footer", "header", "form", "aside"}
-              def handle_starttag(self, tag, attrs):
-                  attrs = dict(attrs)
-                  if tag in self.skip_tags:
-                      self.skip_depth += 1
-                  if tag == "title":
-                      self.in_title = True
-                  if tag == "meta":
-                      key = (attrs.get("property") or attrs.get("name") or "").lower()
-                      value = attrs.get("content")
-                      if key and value and key in {"og:title", "og:description", "description", "article:published_time", "date", "dc.date"}:
-                          self.meta[key] = value[:500]
-              def handle_endtag(self, tag):
-                  if tag in self.skip_tags and self.skip_depth:
-                      self.skip_depth -= 1
-                  if tag == "title":
-                      self.in_title = False
-              def handle_data(self, data):
-                  value = " ".join(data.split())
-                  if not value:
-                      return
-                  if self.in_title:
-                      self.title_parts.append(value)
-                  if not self.skip_depth:
-                      self.parts.append(value)
-              def text(self):
-                  return re.sub(r"\\s+", " ", " ".join(self.parts)).strip()
-
-          def validate_public_url(url):
-              parsed = urlsplit(url)
-              if parsed.scheme not in ("http", "https") or not parsed.hostname or parsed.username or parsed.password:
-                  raise ValueError("unsupported_url")
-              if parsed.port not in (None, 80, 443):
-                  raise ValueError("unsupported_port")
-              host = parsed.hostname.rstrip(".")
-              addresses = {item[4][0] for item in socket.getaddrinfo(host, parsed.port or (443 if parsed.scheme == "https" else 80), type=socket.SOCK_STREAM)}
-              if not addresses:
-                  raise ValueError("dns_no_address")
-              for address in addresses:
-                  ip = ipaddress.ip_address(address)
-                  if not ip.is_global:
-                      raise ValueError("non_public_address")
-              return url
-
-          class SafeRedirectHandler(HTTPRedirectHandler):
-              def redirect_request(self, req, fp, code, msg, headers, newurl):
-                  target = urljoin(req.full_url, newurl)
-                  validate_public_url(target)
-                  return super().redirect_request(req, fp, code, msg, headers, target)
-
-          SAFE_OPENER = build_opener(SafeRedirectHandler())
-
-          def fetch_source_page(url):
-              try:
-                  validate_public_url(url)
-                  request = Request(url, headers={"User-Agent": "NODE47-EvidenceReader/1.0 (+source verification)", "Accept": "text/html,application/xhtml+xml,text/plain;q=0.8"})
-                  with SAFE_OPENER.open(request, timeout=12) as response:
-                      final_url = response.geturl()
-                      validate_public_url(final_url)
-                      content_type = response.headers.get("Content-Type", "").lower()
-                      if not ("text/html" in content_type or "application/xhtml+xml" in content_type or "text/plain" in content_type):
-                          return {"fetch_status": "unsupported_content_type", "page_url": final_url, "page_content": ""}
-                      body = response.read(700001)
-                      if len(body) > 700000:
-                          return {"fetch_status": "page_too_large", "page_url": final_url, "page_content": ""}
-                  decoded = body.decode("utf-8", "replace")
-                  if "text/plain" in content_type:
-                      text = re.sub(r"\\s+", " ", decoded).strip()
-                      title = ""
-                      metadata = {}
-                  else:
-                      parser = SafeTextParser()
-                      parser.feed(decoded[:700000])
-                      text = parser.text()
-                      title = " ".join(parser.title_parts)[:300]
-                      metadata = parser.meta
-                  return {
-                      "fetch_status": "ok" if len(text) >= 300 else "limited_text",
-                      "page_url": final_url,
-                      "page_title": title or metadata.get("og:title", ""),
-                      "page_description": metadata.get("og:description") or metadata.get("description", ""),
-                      "page_published_date": metadata.get("article:published_time") or metadata.get("date") or metadata.get("dc.date"),
-                      "page_content": text[:9000],
-                      "page_content_chars": len(text),
-                  }
-              except HTTPError as exc:
-                  return {"fetch_status": f"http_{exc.code}", "page_content": ""}
-              except Exception as exc:
-                  reason = str(exc)[:180]
-                  return {"fetch_status": "blocked_or_unavailable", "fetch_detail": reason, "page_content": ""}
 
           def callback(payload):
               secret = os.environ.get("CALLBACK_SECRET", "")
@@ -354,7 +256,7 @@ jobs:
                   if not source_url:
                       result.update({"fetch_status": "missing_url", "page_content": ""})
                       continue
-                  extracted = fetch_source_page(source_url)
+                  extracted = fetch_public_page(source_url)
                   result.update(extracted)
                   fetched_count += 1 if extracted.get("fetch_status") in ("ok", "limited_text") else 0
                   log(f"Page extraction: status={extracted.get('fetch_status')}; host={urlsplit(source_url).netloc[:120]}; chars={len(extracted.get('page_content', ''))}")
