@@ -52,7 +52,7 @@ class _TextParser(HTMLParser):
             self.parts.append(value)
 
     def text(self):
-        return re.sub(r"\\s+", " ", " ".join(self.parts)).strip()
+        return re.sub(r"\s+", " ", " ".join(self.parts)).strip()
 
 
 def validate_public_url(url: str) -> str:
@@ -114,7 +114,7 @@ def fetch_public_page(
                 return {"fetch_status": "page_too_large", "page_url": final_url, "page_content": ""}
         decoded = body.decode("utf-8", "replace")
         if "text/plain" in content_type:
-            text = re.sub(r"\\s+", " ", decoded).strip()
+            text = re.sub(r"\s+", " ", decoded).strip()
             title = ""
             metadata = {}
         else:
