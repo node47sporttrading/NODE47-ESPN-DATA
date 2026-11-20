@@ -99,7 +99,7 @@ class SearXNGClientTests(unittest.TestCase):
             result = client.health()
         self.assertEqual(result["status"], "ok")
         self.assertEqual(session.get.call_count, 2)
-        sleep.assert_called_once_with(0.5)
+        sleep.assert_called_once_with(1.0)
 
     def test_url_rejects_embedded_credentials(self):
         with self.assertRaises(SearXNGError):
