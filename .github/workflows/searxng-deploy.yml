@@ -1,0 +1,57 @@
+name: NODE47 SearXNG container validation
+
+on:
+  pull_request:
+    paths:
+      - "searxng/**"
+      - ".github/workflows/searxng-deploy.yml"
+      - "src/node47_espn/searxng_client.py"
+      - "tests/test_searxng_client.py"
+  push:
+    branches: [main]
+    paths:
+      - "searxng/**"
+      - ".github/workflows/searxng-deploy.yml"
+      - "src/node47_espn/searxng_client.py"
+      - "tests/test_searxng_client.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: node47-searxng-validation
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build pinned SearXNG image
+        run: docker build --pull -t node47-searxng:ci ./searxng
+      - name: Start SearXNG for smoke test
+        run: |
+          docker run -d --name node47-searxng-ci -p 8080:8080 \
+            -e SEARXNG_SECRET=ci-only-secret-not-for-production \
+            -e SEARXNG_BIND_ADDRESS=0.0.0.0 \
+            -e SEARXNG_PORT=8080 \
+            -e SEARXNG_PUBLIC_INSTANCE=true \
+            node47-searxng:ci
+      - name: Verify JSON search API
+        run: |
+          set -e
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent --show-error \
+              "http://127.0.0.1:8080/search?q=NODE47&format=json" \
+              -o /tmp/searxng-response.json; then
+              python -c "import json; d=json.load(open('/tmp/searxng-response.json')); assert isinstance(d.get('results'), list)"
+              exit 0
+            fi
+            sleep 4
+          done
+          docker logs node47-searxng-ci
+          exit 1
+      - name: Stop smoke-test container
+        if: always()
+        run: docker rm -f node47-searxng-ci || true
