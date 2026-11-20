@@ -1,4 +1,4 @@
-# NODE.47 ESPN DATA — V0.0.13
+# NODE.47 ESPN DATA — V0.0.14
 
 Service de données multisport pour NODE.47 SPORT ANALYT. Collecte les scoreboards ESPN, normalise les événements, conserve les snapshots courants et expose une API REST ainsi qu'un serveur MCP Streamable HTTP en lecture seule.
 
@@ -39,7 +39,7 @@ Le catalogue `config/registry.json` est construit à partir de l’énumération
 
 Les routes déjà activées sont conservées dans la configuration pendant un échec temporaire de probe. La couverture réelle reste distincte du recensement et est exposée par `espn_coverage` (`ok`, `empty`, `unavailable`). Le workflow hebdomadaire de synchronisation ouvre une Pull Request pour revue ; il ne pousse pas directement les changements sur `main`.
 
-## API REST V0.0.13
+## API REST V0.0.14
 Python 3.11+ recommandé.
 
 ```bash
@@ -70,12 +70,20 @@ Outils MCP en lecture seule :
 - `espn_coverage` : statut du dernier cycle par compétition.
 - `espn_events` : recherche paginée par sport, ligue, statut et période UTC.
 - `espn_event_detail` : détail d'un événement par identifiant exact.
-- `searxng_health` : vérifie l'accès au moteur de recherche SearXNG public et à son API JSON.
-- `searxng_search` : recherche des sources web pour l'analyse tactique et qualitative (style, système, pressing, absences et contexte récent). Les résultats sont des éléments de preuve non fiables par défaut : contrôler les dates, les sources et les contradictions.
+- `searxng_health` : vérifie la configuration requise et exécute une recherche témoin via le workflow GitHub Actions, jusqu'au callback authentifié vers Render.
+- `searxng_search` : déclenche une recherche web à la demande dans un conteneur SearXNG éphémère sur un runner GitHub Actions. Seuls les résultats structurés sont transmis à Render. Les résultats restent des éléments de preuve non fiables par défaut : contrôler les dates, les sources et les contradictions.
 
-Le rafraîchissement manuel n'est volontairement pas exposé en MCP. Il reste protégé par `X-API-Key` sur l'API REST. Aucune clé n'est embarquée dans le plugin NODE.47. Le serveur MCP expose les outils ESPN en lecture seule, les outils de recherche SearXNG `searxng_health` / `searxng_search`, et les outils PropLine suivants : `propline_health`, `propline_sports`, `propline_events`, `propline_odds` et `propline_event_odds`. PropLine fournit les cotes et marchés bruts ; il ne produit pas les prédictions NODE.47. Les endpoints payants (historique/closing/+EV) ne sont pas activés dans cette intégration Free. Pour activer la recherche web, définir `SEARXNG_URL` sur l'URL racine du service Render SearXNG (sans `/search`). Cette instance est publique et sans authentification ; le limiteur SearXNG reste désactivé faute de Valkey. Ne pas exposer le service à un trafic important sans ajouter une limitation de débit.
+Le rafraîchissement manuel n'est volontairement pas exposé en MCP. Il reste protégé par `X-API-Key` sur l'API REST. Aucune clé n'est embarquée dans le plugin NODE.47. Le serveur MCP expose les outils ESPN en lecture seule, les outils SearXNG `searxng_health` / `searxng_search`, et les outils PropLine de consultation des marchés et cotes bruts. PropLine ne produit pas les prédictions NODE.47 ; les endpoints payants (historique/closing/+EV) ne sont pas activés dans cette intégration Free.
 
-La connexion plugin doit pointer vers l'URL MCP ci-dessus (et non vers la racine REST ou GitHub Pages). Après déploiement Render, vérifier le handshake MCP et la présence des cinq outils avant de déclarer l'intégration opérationnelle.
+### Recherche web SearXNG à la demande
+
+Le chemin de production ne dépend plus d'un service SearXNG permanent sur Render. Render déclenche `.github/workflows/searxng-search.yml`; le runner GitHub démarre une image SearXNG épinglée, effectue la recherche et transmet uniquement les résultats normalisés (ou une erreur bornée) au callback HTTPS authentifié de Render. Le conteneur est supprimé à la fin du workflow.
+
+Configurer sur le service API Render : `GITHUB_ACTIONS_TOKEN` (jeton limité au dépôt avec `Actions: Read and write`), `NODE47_RENDER_CALLBACK_URL`, `SEARXNG_CALLBACK_SECRET` et, facultativement, `SEARXNG_ACTION_TIMEOUT`. Dans les secrets GitHub Actions du dépôt, configurer `NODE47_RENDER_CALLBACK_SECRET` avec exactement la même valeur que `SEARXNG_CALLBACK_SECRET`. Ne jamais exposer ces valeurs dans Git ou dans le plugin.
+
+Les recherches en attente sont conservées en mémoire dans le processus API : garder une seule instance Render tant qu'un stockage partagé ou une file de tâches n'est pas implémenté. L'ancien service SearXNG Render et les fichiers `searxng/` sont conservés temporairement comme secours jusqu'à la réussite d'un véritable test de bout en bout ; ils ne sont pas utilisés par le nouveau chemin.
+
+La connexion plugin doit pointer vers l'URL MCP ci-dessus (et non vers la racine REST ou GitHub Pages). Après déploiement Render, vérifier le handshake MCP et la présence des outils ESPN, SearXNG et PropLine avant de déclarer l'intégration opérationnelle.
 
 ## Persistance et nettoyage des événements obsolètes
 

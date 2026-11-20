@@ -174,7 +174,7 @@ def _searxng() -> GitHubActionsSearXNGClient:
 
 @mcp.tool()
 async def searxng_health() -> dict[str, Any]:
-    """Check the public SearXNG service and verify that its JSON search API is enabled."""
+    """Run a minimal end-to-end search through ephemeral SearXNG on GitHub Actions."""
     required = [
         name for name in (
             "GITHUB_ACTIONS_TOKEN",
@@ -204,7 +204,7 @@ async def searxng_search(
     safesearch: int = 1,
     max_results: int = 10,
 ) -> dict[str, Any]:
-    """Search the public SearXNG metasearch engine for verifiable web sources.
+    """Search the web using an ephemeral SearXNG container launched by GitHub Actions.
 
     Use for tactical and qualitative research (team style, formations, pressing,
     injuries, suspensions, coach comments, match context and recent reporting).
@@ -481,7 +481,7 @@ async def lifespan(_: FastAPI):
 
 app = FastAPI(
     title="NODE.47 Multisport Data API",
-    version="0.0.13",
+    version="0.0.14",
     description="ESPN scoreboard ingestion, normalized events, competition registry, collection coverage and read-only MCP tools.",
     lifespan=lifespan,
 )
