@@ -36,7 +36,8 @@ jobs:
             -e SEARXNG_SECRET=ci-only-secret-not-for-production \
             -e SEARXNG_BIND_ADDRESS=0.0.0.0 \
             -e SEARXNG_PORT=8080 \
-            -e SEARXNG_PUBLIC_INSTANCE=true \
+            -e SEARXNG_LIMITER=false \
+            -e SEARXNG_PUBLIC_INSTANCE=false \
             node47-searxng:ci
       - name: Verify JSON search API
         run: |
