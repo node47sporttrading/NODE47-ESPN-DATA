@@ -1,4 +1,4 @@
-# NODE.47 ESPN DATA — V0.0.11
+# NODE.47 ESPN DATA — V0.0.13
 
 Service de données multisport pour NODE.47 SPORT ANALYT. Collecte les scoreboards ESPN, normalise les événements, conserve les snapshots courants et expose une API REST ainsi qu'un serveur MCP Streamable HTTP en lecture seule.
 
@@ -26,7 +26,7 @@ Variables : `DATABASE_URL` (optionnelle ; PostgreSQL si définie), `NODE47_DATA_
 
 ## Périmètre et couverture
 - Sports : football, basketball et tennis.
-- Registre : 237 compétitions (220 football, 15 basketball, 2 tennis).
+- Snapshot initial du registre : 237 compétitions (220 soccer, 15 basketball, 2 tennis) ; le catalogue est évolutif.
 - Les routes activées sont des routes configurées, pas une garantie d'événements disponibles à chaque collecte.
 - Statuts de collecte : `ok` (événements reçus), `empty` (réponse valide sans événement), `unavailable` (échec de la route).
 - ESPN scoreboard est la source primaire des calendriers, participants, statuts et scores effectivement présents.
@@ -39,7 +39,7 @@ Le catalogue `config/registry.json` est construit à partir de l’énumération
 
 Les routes déjà activées sont conservées dans la configuration pendant un échec temporaire de probe. La couverture réelle reste distincte du recensement et est exposée par `espn_coverage` (`ok`, `empty`, `unavailable`). Le workflow hebdomadaire de synchronisation ouvre une Pull Request pour revue ; il ne pousse pas directement les changements sur `main`.
 
-## API REST V0.0.9
+## API REST V0.0.13
 Python 3.11+ recommandé.
 
 ```bash
