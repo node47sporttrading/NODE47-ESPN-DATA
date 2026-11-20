@@ -1,4 +1,4 @@
-"""Private-network SearXNG JSON API client for NODE.47."""
+"""Public SearXNG JSON API client for NODE.47."""
 from __future__ import annotations
 
 import os
