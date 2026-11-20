@@ -1,4 +1,4 @@
-# NODE.47 ESPN DATA — V0.0.14
+# NODE.47 ESPN DATA — V0.0.16
 
 Service de données multisport pour NODE.47 SPORT ANALYT. Collecte les scoreboards ESPN, normalise les événements, conserve les snapshots courants et expose une API REST ainsi qu'un serveur MCP Streamable HTTP en lecture seule.
 
@@ -71,7 +71,7 @@ Outils MCP en lecture seule :
 - `espn_events` : recherche paginée par sport, ligue, statut et période UTC.
 - `espn_event_detail` : détail d'un événement par identifiant exact.
 - `searxng_health` : vérifie la configuration requise et exécute une recherche témoin via le workflow GitHub Actions, jusqu'au callback authentifié vers Render.
-- `searxng_search` : déclenche une recherche web à la demande dans un conteneur SearXNG éphémère sur un runner GitHub Actions. Seuls les résultats structurés sont transmis à Render. Les résultats restent des éléments de preuve non fiables par défaut : contrôler les dates, les sources et les contradictions.
+- `searxng_search` : déclenche une recherche web à la demande dans un conteneur SearXNG éphémère sur un runner GitHub Actions. Par défaut, le runner tente aussi de récupérer et d'extraire le contenu des six premières pages publiques (avec validation des redirections et blocage des IP privées/locales). Les champs `page_content`, `page_title`, `page_published_date` et `fetch_status` distinguent le contenu effectivement lu du simple extrait de recherche. Les pages inaccessibles restent explicitement signalées ; les contenus récupérés sont des preuves non fiables à dater, croiser et auditer.
 
 Le rafraîchissement manuel n'est volontairement pas exposé en MCP. Il reste protégé par `X-API-Key` sur l'API REST. Aucune clé n'est embarquée dans le plugin NODE.47. Le serveur MCP expose les outils ESPN en lecture seule, les outils SearXNG `searxng_health` / `searxng_search`, et les outils PropLine de consultation des marchés et cotes bruts. PropLine ne produit pas les prédictions NODE.47 ; les endpoints payants (historique/closing/+EV) ne sont pas activés dans cette intégration Free.
 
