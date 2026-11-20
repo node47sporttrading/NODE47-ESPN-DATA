@@ -41,6 +41,39 @@ class ApiTests(unittest.TestCase):
     def test_mcp_endpoint_is_mounted(self):
         self.assertTrue(any(getattr(route, "path", None) == "/mcp" for route in api.app.routes))
 
+    def test_searxng_callback_rejects_invalid_secret(self):
+        with patch.dict(os.environ, {"SEARXNG_CALLBACK_SECRET": "correct-secret"}):
+            response = self.client.post(
+                "/v1/searxng/callback",
+                headers={"X-NODE47-Callback-Secret": "wrong-secret"},
+                json={"request_id": "request-1", "status": "ok", "results": []},
+            )
+        self.assertEqual(response.status_code, 401)
+
+    def test_searxng_callback_accepts_only_pending_request(self):
+        import threading
+        event = threading.Event()
+        request_id = "request-api-test"
+        with api.searxng_actions._PENDING_LOCK:
+            api.searxng_actions._PENDING[request_id] = {
+                "event": event, "payload": None, "created": 0,
+            }
+        try:
+            with patch.dict(os.environ, {"SEARXNG_CALLBACK_SECRET": "correct-secret"}):
+                response = self.client.post(
+                    "/v1/searxng/callback",
+                    headers={"X-NODE47-Callback-Secret": "correct-secret"},
+                    json={"request_id": request_id, "status": "ok", "results": []},
+                )
+            self.assertEqual(response.status_code, 200)
+            self.assertTrue(event.is_set())
+            self.assertEqual(
+                api.searxng_actions._PENDING[request_id]["payload"]["status"], "ok"
+            )
+        finally:
+            with api.searxng_actions._PENDING_LOCK:
+                api.searxng_actions._PENDING.pop(request_id, None)
+
     def test_refresh_requires_configured_api_key(self):
         data = {
             "fetched_at_utc": "2026-11-19T12:00:00Z",
