@@ -5,8 +5,6 @@ on:
     paths:
       - "searxng/**"
       - ".github/workflows/searxng-deploy.yml"
-      - "src/node47_espn/searxng_client.py"
-      - "tests/test_searxng_client.py"
   push:
     branches: [main]
     paths:
