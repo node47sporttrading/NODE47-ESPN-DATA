@@ -10,14 +10,14 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from fastapi import Depends, FastAPI, Header, HTTPException, Query
+from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request
 from mcp.server.fastmcp import FastMCP
 from mcp.server.transport_security import TransportSecuritySettings
 
 from .client import ESPNClient
 from .collector import collect
 from .propline_client import PropLineClient, PropLineError
-from .searxng_client import SearXNGClient, SearXNGError
+from .searxng_actions import (\n    GitHubActionsSearXNGClient, GitHubSearXNGError,\n    authenticate_callback, complete_search,\n)
 from .store import DataStore
 
 if os.getenv("DATABASE_URL"):
@@ -163,9 +163,9 @@ async def espn_event_detail(event_id: str) -> dict[str, Any]:
 
 
 
-def _searxng() -> SearXNGClient:
-    return SearXNGClient(
-        timeout=int(os.getenv("SEARXNG_HTTP_TIMEOUT", "20")),
+def _searxng() -> GitHubActionsSearXNGClient:
+    return GitHubActionsSearXNGClient(
+        timeout=int(os.getenv("SEARXNG_ACTION_TIMEOUT", "210")),
     )
 
 
@@ -180,7 +180,7 @@ async def searxng_health() -> dict[str, Any]:
         }
     try:
         return {"configured": True, **await asyncio.to_thread(_searxng().health)}
-    except SearXNGError as exc:
+    except GitHubSearXNGError as exc:
         return {"configured": True, "status": "error", "error": str(exc)}
 
 
@@ -211,7 +211,7 @@ async def searxng_search(
             max_results,
         )
         return {"configured": True, **data}
-    except (SearXNGError, ValueError) as exc:
+    except (GitHubSearXNGError, ValueError) as exc:
         return {"status": "error", "query": query, "error": str(exc)}
 
 
@@ -482,6 +482,32 @@ async def require_api_key(x_api_key: str | None = Header(default=None)):
         raise HTTPException(503, detail="Refresh endpoint is disabled: NODE47_API_KEY is not configured")
     if not x_api_key or not hmac.compare_digest(x_api_key, expected):
         raise HTTPException(401, detail="Invalid or missing API key")
+
+
+@app.post("/v1/searxng/callback", tags=["operations"])
+async def searxng_callback(
+    request: Request,
+    x_node47_callback_secret: str | None = Header(default=None),
+):
+    """Accept search results only from the authenticated GitHub Actions runner."""
+    if not authenticate_callback(x_node47_callback_secret):
+        raise HTTPException(401, detail="Invalid or missing callback secret")
+    if int(request.headers.get("content-length", "0") or "0") > 1_000_000:
+        raise HTTPException(413, detail="Callback payload is too large")
+    try:
+        payload = await request.json()
+    except Exception:
+        raise HTTPException(400, detail="Invalid JSON callback payload") from None
+    if not isinstance(payload, dict):
+        raise HTTPException(400, detail="Callback payload must be a JSON object")
+    request_id = payload.get("request_id")
+    if not isinstance(request_id, str) or len(request_id) > 64:
+        raise HTTPException(400, detail="A valid request_id is required")
+    if payload.get("status") not in ("ok", "error"):
+        raise HTTPException(400, detail="Callback status must be ok or error")
+    if not complete_search(request_id, payload):
+        raise HTTPException(404, detail="No pending search matches this request_id")
+    return {"status": "accepted", "request_id": request_id}
 
 
 @app.get("/health", tags=["system"])
