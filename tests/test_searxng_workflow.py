@@ -12,9 +12,9 @@ class SearXNGWorkflowContractTests(unittest.TestCase):
         steps = workflow["jobs"]["search"]["steps"]
         runner = next(step for step in steps if step.get("name") == "Execute search and return results to Render")
         script = runner["run"]
-        heredoc_start = "python - <<'PY'\\n"
+        heredoc_start = "python - <<'PY'\n"
         self.assertIn(heredoc_start, script)
-        python_source = script.split(heredoc_start, 1)[1].rsplit("\\nPY", 1)[0]
+        python_source = script.split(heredoc_start, 1)[1].rsplit("\nPY", 1)[0]
         try:
             compile(python_source, "<embedded-searxng-workflow>", "exec")
         except SyntaxError as exc:
