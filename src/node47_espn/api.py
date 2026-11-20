@@ -172,11 +172,19 @@ def _searxng() -> GitHubActionsSearXNGClient:
 @mcp.tool()
 async def searxng_health() -> dict[str, Any]:
     """Check the public SearXNG service and verify that its JSON search API is enabled."""
-    if not os.getenv("SEARXNG_URL", "").strip():
+    required = [
+        name for name in (
+            "GITHUB_ACTIONS_TOKEN",
+            "NODE47_RENDER_CALLBACK_URL",
+            "SEARXNG_CALLBACK_SECRET",
+        ) if not os.getenv(name, "").strip()
+    ]
+    if required:
         return {
             "configured": False,
             "status": "not_configured",
-            "required_environment_variable": "SEARXNG_URL",
+            "required_environment_variables": required,
+            "execution": "github_actions",
         }
     try:
         return {"configured": True, **await asyncio.to_thread(_searxng().health)}
