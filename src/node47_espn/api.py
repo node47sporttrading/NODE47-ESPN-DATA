@@ -204,6 +204,7 @@ async def searxng_search(
     time_range: str | None = None,
     safesearch: int = 1,
     max_results: int = 10,
+    fetch_pages: bool = True,
 ) -> dict[str, Any]:
     """Search the web using an ephemeral SearXNG container launched by GitHub Actions.
 
@@ -221,6 +222,7 @@ async def searxng_search(
             time_range,
             safesearch,
             max_results,
+            fetch_pages,
         )
         return {"configured": True, **data}
     except (GitHubSearXNGError, ValueError) as exc:
@@ -591,7 +593,7 @@ async def health():
             pass
     return {
         "service": "NODE.47 SPORT ANALYT DATA API",
-        "version": "0.0.15",
+        "version": "0.0.16",
         "status": "ok" if last and age is not None and age <= REFRESH_SECONDS * 2 else "degraded",
         "last_refresh_utc": last,
         "data_age_seconds": age,
