@@ -259,7 +259,11 @@ jobs:
                       extracted = fetch_public_page(source_url)
                       result.update(extracted)
                       fetched_count += 1 if extracted.get("fetch_status") in ("ok", "limited_text") else 0
-                      log(f"Page extraction: status={extracted.get('fetch_status')}; host={urlsplit(source_url).netloc[:120]}; chars={len(extracted.get('page_content', ''))}")
+                      try:
+                          source_host = urlsplit(source_url).hostname or "unknown"
+                      except ValueError:
+                          source_host = "invalid_url"
+                      log(f"Page extraction: status={extracted.get('fetch_status')}; host={source_host[:120]}; chars={len(extracted.get('page_content', ''))}")
               else:
                   for result in results:
                       result.update({"fetch_status": "not_requested", "page_content": ""})
