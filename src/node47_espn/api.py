@@ -21,6 +21,9 @@ from .searxng_actions import (
     GitHubActionsSearXNGClient, GitHubSearXNGError,
     authenticate_callback, complete_search,
 )
+from .report_actions import (
+    GitHubActionsReportClient, GitHubReportError, complete_report,
+)
 from .store import DataStore
 
 if os.getenv("DATABASE_URL"):
@@ -224,6 +227,36 @@ async def searxng_search(
         return {"configured": True, **data}
     except (GitHubSearXNGError, ValueError) as exc:
         return {"status": "error", "query": query, "error": str(exc)}
+
+
+@mcp.tool()
+async def node47_report_save(
+    sport: str,
+    event_slug: str,
+    event_date: str,
+    report_markdown: str,
+) -> dict[str, Any]:
+    """Archive the complete final NODE.47 report in GitHub and confirm its commit.
+
+    Call only after the full report is assembled and the final verdict is decided.
+    A saved status is returned only after GitHub Actions commits the immutable
+    Markdown file and its authenticated callback is received.
+    """
+    try:
+        client = GitHubActionsReportClient(
+            timeout=int(os.getenv("NODE47_REPORT_SAVE_TIMEOUT", "240"))
+        )
+        return await asyncio.to_thread(
+            client.save, sport, event_slug, event_date, report_markdown
+        )
+    except (GitHubReportError, ValueError) as exc:
+        return {
+            "status": "failed",
+            "saved": False,
+            "sport": sport,
+            "event_slug": event_slug,
+            "error": str(exc),
+        }
 
 
 def _propline() -> PropLineClient:
@@ -518,6 +551,32 @@ async def searxng_callback(
         raise HTTPException(400, detail="Callback status must be ok or error")
     if not complete_search(request_id, payload):
         raise HTTPException(404, detail="No pending search matches this request_id")
+    return {"status": "accepted", "request_id": request_id}
+
+
+@app.post("/v1/reports/callback", tags=["operations"])
+async def report_callback(
+    request: Request,
+    x_node47_callback_secret: str | None = Header(default=None),
+):
+    """Accept the GitHub report-commit confirmation from the authenticated runner."""
+    if not authenticate_callback(x_node47_callback_secret):
+        raise HTTPException(401, detail="Invalid or missing callback secret")
+    if int(request.headers.get("content-length", "0") or "0") > 32_000:
+        raise HTTPException(413, detail="Callback payload is too large")
+    try:
+        payload = await request.json()
+    except Exception:
+        raise HTTPException(400, detail="Invalid JSON callback payload") from None
+    if not isinstance(payload, dict):
+        raise HTTPException(400, detail="Callback payload must be a JSON object")
+    request_id = payload.get("request_id")
+    if not isinstance(request_id, str) or len(request_id) > 64:
+        raise HTTPException(400, detail="A valid request_id is required")
+    if payload.get("status") not in ("ok", "error"):
+        raise HTTPException(400, detail="Callback status must be ok or error")
+    if not complete_report(request_id, payload):
+        raise HTTPException(404, detail="No pending report matches this request_id")
     return {"status": "accepted", "request_id": request_id}
 
 
