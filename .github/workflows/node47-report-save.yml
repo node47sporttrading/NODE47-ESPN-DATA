@@ -35,30 +35,26 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: node47-report-${{ inputs.request_id }}
-  cancel-in-progress: false
-
 jobs:
   archive:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Validate report and write immutable Markdown file
-        id: report
+      - name: Validate and commit immutable Markdown report
+        id: archive
         env:
           REQUEST_ID: ${{ inputs.request_id }}
           SPORT: ${{ inputs.sport }}
           EVENT_SLUG: ${{ inputs.event_slug }}
           EVENT_DATE: ${{ inputs.event_date }}
           REPORT_MARKDOWN: ${{ inputs.report_markdown }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           python - <<'PY'
-          import os, re
+          import base64, json, os, re
           from datetime import date
-          from pathlib import Path
+          from urllib.request import Request, urlopen
+          from urllib.error import HTTPError
 
           request_id = os.environ["REQUEST_ID"]
           sport = os.environ["SPORT"]
@@ -78,59 +74,70 @@ jobs:
           if not re.search(r"\b(BET PRUDENT|BET|NO BET)\b", report, re.I):
               raise SystemExit("Final verdict is missing")
 
-          path = Path("reports") / sport / f"{event_date}-{slug}-{request_id[:8]}.md"
-          path.parent.mkdir(parents=True, exist_ok=True)
-          if path.exists():
-              raise SystemExit("Refusing to overwrite an existing report")
-          path.write_text(report.rstrip() + "\n", encoding="utf-8")
+          path = f"reports/{sport}/{event_date}-{slug}-{request_id[:8]}.md"
+          token = os.environ["GITHUB_TOKEN"]
+          if not token:
+              raise SystemExit("GitHub Actions token is missing")
+          api = "https://api.github.com/repos/node47sporttrading/NODE47-ESPN-DATA/contents/" + path
+          payload = {
+              "message": "Archive NODE.47 analysis report: " + path,
+              "content": base64.b64encode((report.rstrip() + "\n").encode("utf-8")).decode("ascii"),
+              "branch": "main",
+          }
+          req = Request(
+              api,
+              data=json.dumps(payload).encode("utf-8"),
+              headers={
+                  "Accept": "application/vnd.github+json",
+                  "Authorization": "Bearer " + token,
+                  "X-GitHub-Api-Version": "2022-11-28",
+                  "Content-Type": "application/json",
+              },
+              method="PUT",
+          )
+          try:
+              with urlopen(req, timeout=30) as response:
+                  result = json.loads(response.read().decode("utf-8"))
+          except HTTPError as exc:
+              body = exc.read(1000).decode("utf-8", "replace")
+              raise SystemExit(f"GitHub Contents API rejected report: HTTP {exc.code}; {body}")
+          commit_sha = result.get("commit", {}).get("sha")
+          if not commit_sha or result.get("content", {}).get("path") != path:
+              raise SystemExit("GitHub did not return the expected committed file and SHA")
+          report_url = "https://github.com/node47sporttrading/NODE47-ESPN-DATA/blob/main/" + path
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
-              out.write(f"path={path.as_posix()}\n")
-          print(f"Prepared immutable report: {path.as_posix()}")
+              out.write(f"path={path}\n")
+              out.write(f"url={report_url}\n")
+              out.write(f"commit_sha={commit_sha}\n")
+          print(f"Report committed: {path}; commit={commit_sha}")
           PY
-
-      - name: Commit report
-        id: commit
-        env:
-          REPORT_PATH: ${{ steps.report.outputs.path }}
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- "$REPORT_PATH"
-          git commit -m "Archive NODE.47 analysis report: $REPORT_PATH"
-          git push origin HEAD:main
-          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Confirm committed report to Render
         env:
           REQUEST_ID: ${{ inputs.request_id }}
           CALLBACK_URL: ${{ inputs.callback_url }}
           CALLBACK_SECRET: ${{ secrets.NODE47_RENDER_CALLBACK_SECRET }}
-          REPORT_PATH: ${{ steps.report.outputs.path }}
-          COMMIT_SHA: ${{ steps.commit.outputs.commit_sha }}
+          REPORT_PATH: ${{ steps.archive.outputs.path }}
+          REPORT_URL: ${{ steps.archive.outputs.url }}
+          COMMIT_SHA: ${{ steps.archive.outputs.commit_sha }}
         run: |
           python - <<'PY'
           import json, os
           from urllib.request import Request, urlopen
-
           secret = os.environ.get("CALLBACK_SECRET", "")
           if not secret:
               raise SystemExit("NODE47_RENDER_CALLBACK_SECRET is missing")
-          path = os.environ["REPORT_PATH"]
           payload = {
               "request_id": os.environ["REQUEST_ID"],
               "status": "ok",
-              "path": path,
-              "url": "https://github.com/node47sporttrading/NODE47-ESPN-DATA/blob/main/" + path,
+              "path": os.environ["REPORT_PATH"],
+              "url": os.environ["REPORT_URL"],
               "commit_sha": os.environ["COMMIT_SHA"],
           }
           req = Request(
               os.environ["CALLBACK_URL"],
               data=json.dumps(payload).encode("utf-8"),
-              headers={
-                  "Content-Type": "application/json",
-                  "X-NODE47-Callback-Secret": secret,
-              },
+              headers={"Content-Type": "application/json", "X-NODE47-Callback-Secret": secret},
               method="POST",
           )
           with urlopen(req, timeout=20) as response:
