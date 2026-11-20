@@ -1,15 +1,13 @@
-# NODE.47 SearXNG
+# NODE.47 SearXNG — compatibilité historique
 
-Standalone public SearXNG service for NODE.47 research.
+Le nouveau chemin de recherche web NODE.47 est exécuté à la demande par GitHub Actions. Le workflow `.github/workflows/searxng-search.yml` démarre un conteneur SearXNG éphémère sur le runner, effectue la recherche et transmet uniquement les résultats structurés au callback HTTPS authentifié de l'API Render. Le conteneur est supprimé à la fin du workflow.
 
-## Render deployment
+## Service Render historique
 
-Create a Render Blueprint using `searxng/render.yaml`. The service is intentionally public and has no HTTP authentication. The generated `SEARXNG_SECRET` is an internal SearXNG application secret; it does not restrict public access.
+Le service autonome `node47-searxng-xm7g` reste temporairement conservé comme secours pendant la validation du nouveau chemin. Les fichiers `Dockerfile`, `settings.yml` et `render.yaml` de ce dossier sont maintenus pour permettre son redémarrage et le test de construction CI. Ils ne sont pas utilisés par les nouveaux appels MCP `searxng_health` et `searxng_search`.
 
-Set `SEARXNG_URL` on the NODE.47 MCP service to the deployed service URL. The MCP client uses the public JSON endpoint `/search?format=json`.
+Ne pas configurer `SEARXNG_URL` sur l'API NODE.47 pour le nouveau chemin : l'API déclenche GitHub Actions et reçoit les résultats via `/v1/searxng/callback`.
 
-## Operational warning
+## Retrait du service historique
 
-This instance is open to all internet users. The built-in SearXNG limiter is disabled because it requires a Valkey database, which is not provisioned by this Blueprint. Public traffic can consume Render resources and trigger upstream search-engine throttling. Add Valkey-backed rate limiting or an edge rate-limit layer before scaling production traffic.
-
-The Render free plan may spin down after inactivity and is intended for initial validation, not guaranteed always-on production use.
+Ne supprimer le service Render historique et ces fichiers qu'après avoir vérifié un appel réel `searxng_search` depuis MCP, une exécution réussie de `searxng-search.yml`, la réception du callback authentifié et le retour des URL sources dans la réponse MCP.
