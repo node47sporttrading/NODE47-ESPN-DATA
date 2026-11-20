@@ -17,7 +17,10 @@ from mcp.server.transport_security import TransportSecuritySettings
 from .client import ESPNClient
 from .collector import collect
 from .propline_client import PropLineClient, PropLineError
-from .searxng_actions import (\n    GitHubActionsSearXNGClient, GitHubSearXNGError,\n    authenticate_callback, complete_search,\n)
+from .searxng_actions import (
+    GitHubActionsSearXNGClient, GitHubSearXNGError,
+    authenticate_callback, complete_search,
+)
 from .store import DataStore
 
 if os.getenv("DATABASE_URL"):
