@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: node47-searxng
+    runtime: docker
+    plan: free
+    region: frankfurt
+    numInstances: 1
+    dockerfilePath: ./searxng/Dockerfile
+    dockerContext: ./searxng
+    healthCheckPath: /
+    envVars:
+      - key: SEARXNG_SECRET
+        generateValue: true
+      - key: SEARXNG_PORT
+        value: "8080"
+      - key: SEARXNG_BIND_ADDRESS
+        value: "0.0.0.0"
+      - key: SEARXNG_LIMITER
+        value: "false"
+      - key: SEARXNG_PUBLIC_INSTANCE
+        value: "true"
+      - key: SEARXNG_IMAGE_PROXY
+        value: "false"
