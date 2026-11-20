@@ -53,11 +53,36 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
+      - name: Log request context
+        env:
+          REQUEST_ID: ${{ inputs.request_id }}
+          QUERY: ${{ inputs.query }}
+          CATEGORIES: ${{ inputs.categories }}
+          LANGUAGE: ${{ inputs.language }}
+          TIME_RANGE: ${{ inputs.time_range }}
+          MAX_RESULTS: ${{ inputs.max_results }}
+          CALLBACK_URL: ${{ inputs.callback_url }}
+        run: |
+          echo "::group::NODE.47 SearXNG — request context"
+          echo "Request ID: $REQUEST_ID"
+          echo "Query: $QUERY"
+          echo "Categories: $CATEGORIES"
+          echo "Language: $LANGUAGE"
+          echo "Time range: $TIME_RANGE"
+          echo "Maximum results: $MAX_RESULTS"
+          echo "Callback host/path: $(python -c 'import os,urllib.parse; u=urllib.parse.urlsplit(os.environ["CALLBACK_URL"]); print(u.netloc + u.path)')"
+          echo "Runner: $RUNNER_OS / $RUNNER_ARCH"
+          echo "Started at (UTC): $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          echo "::endgroup::"
+
       - name: Checkout NODE.47 SearXNG configuration
         uses: actions/checkout@v4
 
       - name: Start pinned ephemeral SearXNG image
         run: |
+          set -Eeuo pipefail
+          echo "::group::SearXNG container startup"
+          docker --version
           docker run -d --name node47-searxng-actions -p 127.0.0.1:8080:8080 \
             -v "$GITHUB_WORKSPACE/searxng/settings.yml:/etc/searxng/settings.yml:ro" \
             -e SEARXNG_SECRET="$(python -c 'import secrets; print(secrets.token_urlsafe(48))')" \
@@ -66,6 +91,9 @@ jobs:
             -e SEARXNG_LIMITER=false \
             -e SEARXNG_PUBLIC_INSTANCE=false \
             searxng/searxng:2026.11.20-a7959eeaf
+          echo "Container started:"
+          docker ps --filter name=node47-searxng-actions --no-trunc
+          echo "::endgroup::"
 
       - name: Execute search and return results to Render
         env:
@@ -81,14 +109,34 @@ jobs:
         run: |
           python - <<'PY'
           import json, os, sys, time
-          from urllib.parse import urlencode
+          from urllib.parse import urlencode, urlsplit
           from urllib.request import Request, urlopen
           from urllib.error import URLError, HTTPError
+
+          request_id = os.environ["REQUEST_ID"]
+          started = time.monotonic()
+          stage = "initialisation"
+
+          def log(message):
+              print(f"[NODE47][{request_id}][{stage}] {message}", flush=True)
+
+          def response_error(exc):
+              if isinstance(exc, HTTPError):
+                  try:
+                      body = exc.read(1200).decode("utf-8", "replace")
+                  except Exception:
+                      body = "<response body unavailable>"
+                  return f"HTTP {exc.code} {exc.reason}; response={body[:1200]}"
+              if isinstance(exc, URLError):
+                  return f"URL/network error: {exc.reason}"
+              return f"{type(exc).__name__}: {str(exc)[:1200]}"
 
           def callback(payload):
               secret = os.environ.get("CALLBACK_SECRET", "")
               if not secret:
-                  raise RuntimeError("NODE47_RENDER_CALLBACK_SECRET is not configured in GitHub Actions")
+                  raise RuntimeError("Secret NODE47_RENDER_CALLBACK_SECRET is missing in GitHub repository Actions secrets")
+              target = urlsplit(os.environ["CALLBACK_URL"])
+              log(f"Sending callback to {target.netloc}{target.path}; payload_status={payload.get('status')}; results={len(payload.get('results', []))}")
               body = json.dumps(payload).encode()
               req = Request(
                   os.environ["CALLBACK_URL"],
@@ -96,23 +144,46 @@ jobs:
                   headers={"Content-Type": "application/json", "X-NODE47-Callback-Secret": secret},
                   method="POST",
               )
-              with urlopen(req, timeout=20) as response:
-                  if response.status not in (200, 202):
-                      raise RuntimeError(f"Render callback returned HTTP {response.status}")
+              try:
+                  with urlopen(req, timeout=20) as response:
+                      response_body = response.read(1200).decode("utf-8", "replace")
+                      log(f"Render callback response: HTTP {response.status}; body={response_body or '<empty>'}")
+                      if response.status not in (200, 202):
+                          raise RuntimeError(f"Render callback rejected payload with HTTP {response.status}")
+              except Exception as exc:
+                  raise RuntimeError(f"Render callback delivery failed: {response_error(exc)}") from None
 
           try:
+              stage = "configuration"
+              log("Checking required inputs and callback secret.")
+              if not os.environ.get("QUERY", "").strip():
+                  raise RuntimeError("Search query is empty.")
+              if not os.environ.get("CALLBACK_SECRET", ""):
+                  raise RuntimeError("NODE47_RENDER_CALLBACK_SECRET is missing from GitHub Actions secrets.")
+              log(f"Query length={len(os.environ['QUERY'])}; categories={os.environ.get('CATEGORIES')}; language={os.environ.get('LANGUAGE')}; time_range={os.environ.get('TIME_RANGE')}")
+
+              stage = "searxng-readiness"
+              log("Waiting up to 90 seconds for http://127.0.0.1:8080/ (45 attempts, 2 seconds apart).")
               ready = False
-              for _ in range(45):
+              last_error = "No response received yet"
+              for attempt in range(1, 46):
                   try:
                       with urlopen("http://127.0.0.1:8080/", timeout=3) as response:
+                          log(f"Readiness attempt {attempt}/45: HTTP {response.status}")
                           if response.status < 500:
                               ready = True
                               break
-                  except Exception:
+                          last_error = f"HTTP {response.status}"
+                  except Exception as exc:
+                      last_error = response_error(exc)
+                      if attempt in (1, 5, 10, 20, 30, 40, 45):
+                          log(f"Readiness attempt {attempt}/45 failed: {last_error}")
                       time.sleep(2)
               if not ready:
-                  raise RuntimeError("SearXNG did not become ready on the GitHub Actions runner")
+                  raise RuntimeError(f"SearXNG did not become ready after 45 attempts. Last error: {last_error}")
+              log(f"SearXNG is ready after {time.monotonic() - started:.1f}s.")
 
+              stage = "search-request"
               params = {
                   "q": os.environ["QUERY"],
                   "format": "json",
@@ -125,17 +196,37 @@ jobs:
               if time_range and time_range != "none":
                   params["time_range"] = time_range
               url = "http://127.0.0.1:8080/search?" + urlencode(params)
-              with urlopen(url, timeout=90) as response:
-                  data = json.loads(response.read().decode("utf-8"))
+              log(f"Calling local SearXNG /search; categories={params['categories']}; language={params['language']}; safesearch={params['safesearch']}; time_range={time_range or 'none'}")
+              search_started = time.monotonic()
+              req = Request(url, headers={"Accept": "application/json"})
+              try:
+                  with urlopen(req, timeout=90) as response:
+                      status = response.status
+                      content_type = response.headers.get("Content-Type", "<missing>")
+                      body = response.read()
+              except Exception as exc:
+                  raise RuntimeError(f"SearXNG HTTP request failed: {response_error(exc)}") from None
+              log(f"SearXNG HTTP response: status={status}; content_type={content_type}; bytes={len(body)}; elapsed={time.monotonic()-search_started:.1f}s")
+              try:
+                  data = json.loads(body.decode("utf-8"))
+              except Exception as exc:
+                  raise RuntimeError(f"SearXNG returned invalid JSON: {type(exc).__name__}: {str(exc)[:500]}; response_preview={body[:1000]!r}") from None
 
               raw = data.get("results")
               if not isinstance(raw, list):
-                  raise RuntimeError("SearXNG response did not contain a results array")
+                  raise RuntimeError(f"SearXNG JSON has no results array; top_level_keys={list(data)[:30]}; response_preview={str(data)[:1000]}")
+              unresponsive = data.get("unresponsive_engines", [])
+              log(f"Search parsed: raw_results={len(raw)}; unresponsive_engines={json.dumps(unresponsive, ensure_ascii=False)[:2000]}")
+              if not raw:
+                  log("WARNING: SearXNG returned zero results. Inspect engine errors, query syntax, category, language and time range.")
               limit = max(1, min(20, int(os.environ.get("MAX_RESULTS", "10"))))
               results = []
+              engines = {}
               for item in raw[:limit]:
                   if not isinstance(item, dict):
                       continue
+                  engine = item.get("engine") or "unknown"
+                  engines[engine] = engines.get(engine, 0) + 1
                   results.append({
                       "title": item.get("title"),
                       "url": item.get("url"),
@@ -145,30 +236,51 @@ jobs:
                       "published_date": item.get("publishedDate"),
                       "score": item.get("score"),
                   })
+              log(f"Normalized results={len(results)}; results_by_engine={json.dumps(engines, ensure_ascii=False)}")
+
+              stage = "render-callback"
               callback({
-                  "request_id": os.environ["REQUEST_ID"],
+                  "request_id": request_id,
                   "status": "ok",
                   "results": results,
-                  "unresponsive_engines": data.get("unresponsive_engines", []),
+                  "unresponsive_engines": unresponsive,
               })
-              print(f"Returned {len(results)} search results to Render")
+              log(f"SUCCESS: {len(results)} results delivered to Render; total_elapsed={time.monotonic()-started:.1f}s")
+
           except Exception as exc:
+              error = f"{type(exc).__name__}: {str(exc)[:1500]}"
+              log(f"FAILURE: {error}")
               try:
+                  stage = "error-callback"
                   callback({
-                      "request_id": os.environ["REQUEST_ID"],
+                      "request_id": request_id,
                       "status": "error",
-                      "error": f"{type(exc).__name__}: {str(exc)[:300]}",
+                      "error": f"{stage}: {error}",
                       "results": [],
                   })
+                  log("Error status successfully delivered to Render.")
               except Exception as callback_exc:
-                  print(f"Callback failed: {type(callback_exc).__name__}: {callback_exc}", file=sys.stderr)
+                  print(f"[NODE47][{request_id}][error-callback] SECONDARY FAILURE: {type(callback_exc).__name__}: {str(callback_exc)[:1500]}", file=sys.stderr, flush=True)
               raise
           PY
 
       - name: Collect SearXNG diagnostics on failure
         if: failure()
-        run: docker logs node47-searxng-actions || true
+        run: |
+          echo "::group::SearXNG failure diagnostics"
+          echo "--- Docker container state ---"
+          docker ps -a --filter name=node47-searxng-actions --no-trunc || true
+          echo "--- SearXNG container logs (last 300 lines) ---"
+          docker logs --tail 300 node47-searxng-actions 2>&1 || true
+          echo "--- Container inspection (state and exit code) ---"
+          docker inspect node47-searxng-actions --format '{{json .State}}' 2>&1 || true
+          echo "--- Runner disk and memory ---"
+          df -h || true
+          free -h || true
+          echo "::endgroup::"
 
       - name: Stop ephemeral SearXNG container
         if: always()
-        run: docker rm -f node47-searxng-actions || true
+        run: |
+          echo "Stopping ephemeral SearXNG container."
+          docker rm -f node47-searxng-actions || true
