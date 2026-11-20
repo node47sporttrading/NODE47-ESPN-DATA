@@ -248,6 +248,7 @@ jobs:
               log(f"SUCCESS: {len(results)} results delivered to Render; total_elapsed={time.monotonic()-started:.1f}s")
 
           except Exception as exc:
+              failed_stage = stage
               error = f"{type(exc).__name__}: {str(exc)[:1500]}"
               log(f"FAILURE: {error}")
               try:
@@ -255,7 +256,7 @@ jobs:
                   callback({
                       "request_id": request_id,
                       "status": "error",
-                      "error": f"{stage}: {error}",
+                      "error": f"{failed_stage}: {error}",
                       "results": [],
                   })
                   log("Error status successfully delivered to Render.")
