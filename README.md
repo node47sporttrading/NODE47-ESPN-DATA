@@ -70,8 +70,10 @@ Outils MCP en lecture seule :
 - `espn_coverage` : statut du dernier cycle par compétition.
 - `espn_events` : recherche paginée par sport, ligue, statut et période UTC.
 - `espn_event_detail` : détail d'un événement par identifiant exact.
+- `searxng_health` : vérifie l'accès au moteur de recherche SearXNG public et à son API JSON.
+- `searxng_search` : recherche des sources web pour l'analyse tactique et qualitative (style, système, pressing, absences et contexte récent). Les résultats sont des éléments de preuve non fiables par défaut : contrôler les dates, les sources et les contradictions.
 
-Le rafraîchissement manuel n'est volontairement pas exposé en MCP. Il reste protégé par `X-API-Key` sur l'API REST. Aucune clé n'est embarquée dans le plugin NODE.47. Le serveur MCP expose les outils ESPN en lecture seule et les outils PropLine suivants : `propline_health`, `propline_sports`, `propline_events`, `propline_odds` et `propline_event_odds`. PropLine fournit les cotes et marchés bruts ; il ne produit pas les prédictions NODE.47. Les endpoints payants (historique/closing/+EV) ne sont pas activés dans cette intégration Free.
+Le rafraîchissement manuel n'est volontairement pas exposé en MCP. Il reste protégé par `X-API-Key` sur l'API REST. Aucune clé n'est embarquée dans le plugin NODE.47. Le serveur MCP expose les outils ESPN en lecture seule, les outils de recherche SearXNG `searxng_health` / `searxng_search`, et les outils PropLine suivants : `propline_health`, `propline_sports`, `propline_events`, `propline_odds` et `propline_event_odds`. PropLine fournit les cotes et marchés bruts ; il ne produit pas les prédictions NODE.47. Les endpoints payants (historique/closing/+EV) ne sont pas activés dans cette intégration Free. Pour activer la recherche web, définir `SEARXNG_URL` sur l'URL racine du service Render SearXNG (sans `/search`). Cette instance est publique et sans authentification ; le limiteur SearXNG reste désactivé faute de Valkey. Ne pas exposer le service à un trafic important sans ajouter une limitation de débit.
 
 La connexion plugin doit pointer vers l'URL MCP ci-dessus (et non vers la racine REST ou GitHub Pages). Après déploiement Render, vérifier le handshake MCP et la présence des cinq outils avant de déclarer l'intégration opérationnelle.
 
