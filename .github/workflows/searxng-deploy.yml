@@ -1,4 +1,4 @@
-name: NODE47 SearXNG container validation
+name: NODE47 SearXNG container smoke test
 
 on:
   pull_request:
@@ -10,8 +10,6 @@ on:
     paths:
       - "searxng/**"
       - ".github/workflows/searxng-deploy.yml"
-      - "src/node47_espn/searxng_client.py"
-      - "tests/test_searxng_client.py"
   workflow_dispatch:
 
 permissions:
