@@ -92,6 +92,7 @@ class GitHubActionsSearXNGClient:
         time_range: str | None = None,
         safesearch: int = 1,
         max_results: int = 10,
+        fetch_pages: bool = True,
     ) -> dict[str, Any]:
         query = (query or "").strip()
         if not query or len(query) > 500:
@@ -102,6 +103,8 @@ class GitHubActionsSearXNGClient:
             raise ValueError("safesearch must be 0, 1 or 2")
         if not 1 <= int(max_results) <= 20:
             raise ValueError("max_results must be between 1 and 20")
+        if not isinstance(fetch_pages, bool):
+            raise ValueError("fetch_pages must be a boolean")
 
         request_id = str(uuid.uuid4())
         event = threading.Event()
@@ -116,6 +119,7 @@ class GitHubActionsSearXNGClient:
             "time_range": time_range or "week",
             "safesearch": str(int(safesearch)),
             "max_results": str(int(max_results)),
+            "fetch_pages": "true" if fetch_pages else "false",
             "callback_url": self.callback_url,
         }
         try:
@@ -152,6 +156,7 @@ class GitHubActionsSearXNGClient:
             categories="general",
             language="en",
             max_results=1,
+            fetch_pages=False,
         )
         return {
             "service": "searxng",
