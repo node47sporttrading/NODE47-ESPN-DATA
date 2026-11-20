@@ -68,16 +68,16 @@ class SearXNGClientTests(unittest.TestCase):
             result = client.search("recent injury", time_range="day")
         self.assertEqual(result["count"], 1)
         self.assertEqual(session.get.call_count, 2)
-        sleep.assert_called_once_with(0.5)
+        sleep.assert_called_once_with(1.0)
         self.assertEqual(session.get.call_args.kwargs["params"]["time_range"], "day")
 
     def test_502_exhaustion_is_bounded(self):
         client, session = self.make_client({}, status_code=502)
         with patch("node47_espn.searxng_client.time.sleep") as sleep:
-            with self.assertRaisesRegex(SearXNGError, "502.*3 attempts"):
+            with self.assertRaisesRegex(SearXNGError, "502.*5 attempts"):
                 client.search("NODE47")
-        self.assertEqual(session.get.call_count, 3)
-        self.assertEqual(sleep.call_count, 2)
+        self.assertEqual(session.get.call_count, 5)
+        self.assertEqual(sleep.call_count, 4)
 
     def test_retry_after_is_honored_and_bounded(self):
         client, session = self.make_client({"results": []})
