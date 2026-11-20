@@ -12,10 +12,13 @@ class SearXNGWorkflowContractTests(unittest.TestCase):
         steps = workflow["jobs"]["search"]["steps"]
         runner = next(step for step in steps if step.get("name") == "Execute search and return results to Render")
         script = runner["run"]
+        heredoc_start = "python - <<'PY'\\n"
+        self.assertIn(heredoc_start, script)
+        python_source = script.split(heredoc_start, 1)[1].rsplit("\\nPY", 1)[0]
         try:
-            compile(script, "<embedded-searxng-workflow>", "exec")
+            compile(python_source, "<embedded-searxng-workflow>", "exec")
         except SyntaxError as exc:
-            bad_line = script.splitlines()[exc.lineno - 1] if exc.lineno and exc.lineno <= len(script.splitlines()) else "<unknown>"
+            bad_line = python_source.splitlines()[exc.lineno - 1] if exc.lineno and exc.lineno <= len(python_source.splitlines()) else "<unknown>"
             self.fail(f"Embedded Python syntax error at line {exc.lineno}: {exc.msg}; source={bad_line!r}")
         self.assertIn("from node47_espn.source_fetch import fetch_public_page", script)
         self.assertIn("fetch_public_page(source_url)", script)
