@@ -35,3 +35,35 @@ class GitHubActionsSearXNGTests(unittest.TestCase):
             client = searxng_actions.GitHubActionsSearXNGClient(session=session)
             with self.assertRaisesRegex(searxng_actions.GitHubSearXNGError, "Actions: write"):
                 client._dispatch({"request_id": "x"})
+
+    def test_search_dispatches_page_fetch_preference(self):
+        with patch.dict(os.environ, {
+            "GITHUB_ACTIONS_TOKEN": "token",
+            "NODE47_RENDER_CALLBACK_URL": "https://example.onrender.com/v1/searxng/callback",
+        }):
+            client = searxng_actions.GitHubActionsSearXNGClient()
+            captured = {}
+            def dispatch(inputs):
+                captured.update(inputs)
+                searxng_actions.complete_search(inputs["request_id"], {
+                    "status": "ok",
+                    "results": [{"url": "https://example.org", "fetch_status": "ok", "page_content": "verified text"}],
+                })
+            client._dispatch = dispatch
+            result = client.search("tactical matchup", max_results=1, fetch_pages=True)
+            self.assertEqual(captured["fetch_pages"], "true")
+            self.assertEqual(result["results"][0]["page_content"], "verified text")
+
+    def test_search_can_disable_page_fetch(self):
+        with patch.dict(os.environ, {
+            "GITHUB_ACTIONS_TOKEN": "token",
+            "NODE47_RENDER_CALLBACK_URL": "https://example.onrender.com/v1/searxng/callback",
+        }):
+            client = searxng_actions.GitHubActionsSearXNGClient()
+            captured = {}
+            def dispatch(inputs):
+                captured.update(inputs)
+                searxng_actions.complete_search(inputs["request_id"], {"status": "ok", "results": []})
+            client._dispatch = dispatch
+            client.search("health check", max_results=1, fetch_pages=False)
+            self.assertEqual(captured["fetch_pages"], "false")
