@@ -1,4 +1,4 @@
-# NODE.47 ESPN DATA — V0.0.26
+# NODE.47 ESPN DATA — V0.0.27
 
 Service de données multisport pour NODE.47 SPORT ANALYT. Collecte les scoreboards ESPN, normalise les événements, conserve les snapshots courants et expose une API REST ainsi qu'un serveur MCP Streamable HTTP en lecture seule.
 
@@ -120,7 +120,7 @@ Le workflow `.github/workflows/espn-pages.yml` publie des snapshots JSON et un m
 
 ## Moteur prédictif NBA — V0.1 baseline
 
-Un premier moteur déterministe de projection basketball est disponible via `POST /v1/predictions/basketball`. Il exige des agrégats d'équipe explicitement fournis par l'appelant et renvoie une projection marquée `baseline_uncalibrated`. Il ne récupère pas automatiquement les statistiques, ne constitue pas un modèle entraîné et ne valide aucun avantage de pari. Les métriques de backtest et les exigences de validation sont décrites dans [docs/NBA_PREDICTION_ENGINE.md](docs/NBA_PREDICTION_ENGINE.md).
+Un premier moteur déterministe de projection basketball est disponible via `POST /v1/predictions/basketball`. Il exige des agrégats d'équipe explicitement fournis par l'appelant et renvoie une projection marquée `baseline_uncalibrated`. Il ne récupère pas automatiquement les statistiques, ne constitue pas un modèle entraîné et ne valide aucun avantage de pari. Les exigences de validation indépendante et les limites du modèle sont décrites dans [docs/NBA_PREDICTION_ENGINE.md](docs/NBA_PREDICTION_ENGINE.md).
 
 **Cette version n'est pas encore déployée en production.** Elle doit passer les tests automatisés et une validation chronologique sur des données historiques avant tout usage opérationnel.
 
@@ -152,11 +152,6 @@ MCP tools: `propline_module_events`, `propline_module_odds`, `propline_module_ev
 - The model computes `lambda_home` and `lambda_away` as the mean of each attack rate and the opponent's corresponding concession rate. It returns 1X2, Over/Under 2.5 and BTTS probabilities from independent Poisson distributions.
 - This is a transparent baseline, **not a trained or calibrated model**. It does not automatically infer missing xG, lineups, injuries, tactical effects or opponent-strength adjustments. Minimum sample adequacy is not validation.
 
-### Chronological backtesting
-- REST: `POST /v1/backtests/football`; MCP: `football_backtest`.
-- Supply timestamped historical pre-match snapshots and final scores. The endpoint sorts by prediction time, holds out the latest fraction and reports multiclass Brier Score, Log Loss and optional flat-1U paper ROI when all three 1X2 prices are present.
-- The result is explicitly labelled `evaluation_only_not_model_validation`. It does not train the model, prove future profitability or automatically authorize betting. Do not use post-kickoff information in input snapshots.
-
 ### Market normalization, Edge and EV
 - REST: `POST /v1/markets/no-vig` and `POST /v1/markets/edge-ev`; MCP: `football_edge_ev`.
 - Decimal odds are converted to implied probabilities and normalized to remove the bookmaker overround. Edge is the difference between model probability and no-vig market probability; EV per unit is (p_{model} \times cote - 1).
@@ -166,7 +161,7 @@ MCP tools: `propline_module_events`, `propline_module_odds`, `propline_module_ev
 - REST: `POST /v1/staking/u`; MCP: `football_stake_u`.
 - `bankroll_units` is the user's bankroll expressed in U. The default policy is quarter Kelly (`kelly_fraction=0.25`) with a maximum stake of `1.0 U` per selection. Both are configurable in the request; the service never assumes the user's monetary value for 1 U.
 - Without an explicit deployment-level validation record, the result is always `NO BET` and `stake_u=0`. A client cannot self-declare the model validated.
-- Betting can be enabled only by setting both `NODE47_FOOTBALL_MODEL_VALIDATED=1` and a non-empty `NODE47_FOOTBALL_VALIDATION_ID` in the API environment after a documented independent out-of-sample review. These variables are intentionally not enabled by default. The current V0.0.24 baseline therefore remains non-bet-eligible.
+- Betting eligibility requires a complete independent out-of-sample validation record in `config/model_validation.json`, including a named independent reviewer, HTTPS report URL, SHA-256 report digest, UTC validation date and protocol marker. Legacy owner-controlled environment flags are ignored; no sport is enabled by default.
 
 ### MCP and SearXNG operational verification
 - MCP remains Streamable HTTP at `/mcp/`. The release must pass a real `initialize` + `tools/list` handshake and execute at least one tool call after deployment; a 200 response from `/health` alone does not prove MCP transport health.
@@ -182,9 +177,9 @@ The football engine is a provisional baseline. Until sufficient historical data 
 V0.0.25 adds a tennis Elo baseline, independent football/basketball/tennis validation gates, and shared REST/MCP Edge/EV and U staking tools. All three sport models remain uncalibrated and non-bet-eligible by default. The shared staking policy caps requests at quarter Kelly and 1.0 U per selection; otherwise it returns NO BET / 0 U. See [docs/MULTISPORT_MODEL_V0.0.25.md](docs/MULTISPORT_MODEL_V0.0.25.md) for model assumptions, routes, validation requirements and remaining portfolio-risk limitations.
 
 
-## Baseline activation and live research fallback (V0.0.26)
+## Independent model validation and live research fallback (V0.0.27)
 
-- The owner has explicitly confirmed the profitability of the football, basketball and tennis baselines. Each sport is activated independently using its own `NODE47_<SPORT>_MODEL_VALIDATED=1` and `NODE47_<SPORT>_VALIDATION_ID` settings. The API reports this as `user_confirmed_baseline`; it is not represented as an independent statistical audit.
-- Chronological backtesting remains available only as an optional diagnostic. It is not required to activate a baseline and must not block analysis or staking when the per-sport owner-confirmation gate is enabled.
-- If SearXNG is unavailable, returns no useful sources, or leaves an important evidence gap, the AI assistant continues with its own current online search capability. It must cite sources, record dates, cross-check conflicting information, and mark unresolved facts explicitly. Missing information must never be fabricated.
-- Shared decisions remain sport-specific: no-vig market probabilities, Edge/EV, quarter-Kelly maximum, and a hard cap of 1 U per selection. A missing price, invalid probability, or non-positive EV remains `NO BET` / `0 U`.
+- Football, basketball and tennis remain independently non-eligible by default. Eligibility requires a complete independent out-of-sample record in `config/model_validation.json`; owner-controlled flags are ignored.
+- Historical backtesting is not part of the NODE.47 product, REST API, MCP surface or prediction modules.
+- If SearXNG is unavailable or leaves a material evidence gap, the assistant continues with current online research, cites sources and marks unresolved facts explicitly.
+- Shared decisions remain sport-specific: no-vig market probabilities, Edge/EV, quarter-Kelly maximum and a hard cap of 1 U per selection. Missing prices, invalid probabilities or non-positive EV remain `NO BET` / `0 U`.
