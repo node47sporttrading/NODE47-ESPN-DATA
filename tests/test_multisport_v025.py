@@ -40,9 +40,9 @@ class MultisportRobotRiskTests(unittest.TestCase):
         self.assertEqual(result["module"],"corners_cartons")
         self.assertGreater(result["stake_u"],0)
 
-    def test_custom_profile_requires_explicit_cap(self):
-        with self.assertRaises(ValueError):
-            robot_stake("tennis",0.70,80,2.0,profile="CUSTOM")
+    def test_custom_profile_defaults_to_three_units(self):
+        result=robot_stake("tennis",0.70,80,2.0,profile="CUSTOM")
+        self.assertEqual(result["stake_u"],3.0)
 
     def test_positive_ev_is_reported_without_a_model_gate(self):
         result=edge_ev("football",0.70,2.0)
