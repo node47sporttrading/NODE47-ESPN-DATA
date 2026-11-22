@@ -1,7 +1,7 @@
 """NODE.47 market calculations and robot-native risk sizing.
 
 The stake algorithm mirrors robot/src/55-risque.mjs::miseDe.
-There is no independent model-validation registry or gate.
+
 """
 from __future__ import annotations
 from math import floor, isfinite
