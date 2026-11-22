@@ -1,10 +1,9 @@
-"""REST API for tennis baseline and shared multisport EV/U decisions."""
+"""REST API for tennis baseline and robot-native risk sizing."""
 from __future__ import annotations
-from typing import Any
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, ConfigDict, Field
 from .tennis_model import predict_tennis
-from .multisport_decision import edge_ev, stake_u, no_vig_probabilities
+from .multisport_decision import edge_ev, robot_stake, no_vig_probabilities
 
 router = APIRouter(tags=["multisport-decision"])
 
@@ -29,15 +28,22 @@ class EdgeInput(BaseModel):
     decimal_odds: float = Field(gt=1)
     market_probability_no_vig: float | None = Field(default=None, ge=0, le=1)
 
-class StakeInput(EdgeInput):
-    bankroll_units: float = Field(gt=0)
-    kelly_fraction: float = Field(default=0.25, gt=0, le=0.25)
-    max_stake_u: float = Field(default=1.0, gt=0, le=1.0)
+class RobotStakeInput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    module: str = Field(pattern="^(football|basketball|tennis|corners_cartons)$")
+    p_final: float = Field(gt=0, lt=1)
+    confidence: float | None = Field(default=None, ge=0, le=100)
+    decimal_odds: float = Field(gt=1)
+    p_push: float = Field(default=0, ge=0, le=1)
+    profile: str = Field(default="STANDARD")
+    confidence_penalty_points: float = Field(default=5, ge=0)
+    stake_scale: float = Field(default=25, ge=0)
+    stake_max: float | None = Field(default=None, ge=0)
+    stake_min: float = Field(default=0.5, ge=0)
 
 class NoVigInput(BaseModel):
     model_config = ConfigDict(extra="forbid")
     decimal_odds: dict[str, float]
-
 
 @router.post("/v1/predictions/tennis")
 async def tennis_prediction(payload: TennisInput):
@@ -64,10 +70,14 @@ async def shared_edge_ev(payload: EdgeInput):
     except (ValueError, TypeError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
-@router.post("/v1/decision/staking/u")
-async def shared_staking_u(payload: StakeInput):
+@router.post("/v1/decision/staking/robot")
+async def shared_robot_staking(payload: RobotStakeInput):
     try:
-        return stake_u(payload.sport, payload.model_probability, payload.decimal_odds,
-                       payload.bankroll_units, payload.kelly_fraction, payload.max_stake_u)
+        return robot_stake(module=payload.module, p_final=payload.p_final,
+            confidence=payload.confidence, decimal_odds=payload.decimal_odds,
+            p_push=payload.p_push, profile=payload.profile,
+            confidence_penalty_points=payload.confidence_penalty_points,
+            stake_scale=payload.stake_scale, stake_max=payload.stake_max,
+            stake_min=payload.stake_min)
     except (ValueError, TypeError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
