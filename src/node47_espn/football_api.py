@@ -1,15 +1,12 @@
-"""REST endpoints for football probability, EV and U staking."""
+"""REST endpoints for football probability and market comparison."""
 from __future__ import annotations
 
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, ConfigDict, Field
 
-from .multisport_decision import validation_state
-
 from .football_model import (
-    calculate_edge_ev, calculate_stake_u,
-    no_vig_probabilities, predict_football,
+    calculate_edge_ev, no_vig_probabilities, predict_football,
 )
 
 router = APIRouter(tags=["football-model"])
@@ -43,12 +40,6 @@ class EdgeInput(BaseModel):
     market_probability_no_vig: float | None = Field(default=None, ge=0, le=1)
 
 
-class StakeInput(EdgeInput):
-    bankroll_units: float = Field(gt=0)
-    kelly_fraction: float = Field(default=0.25, gt=0, le=1)
-    max_stake_u: float = Field(default=1.0, gt=0)
-
-
 @router.post("/v1/predictions/football")
 async def football_prediction(payload: FootballPredictionInput):
     try:
@@ -73,7 +64,7 @@ async def market_no_vig(payload: OddsInput):
         rows = {
             key: calculate_edge_ev(
                 float(payload.model_probabilities[key]), float(payload.decimal_odds[key]),
-                market_probability_no_vig=market[key], model_validated=False,
+                market_probability_no_vig=market[key],
             )
             for key in market
         }
@@ -82,7 +73,7 @@ async def market_no_vig(payload: OddsInput):
             "overround_percent": round((sum(1 / x for x in payload.decimal_odds.values()) - 1) * 100, 3),
             "no_vig_probabilities": market,
             "outcomes": rows,
-            "warning": "comparaison descriptive uniquement : aucune mise sans validation indépendante enregistrée",
+            "warning": "comparaison descriptive uniquement ; utiliser le moteur de mise robot-native /v1/decision/staking/robot pour calculer la mise",
         }
     except (ValueError, TypeError, ZeroDivisionError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
@@ -94,25 +85,6 @@ async def market_edge_ev(payload: EdgeInput):
         return calculate_edge_ev(
             payload.model_probability, payload.decimal_odds,
             market_probability_no_vig=payload.market_probability_no_vig,
-            model_validated=validation_state('football')[0],
         )
-    except ValueError as exc:
-        raise HTTPException(status_code=422, detail=str(exc)) from exc
-
-
-@router.post("/v1/staking/u")
-async def staking_u(payload: StakeInput):
-    try:
-        result = calculate_stake_u(
-            model_probability=payload.model_probability,
-            decimal_odds=payload.decimal_odds,
-            bankroll_units=payload.bankroll_units,
-            model_validated=validation_state('football')[0],
-            kelly_fraction=payload.kelly_fraction,
-            max_stake_u=payload.max_stake_u,
-        )
-        result['validation_id'] = validation_state('football')[1]
-        result['unit_definition'] = 'bankroll_units and stake_u are expressed in U; 1 U is a user-defined risk unit'
-        return result
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
