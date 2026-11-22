@@ -562,15 +562,25 @@ async def football_backtest(rows: list[dict[str, Any]],
 async def node47_runtime_info() -> dict[str, Any]:
     """Expose version and endpoint capabilities for post-deploy MCP smoke tests."""
     validated, validation_id = _football_model_validation()
+    validation = {
+        sport: {"enabled": validation_state(sport)[0], "validation_id": validation_state(sport)[1]}
+        for sport in ("football", "basketball", "tennis")
+    }
     return {
         "service": "NODE.47 ESPN DATA",
         "version": "0.0.25",
         "transport": "streamable_http",
         "mcp_path": "/mcp/",
+        "models": {
+            "football": "independent_poisson_baseline_uncalibrated",
+            "basketball": "pace_efficiency_normal_baseline_uncalibrated",
+            "tennis": "surface_elo_logistic_baseline_uncalibrated",
+        },
+        "validation_gates": validation,
         "football_model": "independent_poisson_baseline_uncalibrated",
         "football_betting_enabled": validated,
         "validation_id": validation_id,
-        "staking_unit": "U",
+        "staking_policy": {"unit": "U", "kelly_fraction_max": 0.25, "stake_per_selection_max_u": 1.0},
         "searxng_e2e_tool": "searxng_health",
     }
 
