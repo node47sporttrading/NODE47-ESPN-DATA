@@ -29,6 +29,8 @@ from .football_model import (
     backtest_football, calculate_edge_ev, calculate_stake_u,
     no_vig_probabilities, predict_football,
 )
+from .tennis_model import predict_tennis, backtest_tennis
+from .multisport_decision import validation_state, edge_ev as multisport_edge_ev, stake_u as multisport_stake_u
 
 if os.getenv("DATABASE_URL"):
     from .postgres_store import PostgresDataStore
@@ -498,10 +500,8 @@ async def propline_module_event_odds(
 
 
 def _football_model_validation() -> tuple[bool, str | None]:
-    """Betting is enabled only by an explicit deployment-level validation record."""
-    validation_id = os.getenv("NODE47_FOOTBALL_VALIDATION_ID", "").strip()
-    enabled = os.getenv("NODE47_FOOTBALL_MODEL_VALIDATED", "0").strip() == "1"
-    return bool(enabled and validation_id), validation_id or None
+    """Compatibility wrapper around the independent sport validation gate."""
+    return validation_state("football")
 
 
 @mcp.tool()
@@ -563,7 +563,7 @@ async def node47_runtime_info() -> dict[str, Any]:
     validated, validation_id = _football_model_validation()
     return {
         "service": "NODE.47 ESPN DATA",
-        "version": "0.0.24",
+        "version": "0.0.25",
         "transport": "streamable_http",
         "mcp_path": "/mcp/",
         "football_model": "independent_poisson_baseline_uncalibrated",
@@ -572,6 +572,48 @@ async def node47_runtime_info() -> dict[str, Any]:
         "staking_unit": "U",
         "searxng_e2e_tool": "searxng_health",
     }
+
+
+
+@mcp.tool()
+async def tennis_elo_predict(player_a: dict[str, Any], player_b: dict[str, Any],
+                             surface: str = "unknown", best_of: int = 3) -> dict[str, Any]:
+    """Estimate tennis match-winner probability using supplied pre-match Elo snapshots."""
+    try:
+        return predict_tennis(player_a, player_b, surface=surface, best_of=best_of)
+    except (ValueError, TypeError) as exc:
+        return {"status": "invalid_input", "error": str(exc)}
+
+
+@mcp.tool()
+async def tennis_backtest(rows: list[dict[str, Any]], test_fraction: float = 0.2) -> dict[str, Any]:
+    """Chronological holdout evaluation for archived pre-match tennis Elo snapshots."""
+    try:
+        return backtest_tennis(rows, test_fraction=test_fraction)
+    except (ValueError, KeyError, TypeError) as exc:
+        return {"status": "invalid_backtest_data", "error": str(exc)}
+
+
+@mcp.tool()
+async def node47_multisport_edge_ev(sport: str, model_probability: float, decimal_odds: float,
+                                    market_probability_no_vig: float | None = None) -> dict[str, Any]:
+    """Calculate Edge/EV using the independent server-side validation gate for each sport."""
+    try:
+        return multisport_edge_ev(sport, model_probability, decimal_odds, market_probability_no_vig)
+    except (ValueError, TypeError) as exc:
+        return {"status": "invalid_input", "error": str(exc)}
+
+
+@mcp.tool()
+async def node47_multisport_stake_u(sport: str, model_probability: float, decimal_odds: float,
+                                    bankroll_units: float, kelly_fraction: float = 0.25,
+                                    max_stake_u: float = 1.0) -> dict[str, Any]:
+    """Return quarter-Kelly stake in U, or NO BET / 0 U, with per-sport validation gates."""
+    try:
+        return multisport_stake_u(sport, model_probability, decimal_odds, bankroll_units,
+                                  kelly_fraction, max_stake_u)
+    except (ValueError, TypeError) as exc:
+        return {"status": "invalid_input", "error": str(exc)}
 
 
 # Build the Streamable HTTP ASGI app with the configured FastMCP 1.x settings.
@@ -595,7 +637,7 @@ async def lifespan(_: FastAPI):
 
 app = FastAPI(
     title="NODE.47 Multisport Data API",
-    version="0.0.24",
+    version="0.0.25",
     description="ESPN scoreboard ingestion, multisport odds and research MCP tools, plus GitHub-archived NODE.47 analysis reports.",
     lifespan=lifespan,
 )
@@ -674,7 +716,7 @@ async def health():
             pass
     return {
         "service": "NODE.47 SPORT ANALYT DATA API",
-        "version": "0.0.24",
+        "version": "0.0.25",
         "status": "ok" if last and age is not None and age <= REFRESH_SECONDS * 2 else "degraded",
         "last_refresh_utc": last,
         "data_age_seconds": age,
@@ -802,3 +844,5 @@ from .prediction_api import router as prediction_router
 from .football_api import router as football_router
 app.include_router(prediction_router)
 app.include_router(football_router)
+from .multisport_api import router as multisport_router
+app.include_router(multisport_router)
