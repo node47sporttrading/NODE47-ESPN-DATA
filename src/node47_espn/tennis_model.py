@@ -48,7 +48,11 @@ def predict_tennis(
     rating_a = float(player_a["surface_elo"] if use_surface else player_a["overall_elo"])
     rating_b = float(player_b["surface_elo"] if use_surface else player_b["overall_elo"])
     difference = rating_a - rating_b
-    p_a = 1.0 / (1.0 + 10.0 ** (-difference / 400.0))
+    if difference >= 0:
+        p_a = 1.0 / (1.0 + 10.0 ** (-difference / 400.0))
+    else:
+        relative = 10.0 ** (difference / 400.0)
+        p_a = relative / (1.0 + relative)
     adequate = int(player_a["matches_played"]) >= 10 and int(player_b["matches_played"]) >= 10
     return {
         "model": "tennis_elo_logistic_baseline",
