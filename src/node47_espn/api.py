@@ -505,7 +505,7 @@ async def football_poisson_predict(home: dict[str, Any], away: dict[str, Any]) -
     """Estimate football 1X2, totals and BTTS from supplied home/away goal rates.
 
     This is a transparent, uncalibrated independent-Poisson baseline. Sample
-    adequacy is not model validation and its probabilities are not bet-eligible.
+    Sample adequacy is descriptive; stake sizing is performed by the robot-native risk tool.
     """
     try:
         return predict_football(home, away)
@@ -516,7 +516,7 @@ async def football_poisson_predict(home: dict[str, Any], away: dict[str, Any]) -
 @mcp.tool()
 async def football_edge_ev(model_probability: float, decimal_odds: float,
                            market_probability_no_vig: float | None = None) -> dict[str, Any]:
-    """Calculate football EV/edge; no independent-validation gate is applied."""
+    """Calculate football EV/edge for comparison with the exact market price."""
     return calculate_edge_ev(
         model_probability, decimal_odds,
         market_probability_no_vig=market_probability_no_vig,
@@ -562,7 +562,7 @@ async def node47_robot_stake_u(
     Pass module=football|basketball|tennis|corners_cartons, p_final as a
     decimal probability, confidence on 0-100 (or null), the exact reference
     decimal odds, push probability and active robot profile. CUSTOM requires
-    an explicit stake_max. No external validation gate or generic 1 U cap.
+    an explicit stake_max. Profile-specific robot limits are applied.
     """
     try:
         return robot_stake(
@@ -588,7 +588,7 @@ async def tennis_elo_predict(player_a: dict[str, Any], player_b: dict[str, Any],
 @mcp.tool()
 async def node47_multisport_edge_ev(sport: str, model_probability: float, decimal_odds: float,
                                     market_probability_no_vig: float | None = None) -> dict[str, Any]:
-    """Calculate multisport EV/edge without a model-validation gate."""
+    """Calculate multisport EV/edge for market comparison."""
     try:
         return multisport_edge_ev(sport, model_probability, decimal_odds, market_probability_no_vig)
     except (ValueError, TypeError) as exc:
