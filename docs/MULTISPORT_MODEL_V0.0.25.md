@@ -66,7 +66,7 @@ No such validation is performed or certified by this code release. Keep all thre
 ## Existing basketball and football routes
 
 - Football: `POST /v1/predictions/football`, `POST /v1/backtests/football`.
-- Basketball: `POST /v1/predictions/basketball`; historical evaluation utilities exist but no complete automated point-in-time basketball backtest pipeline is supplied by this release.
+- Basketball: `POST /v1/predictions/basketball`, `POST /v1/backtests/basketball`; MCP: `basketball_backtest`. The backtest uses archived pre-tipoff team aggregates and final scores, but does not fit or calibrate the baseline.
 
 ## Tests and deployment
 
