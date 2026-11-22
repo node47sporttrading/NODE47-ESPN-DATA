@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Any
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, ConfigDict, Field
-from .tennis_model import predict_tennis, backtest_tennis
+from .tennis_model import predict_tennis
 from .multisport_decision import edge_ev, stake_u, no_vig_probabilities
 
 router = APIRouter(tags=["multisport-decision"])
@@ -22,17 +22,6 @@ class TennisInput(BaseModel):
     surface: str = "unknown"
     best_of: int = Field(default=3, description="3 or 5 sets")
 
-class TennisBacktestInput(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-    rows: list[dict[str, Any]]
-    test_fraction: float = Field(default=0.2, gt=0, lt=1)
-
-
-class BasketballBacktestInput(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-    rows: list[dict[str, Any]]
-    test_fraction: float = Field(default=0.2, gt=0, lt=1)
-
 class EdgeInput(BaseModel):
     model_config = ConfigDict(extra="forbid")
     sport: str
@@ -50,27 +39,12 @@ class NoVigInput(BaseModel):
     decimal_odds: dict[str, float]
 
 
-@router.post("/v1/backtests/basketball")
-async def basketball_backtest(payload: BasketballBacktestInput):
-    try:
-        from .prediction import backtest_basketball
-        return backtest_basketball(payload.rows, test_fraction=payload.test_fraction)
-    except (ValueError, KeyError, TypeError) as exc:
-        raise HTTPException(status_code=422, detail=str(exc)) from exc
-
 @router.post("/v1/predictions/tennis")
 async def tennis_prediction(payload: TennisInput):
     try:
         return predict_tennis(payload.player_a.model_dump(), payload.player_b.model_dump(),
                               surface=payload.surface, best_of=payload.best_of)
     except (ValueError, TypeError) as exc:
-        raise HTTPException(status_code=422, detail=str(exc)) from exc
-
-@router.post("/v1/backtests/tennis")
-async def tennis_backtest(payload: TennisBacktestInput):
-    try:
-        return backtest_tennis(payload.rows, test_fraction=payload.test_fraction)
-    except (ValueError, KeyError, TypeError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
 @router.post("/v1/decision/no-vig")
