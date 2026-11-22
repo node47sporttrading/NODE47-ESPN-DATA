@@ -44,7 +44,7 @@ class MultisportRobotRiskTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             robot_stake("tennis",0.70,80,2.0,profile="CUSTOM")
 
-    def test_edge_ev_no_longer_depends_on_validation_registry(self):
+    def test_positive_ev_is_reported_without_a_model_gate(self):
         result=edge_ev("football",0.70,2.0)
         self.assertTrue(result["bet_eligible"])
         self.assertEqual(result["decision"],"VALUE_CANDIDATE")
