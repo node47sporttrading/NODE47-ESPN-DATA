@@ -10,7 +10,7 @@ class MultisportRobotRiskTests(unittest.TestCase):
     def setUp(self): self.client = TestClient(api.app)
     def tearDown(self): self.client.close()
 
-    def test_tennis_elo_is_symmetric_and_uncalibrated(self):
+    def test_tennis_elo_is_symmetric_baseline(self):
         a={"name":"A","overall_elo":1800,"matches_played":30}
         b={"name":"B","overall_elo":1600,"matches_played":25}
         result=predict_tennis(a,b,surface="hard")
