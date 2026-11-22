@@ -32,6 +32,24 @@ class MultisportV025Tests(unittest.TestCase):
         self.assertEqual(r.status_code,200)
         self.assertEqual(r.json()["rating_basis"],"overall_elo")
 
+
+    def test_basketball_backtest_endpoint(self):
+        rows = []
+        for index in range(4):
+            rows.append({
+                "prediction_time": f"2026-01-0{index+1}T12:00:00Z",
+                "home": {"name":"Home","points_for_per_game":110.0,"points_against_per_game":105.0,"pace":98.0},
+                "away": {"name":"Away","points_for_per_game":108.0,"points_against_per_game":107.0,"pace":97.0},
+                "actual_home_score": 112.0,
+                "actual_away_score": 104.0,
+            })
+        response = self.client.post("/v1/backtests/basketball",
+                                    json={"rows":rows,"test_fraction":0.25})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["status"], "evaluation_only_not_model_validation")
+        self.assertEqual(response.json()["out_of_sample_rows"], 1)
+        self.assertEqual(response.json()["validation_status"], "not_validated")
+
     def test_all_sports_default_no_bet_zero_u(self):
         for sport in ("football","basketball","tennis"):
             result=stake_u(sport,0.7,2.0,100)
