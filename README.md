@@ -144,41 +144,27 @@ PropLine is exposed through three validated adapters:
 MCP tools: `propline_module_events`, `propline_module_odds`, `propline_module_event_markets`, and `propline_module_event_odds`. Event-specific odds requests first discover and validate actual per-event offerings. Period filters are forwarded to PropLine only when supported by the selected sport. ESPN event IDs and PropLine event IDs are provider-specific and must not be interchanged. Historical odds, closing lines and paid +EV endpoints are not part of the Free-tier integration.
 
 
-## NODE.47 football model, validation, EV and staking — V0.0.24
+## NODE.47 models, EV and robot-native staking — V0.0.28
 
 ### Football Poisson baseline
 - REST: `POST /v1/predictions/football`; MCP: `football_poisson_predict`.
 - Inputs are explicit pre-match home/home and away/away goals-for and goals-against averages, with sample sizes.
-- The model computes `lambda_home` and `lambda_away` as the mean of each attack rate and the opponent's corresponding concession rate. It returns 1X2, Over/Under 2.5 and BTTS probabilities from independent Poisson distributions.
-- This is a transparent baseline, **not a trained or calibrated model**. It does not automatically infer missing xG, lineups, injuries, tactical effects or opponent-strength adjustments. Minimum sample adequacy is not validation.
+- The model computes `lambda_home` and `lambda_away` from each team's attack rate and the opponent's concession rate. It returns 1X2, Over/Under 2.5 and BTTS probabilities from independent Poisson distributions.
+- This is a transparent, uncalibrated baseline, not a trained model. It does not infer missing xG, lineups, injuries, tactical effects or opponent-strength adjustments.
 
 ### Market normalization, Edge and EV
-- REST: `POST /v1/markets/no-vig` and `POST /v1/markets/edge-ev`; MCP: `football_edge_ev`.
-- Decimal odds are converted to implied probabilities and normalized to remove the bookmaker overround. Edge is the difference between model probability and no-vig market probability; EV per unit is (p_{model} \times cote - 1).
-- Market comparison may be displayed while the model is unvalidated, but the result remains `NO BET`.
+- REST: `POST /v1/markets/no-vig` and `POST /v1/markets/edge-ev`; MCP: `football_edge_ev` and `node47_multisport_edge_ev`.
+- Decimal odds are converted to implied probabilities and normalized to remove bookmaker overround. Edge compares model probability with no-vig market probability; EV per unit is `p_model × odds − 1`.
 
-### Staking in U
-- REST: `POST /v1/staking/u`; MCP: `football_stake_u`.
-- `bankroll_units` is the user's bankroll expressed in U. The default policy is quarter Kelly (`kelly_fraction=0.25`) with a maximum stake of `1.0 U` per selection. Both are configurable in the request; the service never assumes the user's monetary value for 1 U.
-- Without an explicit deployment-level validation record, the result is always `NO BET` and `stake_u=0`. A client cannot self-declare the model validated.
-- Betting eligibility requires a complete independent out-of-sample validation record in `config/model_validation.json`, including a named independent reviewer, HTTPS report URL, SHA-256 report digest, UTC validation date and protocol marker. Legacy owner-controlled environment flags are ignored; no sport is enabled by default.
+### Mise en U — moteur natif du robot
+- REST: `POST /v1/decision/staking/robot`; MCP: `node47_robot_stake_u`.
+- The server-side implementation mirrors `robot/src/55-risque.mjs::miseDe`; this is the sole stake calculator for the plugin and robot.
+- Inputs: module, `p_final`, confidence (0–100 or null), exact reference decimal odds, push probability, active profile and its risk parameters.
+- The calculator applies the conservative confidence penalty, includes push probability in `fStar`, then applies `STAKE_SCALE`, `STAKE_MAX`, `STAKE_MIN` and quarter-unit rounding.
+- Native defaults: PRUDENT maximum 2 U; STANDARD and FREQUENT maximum 3 U; CUSTOM requires an explicit `STAKE_MAX`. No generic 1 U cap or separate quarter-Kelly formula is imposed.
+- `NO BET` / 0 U is returned when the conservative edge is non-positive or the rounded stake is below the active profile's minimum.
 
 ### MCP and SearXNG operational verification
 - MCP remains Streamable HTTP at `/mcp/`. The release must pass a real `initialize` + `tools/list` handshake and execute at least one tool call after deployment; a 200 response from `/health` alone does not prove MCP transport health.
-- SearXNG already exposes `searxng_health`, which dispatches a real GitHub Actions search and waits for the authenticated Render callback. It must be run against the deployed service with the production secrets configured; workflow success alone is not proof that the callback reached the waiting MCP request.
-- Render health-check path: `/health`. It is an HTTP liveness/readiness response and is distinct from the MCP and SearXNG end-to-end checks.
-
-### V0.0.24 safety status
-The football engine is a provisional baseline. Until sufficient historical data has been evaluated out of sample, calibration and market-relative performance have been reviewed, and a validation record has been issued, it must not generate a positive stake. Never interpret a paper ROI from a small holdout as evidence of a durable edge.
-
-
-## NODE.47 SPORT ANALYST — V0.0.25 multisport layer
-
-V0.0.25 adds a tennis Elo baseline, independent football/basketball/tennis validation gates, and shared REST/MCP Edge/EV and U staking tools. All three sport models remain uncalibrated and non-bet-eligible by default. The shared staking policy caps requests at quarter Kelly and 1.0 U per selection; otherwise it returns NO BET / 0 U. See [docs/MULTISPORT_MODEL_V0.0.25.md](docs/MULTISPORT_MODEL_V0.0.25.md) for model assumptions, routes, validation requirements and remaining portfolio-risk limitations.
-
-
-## Independent model validation and live research fallback (V0.0.27)
-
-- Football, basketball and tennis remain independently non-eligible by default. Eligibility requires a complete independent out-of-sample record in `config/model_validation.json`; owner-controlled flags are ignored.
-- If SearXNG is unavailable or leaves a material evidence gap, the assistant continues with current online research, cites sources and marks unresolved facts explicitly.
-- Shared decisions remain sport-specific: no-vig market probabilities, Edge/EV, quarter-Kelly maximum and a hard cap of 1 U per selection. Missing prices, invalid probabilities or non-positive EV remain `NO BET` / `0 U`.
+- SearXNG exposes `searxng_health`, which dispatches a GitHub Actions search and waits for the authenticated Render callback. Test it against the deployed service with production secrets configured.
+- Render health-check path: `/health`; it is distinct from MCP and SearXNG end-to-end checks.
