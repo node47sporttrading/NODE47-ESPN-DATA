@@ -63,6 +63,16 @@ class MultisportV025Tests(unittest.TestCase):
             self.assertEqual(result["decision"],"NO BET")
             self.assertEqual(result["stake_u"],0.0)
 
+    def test_shared_staking_rest_gate_blocks_all_sports_by_default(self):
+        for sport in ("football", "basketball", "tennis"):
+            response = self.client.post("/v1/decision/staking/u", json={
+                "sport": sport, "model_probability": 0.7, "decimal_odds": 2.0,
+                "bankroll_units": 100,
+            })
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.json()["decision"], "NO BET")
+            self.assertEqual(response.json()["stake_u"], 0.0)
+
     def test_sport_validation_is_independent(self):
         with patch.dict(os.environ, {
             "NODE47_TENNIS_MODEL_VALIDATED":"1",
