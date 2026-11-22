@@ -21,7 +21,7 @@ class ApiTests(unittest.TestCase):
     def test_health_endpoint(self):
         response = self.client.get("/v1/health")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()["version"], "0.0.25")
+        self.assertEqual(response.json()["version"], "0.0.26")
 
     def test_competitions_separates_registry_from_active_collection(self):
         response = self.client.get("/v1/competitions?sport=basketball")
