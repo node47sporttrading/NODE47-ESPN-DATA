@@ -540,7 +540,7 @@ async def node47_runtime_info() -> dict[str, Any]:
             "tool": "node47_robot_stake_u",
             "source_of_truth": "robot/src/55-risque.mjs::miseDe",
             "formula": "pCons=max(0.01,pFinal-((100-confidence)/100*CONF_PENALTY_PTS/100)); fStar=(pCons*odds+pPush-1)/(odds-1); mise=round_quart(min(STAKE_SCALE*fStar,STAKE_MAX));",
-            "profiles": {"PRUDENT": {"stake_max_u": 2.0}, "STANDARD": {"stake_max_u": 3.0}, "FREQUENT": {"stake_max_u": 3.0}, "CUSTOM": {"stake_max_u": "explicit"}},
+            "profiles": {"PRUDENT": {"stake_max_u": 2.0}, "STANDARD": {"stake_max_u": 3.0}, "FREQUENT": {"stake_max_u": 3.0}, "CUSTOM": {"stake_max_u": 3.0}},
             "stake_min_default_u": 0.5,
             "stake_scale_default": 25.0,
             "confidence_penalty_default_points": 5.0,
@@ -561,8 +561,8 @@ async def node47_robot_stake_u(
 
     Pass module=football|basketball|tennis|corners_cartons, p_final as a
     decimal probability, confidence on 0-100 (or null), the exact reference
-    decimal odds, push probability and active robot profile. CUSTOM requires
-    an explicit stake_max. Profile-specific robot limits are applied.
+    decimal odds, push probability and active robot profile. CUSTOM defaults to 3 U
+    unless STAKE_MAX is explicitly overridden.
     """
     try:
         return robot_stake(
