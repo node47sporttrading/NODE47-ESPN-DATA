@@ -24,6 +24,13 @@ class MultisportV025Tests(unittest.TestCase):
         self.assertEqual(result["status"],"baseline_uncalibrated")
         self.assertFalse(result["betting_eligible"])
 
+    def test_tennis_elo_extreme_ratings_remain_finite(self):
+        a = {"name":"A","overall_elo":1000000,"matches_played":20}
+        b = {"name":"B","overall_elo":0,"matches_played":20}
+        result = predict_tennis(a,b)
+        self.assertEqual(result["probabilities"]["player_a_win"], 1.0)
+        self.assertEqual(result["probabilities"]["player_b_win"], 0.0)
+
     def test_tennis_api(self):
         payload={"player_a":{"name":"A","overall_elo":1800,"matches_played":30},
                  "player_b":{"name":"B","overall_elo":1600,"matches_played":25},
