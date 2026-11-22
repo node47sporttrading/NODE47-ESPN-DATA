@@ -2,7 +2,7 @@
 
 ## Scope
 
-This first implementation is a deterministic, explainable baseline. It is not a trained model and is not calibrated. It must not be presented as a validated betting model.
+This first implementation is a deterministic, explainable baseline. It is not a trained model and is not calibrated. It must not be presented as a trained or calibrated model.
 
 The caller supplies both teams' current points scored per game, points allowed per game and pace. These values must be snapshots available at or before the prediction timestamp. The endpoint does not scrape, infer or silently fill missing statistics.
 
@@ -55,9 +55,9 @@ The split helper is not a complete rolling-origin training pipeline. A valid eva
 
 1. Ingest and persist historical NBA game results and time-stamped team-stat snapshots.
 2. Build a point-in-time feature table with no post-game leakage.
-3. Keep the baseline non-bet-eligible until an independent out-of-sample validation report has been reviewed and recorded.
+3. Keep the baseline clearly labelled uncalibrated; pass its final probability and confidence through the shared NODE.47 robot risk calculator when evaluating a stake.
 4. Fit/calibrate variance and win probabilities on training/validation periods only.
 5. Report sample size, Brier score, log loss, calibration, score errors and confidence intervals on a final holdout.
 6. Add injuries, player availability, rest, travel and lineup adjustments only when their historical timestamps and provenance are available.
 
-Until those gates pass, predictions are exploratory projections, not validated edges. No expected-value or bet recommendation should be emitted from this baseline alone.
+Predictions remain exploratory and uncalibrated. Any stake sizing must use the exact market price, the analyst confidence and the shared robot-native risk calculator; do not describe the baseline as trained or calibrated.
