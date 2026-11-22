@@ -7,7 +7,7 @@ from __future__ import annotations
 from math import floor, isfinite
 from typing import Any
 
-PROFILE_STAKE_MAX = {"PRUDENT": 2.0, "STANDARD": 3.0, "FREQUENT": 3.0}
+PROFILE_STAKE_MAX = {"PRUDENT": 2.0, "STANDARD": 3.0, "FREQUENT": 3.0, "CUSTOM": 3.0}
 MODULES = {"football", "basketball", "tennis", "corners_cartons"}
 
 def no_vig_probabilities(decimal_odds: dict[str, float]) -> dict[str, float]:
@@ -76,8 +76,6 @@ def robot_stake(module: str, p_final: float, confidence: float | None,
     if confidence_penalty_points < 0 or stake_scale < 0 or stake_min < 0:
         raise ValueError("risk parameters must be non-negative")
     if stake_max is None:
-        if profile == "CUSTOM":
-            raise ValueError("CUSTOM profile requires an explicit stake_max")
         stake_max = PROFILE_STAKE_MAX[profile]
     if isinstance(stake_max, bool) or not isinstance(stake_max, (int, float)) or not isfinite(float(stake_max)) or stake_max < 0:
         raise ValueError("stake_max must be a finite non-negative number")
