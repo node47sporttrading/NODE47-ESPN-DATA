@@ -12,18 +12,14 @@ The two score counts are modelled as independent Poisson variables. A finite sco
 
 A minimum split sample is a data-quality flag only. It does not confer validation.
 
-## Backtesting contract
+## historical evaluationing contract
 The caller supplies timestamped historical snapshots containing the features known before kickoff and the final score. Rows are sorted chronologically; the latest fraction is held out. The endpoint reports out-of-sample multiclass Brier Score and Log Loss, plus optional flat-1U paper ROI when all three 1X2 odds are provided.
 
 The earlier rows are not used to fit parameters. The test is therefore an evaluation of this fixed baseline, not model training. No future data may be present in the pre-match feature snapshot. A paper ROI is descriptive and does not demonstrate a persistent edge.
 
 ## Validation gate
 The baseline always returns validation_status=not_validated and betting_eligible=false. No REST caller may set a model_validated boolean to bypass this gate. The server enables betting only when both deployment variables are explicitly set after a separate model-risk review:
-- NODE47_FOOTBALL_MODEL_VALIDATED=1
-- NODE47_FOOTBALL_VALIDATION_ID=<reviewed-record-id>
-
-These variables remain unset in the default deployment. The validation record should document competition coverage, minimum sample, chronological split dates, calibration, Brier/Log Loss, comparison to a market benchmark, closing-line value where available, and limitations. A successful backtest endpoint response alone is not a validation record.
-
+- Activation is controlled by a complete independent validation record in `config/model_validation.json`; legacy owner-controlled environment flags are ignored.
 ## Market calculations
 For a complete mutually-exclusive market, raw implied probabilities are 1 / decimal odds. No-vig probabilities divide each raw implied probability by their sum. Edge (percentage points) = model probability - no-vig market probability. EV per unit = model probability × decimal odds - 1.
 
@@ -42,8 +38,8 @@ An EV number can be shown diagnostically while the model is unvalidated, but it 
 - REST no-vig: POST /v1/markets/no-vig
 - REST Edge/EV: POST /v1/markets/edge-ev
 - REST stake: POST /v1/staking/u
-- REST backtest: POST /v1/backtests/football
-- MCP tools: football_poisson_predict, football_edge_ev, football_stake_u, football_backtest, node47_runtime_info
+- REST historical evaluation: POST /v1/historical evaluations/football
+- MCP tools: football_poisson_predict, football_edge_ev, football_stake_u, football_historical evaluation, node47_runtime_info
 
 ## MCP transport release gate
 The public endpoint remains /mcp/ using Streamable HTTP. Deployment verification must perform:

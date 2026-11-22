@@ -1,13 +1,14 @@
-"""REST endpoints for football probability, backtesting, EV and U staking."""
+"""REST endpoints for football probability, EV and U staking."""
 from __future__ import annotations
 
-import os
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, ConfigDict, Field
 
+from .multisport_decision import validation_state
+
 from .football_model import (
-    backtest_football, calculate_edge_ev, calculate_stake_u,
+    calculate_edge_ev, calculate_stake_u,
     no_vig_probabilities, predict_football,
 )
 
@@ -48,12 +49,6 @@ class StakeInput(EdgeInput):
     max_stake_u: float = Field(default=1.0, gt=0)
 
 
-class BacktestInput(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-    rows: list[dict]
-    test_fraction: float = Field(default=0.2, gt=0, lt=1)
-
-
 @router.post("/v1/predictions/football")
 async def football_prediction(payload: FootballPredictionInput):
     try:
@@ -87,7 +82,7 @@ async def market_no_vig(payload: OddsInput):
             "overround_percent": round((sum(1 / x for x in payload.decimal_odds.values()) - 1) * 100, 3),
             "no_vig_probabilities": market,
             "outcomes": rows,
-            "warning": "comparaison descriptive uniquement : le modèle football V0.0.24 reste non validé",
+            "warning": "comparaison descriptive uniquement : aucune mise sans validation indépendante enregistrée",
         }
     except (ValueError, TypeError, ZeroDivisionError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
@@ -99,8 +94,7 @@ async def market_edge_ev(payload: EdgeInput):
         return calculate_edge_ev(
             payload.model_probability, payload.decimal_odds,
             market_probability_no_vig=payload.market_probability_no_vig,
-            model_validated=(os.getenv('NODE47_FOOTBALL_MODEL_VALIDATED', '0').strip() == '1'
-                             and bool(os.getenv('NODE47_FOOTBALL_VALIDATION_ID', '').strip())),
+            model_validated=validation_state('football')[0],
         )
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
@@ -113,21 +107,12 @@ async def staking_u(payload: StakeInput):
             model_probability=payload.model_probability,
             decimal_odds=payload.decimal_odds,
             bankroll_units=payload.bankroll_units,
-            model_validated=(os.getenv('NODE47_FOOTBALL_MODEL_VALIDATED', '0').strip() == '1'
-                             and bool(os.getenv('NODE47_FOOTBALL_VALIDATION_ID', '').strip())),
+            model_validated=validation_state('football')[0],
             kelly_fraction=payload.kelly_fraction,
             max_stake_u=payload.max_stake_u,
         )
-        result['validation_id'] = os.getenv('NODE47_FOOTBALL_VALIDATION_ID') or None
+        result['validation_id'] = validation_state('football')[1]
         result['unit_definition'] = 'bankroll_units and stake_u are expressed in U; 1 U is a user-defined risk unit'
         return result
     except ValueError as exc:
-        raise HTTPException(status_code=422, detail=str(exc)) from exc
-
-
-@router.post("/v1/backtests/football")
-async def football_backtest(payload: BacktestInput):
-    try:
-        return backtest_football(payload.rows, test_fraction=payload.test_fraction)
-    except (ValueError, KeyError, TypeError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc

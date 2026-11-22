@@ -1,7 +1,6 @@
 """Transparent tennis Elo baseline with surface-specific adjustment."""
 from __future__ import annotations
 
-from math import log
 from typing import Any
 
 SURFACES = {"hard", "clay", "grass", "carpet", "unknown"}
@@ -86,33 +85,3 @@ def predict_tennis(
     }
 
 
-def backtest_tennis(rows: list[dict[str, Any]], *, test_fraction: float = 0.2) -> dict[str, Any]:
-    """Chronological holdout metrics for archived pre-match Elo snapshots."""
-    from .evaluation import chronological_split
-    train, test = chronological_split(rows, timestamp_key="prediction_time", test_fraction=test_fraction)
-    brier, losses, correct = [], [], 0
-    predictions = []
-    for row in test:
-        pred = predict_tennis(
-            row["player_a"], row["player_b"],
-            surface=row.get("surface", "unknown"),
-            best_of=int(row.get("best_of", 3)),
-        )
-        p = pred["probabilities"]["player_a_win"]
-        actual = 1 if row["winner"] == "A" else 0 if row["winner"] == "B" else None
-        if actual is None:
-            raise ValueError("winner must be 'A' or 'B'")
-        brier.append((p - actual) ** 2)
-        losses.append(-(actual * log(max(p, 1e-15)) + (1 - actual) * log(max(1 - p, 1e-15))))
-        correct += int((p >= 0.5) == bool(actual))
-        predictions.append({"prediction_time": row["prediction_time"], "p_player_a": round(p, 6), "winner": row["winner"]})
-    return {
-        "status": "evaluation_only_not_model_validation",
-        "training_rows": len(train),
-        "out_of_sample_rows": len(test),
-        "brier_score": round(sum(brier) / len(brier), 6),
-        "log_loss": round(sum(losses) / len(losses), 6),
-        "accuracy": round(correct / len(test), 6),
-        "validation_status": "not_validated",
-        "predictions": predictions,
-    }

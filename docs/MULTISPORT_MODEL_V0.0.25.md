@@ -15,8 +15,7 @@ All three model endpoints return exploratory probabilities. A sample-size flag i
 ## Tennis model
 
 - REST: `POST /v1/predictions/tennis`
-- REST backtest: `POST /v1/backtests/tennis`
-- MCP: `tennis_elo_predict`, `tennis_backtest`
+- MCP: `tennis_elo_predict`
 
 Required player snapshots: `name`, `overall_elo`, `matches_played`. Optional `surface_elo` is used only when both players provide it. Supported surfaces: hard, clay, grass, carpet, unknown. Best-of-3/5 is recorded as match metadata and does not change the match-winner probability.
 
@@ -24,7 +23,7 @@ The model uses the Elo logistic transform:
 `P(A wins) = 1 / (1 + 10^(-(Elo_A - Elo_B)/400))`.
 The scale 400 is a fixed baseline assumption, not estimated or calibrated in this release.
 
-The backtest sorts archived pre-match Elo snapshots chronologically and evaluates the latest holdout with Brier score, log loss and accuracy. It does not train or tune Elo ratings and cannot grant validation.
+
 
 ## Shared market and U decision layer
 
@@ -35,9 +34,6 @@ The backtest sorts archived pre-match Elo snapshots chronologically and evaluate
 
 The `sport` field must be football, basketball or tennis. Validation gates are independent:
 
-- `NODE47_FOOTBALL_MODEL_VALIDATED=1` and `NODE47_FOOTBALL_VALIDATION_ID`
-- `NODE47_BASKETBALL_MODEL_VALIDATED=1` and `NODE47_BASKETBALL_VALIDATION_ID`
-- `NODE47_TENNIS_MODEL_VALIDATED=1` and `NODE47_TENNIS_VALIDATION_ID`
 
 Both variables for the selected sport must be present. No client-supplied boolean can enable betting. All gates remain disabled by default.
 
@@ -65,8 +61,8 @@ No such validation is performed or certified by this code release. Keep all thre
 
 ## Existing basketball and football routes
 
-- Football: `POST /v1/predictions/football`, `POST /v1/backtests/football`.
-- Basketball: `POST /v1/predictions/basketball`, `POST /v1/backtests/basketball`; MCP: `basketball_backtest`. The backtest uses archived pre-tipoff team aggregates and final scores, but does not fit or calibrate the baseline.
+- Football: `POST /v1/predictions/football`.
+- Basketball: `POST /v1/predictions/basketball`.
 
 ## Tests and deployment
 
