@@ -1,4 +1,4 @@
-"""Shared market comparison and U staking with independent sport gates."""
+"""Shared market comparison and U staking with per-sport owner-confirmed baseline gates."""
 from __future__ import annotations
 import os
 from typing import Any
