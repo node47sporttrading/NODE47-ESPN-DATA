@@ -79,8 +79,6 @@ def predict_football(
         "model": "independent_poisson_home_away_rates",
         "model_version": "football-poisson-baseline-0.1",
         "model_status": "baseline_uncalibrated",
-        "betting_eligible": False,
-        "validation_status": "not_validated",
         "sample_adequacy": "minimum_met" if sample_ok else "insufficient",
         "sample_matches": {
             "home_home_split": int(home["sample_matches"]),
@@ -103,7 +101,7 @@ def predict_football(
             "Lambda = moyenne du taux offensif de l'équipe et du taux de buts concédés adverse",
             "Pas de correction Dixon-Coles, blessures, compositions ou ajustement de force",
             "La suffisance d'échantillon ne vaut pas calibration statistique",
-            "Probabilités non autorisées pour les mises tant que la validation hors échantillon n'est pas acquise",
+            "Probabilités de baseline non calibrées : confiance, prix et risque doivent être évalués par le moteur natif NODE.47",
         ],
     }
 
@@ -126,9 +124,8 @@ def calculate_edge_ev(
     decimal_odds: float,
     *,
     market_probability_no_vig: float | None = None,
-    model_validated: bool = False,
 ) -> dict[str, Any]:
-    """Calculate value metrics; block betting conclusions unless validation is explicit."""
+    """Calculate EV and market edge without an external validation gate."""
     if not 0 < model_probability < 1:
         raise ValueError("model_probability must be strictly between 0 and 1")
     if decimal_odds <= 1:
@@ -138,7 +135,7 @@ def calculate_edge_ev(
     ev = model_probability * decimal_odds - 1.0
     edge = (model_probability - market_probability_no_vig
             if market_probability_no_vig is not None else None)
-    eligible = bool(model_validated and ev > 0)
+    eligible = bool(ev > 0)
     return {
         "model_probability": round(model_probability, 6),
         "decimal_odds": round(decimal_odds, 4),
@@ -147,60 +144,7 @@ def calculate_edge_ev(
         "edge_probability_points": round(edge * 100, 3) if edge is not None else None,
         "ev_per_unit": round(ev, 6),
         "ev_percent": round(ev * 100, 3),
-        "model_validated": bool(model_validated),
         "bet_eligible": eligible,
         "decision": "VALUE_CANDIDATE" if eligible else "NO BET",
-        "block_reason": None if eligible else (
-            "model_not_validated" if not model_validated else "non_positive_ev"
-        ),
+        "block_reason": None if eligible else "non_positive_ev",
     }
-
-
-def calculate_stake_u(
-    *,
-    model_probability: float,
-    decimal_odds: float,
-    bankroll_units: float,
-    model_validated: bool,
-    kelly_fraction: float = 0.25,
-    max_stake_u: float = 1.0,
-) -> dict[str, Any]:
-    """Quarter-Kelly default, capped in U. No stake without validated positive EV.
-
-    bankroll_units is the user's total bankroll expressed in U; it is not money.
-    """
-    if bankroll_units <= 0:
-        raise ValueError("bankroll_units must be greater than zero")
-    if not 0 < kelly_fraction <= 1:
-        raise ValueError("kelly_fraction must be in (0, 1]")
-    if max_stake_u <= 0:
-        raise ValueError("max_stake_u must be greater than zero")
-    value = calculate_edge_ev(
-        model_probability, decimal_odds, model_validated=model_validated
-    )
-    if not value["bet_eligible"]:
-        return {
-            "decision": "NO BET",
-            "stake_u": 0.0,
-            "bankroll_u": round(bankroll_units, 4),
-            "kelly_fraction": kelly_fraction,
-            "max_stake_u": max_stake_u,
-            "reason": value["block_reason"],
-        }
-    b = decimal_odds - 1.0
-    q = 1.0 - model_probability
-    full_kelly = max(0.0, (b * model_probability - q) / b)
-    raw_stake = bankroll_units * full_kelly * kelly_fraction
-    stake = min(raw_stake, max_stake_u)
-    return {
-        "decision": "BET",
-        "stake_u": round(stake, 4),
-        "bankroll_u": round(bankroll_units, 4),
-        "full_kelly_fraction_of_bankroll": round(full_kelly, 6),
-        "applied_kelly_fraction": kelly_fraction,
-        "uncapped_stake_u": round(raw_stake, 4),
-        "max_stake_u": max_stake_u,
-        "reason": "validated_model_and_positive_ev",
-    }
-
-
