@@ -1,6 +1,6 @@
 """Transparent football Poisson baseline, market value and U-based staking.
 
-This module deliberately separates probability generation from validation.
+This module generates transparent football probabilities; stake sizing is delegated to the shared robot-native risk engine.
 A model output is never considered calibrated merely because its inputs exist.
 """
 from __future__ import annotations
