@@ -21,7 +21,7 @@ EV per unit is (p_{model} \times odds - 1). Edge compares the model probability 
 - PRUDENT: `STAKE_MAX=2 U`.
 - STANDARD: `STAKE_MAX=3 U`.
 - FREQUENT: `STAKE_MAX=3 U`.
-- CUSTOM: explicit `STAKE_MAX` required.
+- CUSTOM: default `STAKE_MAX=3 U`, explicitly overridable.
 - Default `STAKE_SCALE=25`, `CONF_PENALTY_PTS=5`, `STAKE_MIN=0.5 U`.
 
 The service does not assume a currency value for 1 U. The shared tool calculates a single selection stake; it is not a portfolio ledger and does not itself enforce correlated exposure, daily drawdown or bankroll-wide limits.
