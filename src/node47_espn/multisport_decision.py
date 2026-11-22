@@ -1,6 +1,7 @@
 """Independent model-validation registry; legacy owner flags are deliberately ignored."""
 from __future__ import annotations
 import json, os, re
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -30,6 +31,12 @@ def validation_record(sport: str) -> dict[str, Any]:
         and record.get("protocol") == "out_of_sample"
         and isinstance(record.get("validated_at_utc"), str)
     )
+    if valid:
+        try:
+            stamp = datetime.fromisoformat(record["validated_at_utc"].replace("Z", "+00:00"))
+            valid = stamp.tzinfo is not None and stamp.utcoffset() == timezone.utc.utcoffset(stamp)
+        except ValueError:
+            valid = False
     return ({**record, "status": "validated", "reason": None} if valid else
             {"status": "not_validated", "reason": "independent_validation_missing"})
 
