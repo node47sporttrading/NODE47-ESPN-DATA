@@ -1,4 +1,4 @@
-"""Shared market comparison and U staking with independent sport gates."""
+"""Shared market comparison and U staking with per-sport owner-confirmed baseline gates."""
 from __future__ import annotations
 import os
 from typing import Any
@@ -49,6 +49,8 @@ def edge_ev(sport: str, model_probability: float, decimal_odds: float,
         "ev_per_unit": round(ev, 6),
         "ev_percent": round(ev * 100, 3),
         "model_validated": validated,
+        "validation_status": "user_confirmed_baseline" if validated else "not_enabled",
+        "validation_basis": "owner_confirmation_not_independent_audit" if validated else None,
         "validation_id": validation_id,
         "decision": "VALUE_CANDIDATE" if eligible else "NO BET",
         "bet_eligible": eligible,
@@ -69,6 +71,8 @@ def stake_u(sport: str, model_probability: float, decimal_odds: float,
     common = {
         "sport": sport, "bankroll_u": round(bankroll_units, 4),
         "validation_id": value["validation_id"],
+        "validation_status": value["validation_status"],
+        "validation_basis": value["validation_basis"],
         "unit_definition": "1 U is a user-defined risk unit; bankroll_units is expressed in U",
         "kelly_fraction": kelly_fraction, "max_stake_u": max_stake_u,
     }

@@ -180,3 +180,11 @@ The football engine is a provisional baseline. Until sufficient historical data 
 ## NODE.47 SPORT ANALYST — V0.0.25 multisport layer
 
 V0.0.25 adds a tennis Elo baseline, independent football/basketball/tennis validation gates, and shared REST/MCP Edge/EV and U staking tools. All three sport models remain uncalibrated and non-bet-eligible by default. The shared staking policy caps requests at quarter Kelly and 1.0 U per selection; otherwise it returns NO BET / 0 U. See [docs/MULTISPORT_MODEL_V0.0.25.md](docs/MULTISPORT_MODEL_V0.0.25.md) for model assumptions, routes, validation requirements and remaining portfolio-risk limitations.
+
+
+## Baseline activation and live research fallback (V0.0.26)
+
+- The owner has explicitly confirmed the profitability of the football, basketball and tennis baselines. Each sport is activated independently using its own `NODE47_<SPORT>_MODEL_VALIDATED=1` and `NODE47_<SPORT>_VALIDATION_ID` settings. The API reports this as `user_confirmed_baseline`; it is not represented as an independent statistical audit.
+- Chronological backtesting remains available only as an optional diagnostic. It is not required to activate a baseline and must not block analysis or staking when the per-sport owner-confirmation gate is enabled.
+- If SearXNG is unavailable, returns no useful sources, or leaves an important evidence gap, the AI assistant continues with its own current online search capability. It must cite sources, record dates, cross-check conflicting information, and mark unresolved facts explicitly. Missing information must never be fabricated.
+- Shared decisions remain sport-specific: no-vig market probabilities, Edge/EV, quarter-Kelly maximum, and a hard cap of 1 U per selection. A missing price, invalid probability, or non-positive EV remains `NO BET` / `0 U`.
