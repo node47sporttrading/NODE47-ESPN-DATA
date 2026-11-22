@@ -1,6 +1,8 @@
 """REST endpoints for football probability, backtesting, EV and U staking."""
 from __future__ import annotations
 
+import os
+
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -38,7 +40,6 @@ class EdgeInput(BaseModel):
     model_probability: float = Field(gt=0, lt=1)
     decimal_odds: float = Field(gt=1)
     market_probability_no_vig: float | None = Field(default=None, ge=0, le=1)
-    model_validated: bool = False
 
 
 class StakeInput(EdgeInput):
@@ -98,7 +99,8 @@ async def market_edge_ev(payload: EdgeInput):
         return calculate_edge_ev(
             payload.model_probability, payload.decimal_odds,
             market_probability_no_vig=payload.market_probability_no_vig,
-            model_validated=payload.model_validated,
+            model_validated=(os.getenv('NODE47_FOOTBALL_MODEL_VALIDATED', '0').strip() == '1'
+                             and bool(os.getenv('NODE47_FOOTBALL_VALIDATION_ID', '').strip())),
         )
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
@@ -107,14 +109,18 @@ async def market_edge_ev(payload: EdgeInput):
 @router.post("/v1/staking/u")
 async def staking_u(payload: StakeInput):
     try:
-        return calculate_stake_u(
+        result = calculate_stake_u(
             model_probability=payload.model_probability,
             decimal_odds=payload.decimal_odds,
             bankroll_units=payload.bankroll_units,
-            model_validated=payload.model_validated,
+            model_validated=(os.getenv('NODE47_FOOTBALL_MODEL_VALIDATED', '0').strip() == '1'
+                             and bool(os.getenv('NODE47_FOOTBALL_VALIDATION_ID', '').strip())),
             kelly_fraction=payload.kelly_fraction,
             max_stake_u=payload.max_stake_u,
         )
+        result['validation_id'] = os.getenv('NODE47_FOOTBALL_VALIDATION_ID') or None
+        result['unit_definition'] = 'bankroll_units and stake_u are expressed in U; 1 U is a user-defined risk unit'
+        return result
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
