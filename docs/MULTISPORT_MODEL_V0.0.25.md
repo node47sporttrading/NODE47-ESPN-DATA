@@ -33,7 +33,7 @@ A sample-size or input-coverage flag describes data adequacy; it does not alter 
 | PRUDENT | 2 U |
 | STANDARD | 3 U |
 | FREQUENT | 3 U |
-| CUSTOM | Explicit value required |
+| CUSTOM | 3 U by default; overridable |
 
 Default risk parameters are `STAKE_SCALE=25`, `CONF_PENALTY_PTS=5`, `STAKE_MIN=0.5 U`. There is no generic 1 U cap or separate quarter-Kelly override. The profile values are authoritative.
 
