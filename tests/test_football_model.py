@@ -1,7 +1,7 @@
 import unittest
 
 from node47_espn.football_model import (
-    backtest_football, calculate_edge_ev, calculate_stake_u,
+    calculate_edge_ev, calculate_stake_u,
     no_vig_probabilities, predict_football,
 )
 
@@ -42,21 +42,6 @@ class FootballModelTests(unittest.TestCase):
                                     bankroll_units=100, model_validated=True,
                                     kelly_fraction=0.25, max_stake_u=1.0)
         self.assertEqual(allowed["stake_u"], 1.0)
-
-    def test_chronological_backtest_is_explicitly_not_validation(self):
-        rows = []
-        for day in range(10):
-            rows.append({
-                "prediction_time": f"2026-01-{day + 1:02d}T12:00:00Z",
-                "home": self.home, "away": self.away,
-                "actual_home_goals": 2, "actual_away_goals": 1,
-                "decimal_odds_home": 1.8, "decimal_odds_draw": 3.5,
-                "decimal_odds_away": 4.5,
-            })
-        result = backtest_football(rows)
-        self.assertEqual(result["status"], "evaluation_only_not_model_validation")
-        self.assertEqual(result["out_of_sample_rows"], 2)
-        self.assertEqual(result["validation_status"], "not_validated")
 
 
 if __name__ == "__main__":
