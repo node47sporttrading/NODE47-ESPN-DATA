@@ -41,8 +41,10 @@ class MCPTransportContractTests(unittest.TestCase):
             self.assertEqual(listed.status_code, 200, listed.text)
             body = listed.text
             for tool in ("node47_runtime_info", "football_poisson_predict",
-                         "football_stake_u", "searxng_health", "espn_health"):
+                         "node47_robot_stake_u", "searxng_health", "espn_health"):
                 self.assertIn(tool, body)
+            self.assertNotIn("football_stake_u", body)
+            self.assertNotIn("node47_multisport_stake_u", body)
 
 
 if __name__ == "__main__":
