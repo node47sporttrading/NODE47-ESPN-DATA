@@ -161,10 +161,11 @@ MCP tools: `propline_module_events`, `propline_module_odds`, `propline_module_ev
 - The server-side implementation mirrors `robot/src/55-risque.mjs::miseDe`; this is the sole stake calculator for the plugin and robot.
 - Inputs: module, `p_final`, confidence (0–100 or null), exact reference decimal odds, push probability, active profile and its risk parameters.
 - The calculator applies the conservative confidence penalty, includes push probability in `fStar`, then applies `STAKE_SCALE`, `STAKE_MAX`, `STAKE_MIN` and quarter-unit rounding.
-- Native defaults: PRUDENT maximum 2 U; STANDARD and FREQUENT maximum 3 U; CUSTOM requires an explicit `STAKE_MAX`. No generic 1 U cap or separate quarter-Kelly formula is imposed.
+- Native defaults: PRUDENT maximum 2 U; STANDARD, FREQUENT and CUSTOM maximum 3 U unless `STAKE_MAX` is explicitly overridden. No generic 1 U cap is imposed.
 - `NO BET` / 0 U is returned when the conservative edge is non-positive or the rounded stake is below the active profile's minimum.
 
 ### MCP and SearXNG operational verification
+- MCP tool `node47_runtime_info` reports the deployed version, baseline models and active robot-native stake contract. `node47_robot_stake_u` is the only stake-sizing tool.
 - MCP remains Streamable HTTP at `/mcp/`. The release must pass a real `initialize` + `tools/list` handshake and execute at least one tool call after deployment; a 200 response from `/health` alone does not prove MCP transport health.
 - SearXNG exposes `searxng_health`, which dispatches a GitHub Actions search and waits for the authenticated Render callback. Test it against the deployed service with production secrets configured.
 - Render health-check path: `/health`; it is distinct from MCP and SearXNG end-to-end checks.
