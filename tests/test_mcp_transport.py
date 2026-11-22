@@ -9,6 +9,7 @@ class MCPTransportContractTests(unittest.TestCase):
         headers = {
             "content-type": "application/json",
             "accept": "application/json, text/event-stream",
+            "host": "node47-espn-data.onrender.com",
         }
         initialize = {
             "jsonrpc": "2.0",
