@@ -1,52 +1,33 @@
-# NODE.47 SPORT ANALYST — football model and staking policy V0.0.24
+# NODE.47 Football Poisson baseline and robot-native staking
 
-## Scope
-V0.0.24 adds a reproducible football Poisson baseline and explicit REST/MCP interfaces. It does not claim that this baseline is trained, calibrated, or profitable.
+## Model scope
+The football baseline estimates 1X2, BTTS and Over/Under 2.5 from supplied home/away goals-for and goals-against rates. The two score counts are modelled as independent Poisson variables. A finite score grid is normalized before the market probabilities are aggregated.
 
-## Probability construction
-For a home team and an away team, using only pre-match home/away split rates:
-- lambda_home = (home goals-for per home match + away goals-against per away match) / 2
-- lambda_away = (away goals-for per away match + home goals-against per home match) / 2
+This is a transparent, uncalibrated baseline. It does not infer missing xG, lineups, injuries, tactical effects, opponent strength or other covariates. A sample-size flag describes input coverage only.
 
-The two score counts are modelled as independent Poisson variables. A finite score grid is normalized before 1X2, BTTS and O/U 2.5 probabilities are aggregated. This simple construction is auditable but omits Dixon-Coles low-score dependence, opponent-strength adjustment, xG, lineups, injuries, tactical state and other covariates.
+## Market value
+EV per unit is (p_{model} \times odds - 1). Edge compares the model probability with the no-vig market probability. These quantities describe the supplied probability and price; they do not replace the NODE.47 decision process.
 
-A minimum split sample is a data-quality flag only. It does not confer validation.
+## Stake sizing — single source of truth
+- REST: `POST /v1/decision/staking/robot`.
+- MCP: `node47_robot_stake_u`.
+- Source formula: `robot/src/55-risque.mjs::miseDe`.
+- Inputs: module, final probability, confidence, exact decimal reference odds, push probability and active robot profile.
+- Conservative probability: `pCons = max(0.01, pFinal - ((100-confidence)/100 × CONF_PENALTY_PTS/100))`. If confidence is absent, the full confidence penalty is applied.
+- Kelly fraction with push: `fStar = (pCons × odds + pPush - 1)/(odds - 1)`.
+- Stake: `round_quart(min(STAKE_SCALE × fStar, STAKE_MAX))`; if the result is below `STAKE_MIN`, the decision is `NO BET` and the stake is 0 U.
 
-## historical evaluationing contract
-The caller supplies timestamped historical snapshots containing the features known before kickoff and the final score. Rows are sorted chronologically; the latest fraction is held out. The endpoint reports out-of-sample multiclass Brier Score and Log Loss, plus optional flat-1U paper ROI when all three 1X2 odds are provided.
+## Native profile defaults
+- PRUDENT: `STAKE_MAX=2 U`.
+- STANDARD: `STAKE_MAX=3 U`.
+- FREQUENT: `STAKE_MAX=3 U`.
+- CUSTOM: explicit `STAKE_MAX` required.
+- Default `STAKE_SCALE=25`, `CONF_PENALTY_PTS=5`, `STAKE_MIN=0.5 U`.
 
-The earlier rows are not used to fit parameters. The test is therefore an evaluation of this fixed baseline, not model training. No future data may be present in the pre-match feature snapshot. A paper ROI is descriptive and does not demonstrate a persistent edge.
+The service does not assume a currency value for 1 U. The shared tool calculates a single selection stake; it is not a portfolio ledger and does not itself enforce correlated exposure, daily drawdown or bankroll-wide limits.
 
-## Validation gate
-The baseline always returns validation_status=not_validated and betting_eligible=false. No REST caller may set a model_validated boolean to bypass this gate. The server enables betting only when a complete independent out-of-sample validation record exists in `config/model_validation.json`.
-- Activation is controlled by a complete independent validation record in `config/model_validation.json`; legacy owner-controlled environment flags are ignored.
-## Market calculations
-For a complete mutually-exclusive market, raw implied probabilities are 1 / decimal odds. No-vig probabilities divide each raw implied probability by their sum. Edge (percentage points) = model probability - no-vig market probability. EV per unit = model probability × decimal odds - 1.
-
-An EV number can be shown diagnostically while the model is unvalidated, but it is not a betting recommendation. The output is NO BET until the server-side validation gate is active and EV is positive.
-
-## U policy
-- The bankroll input is expressed in U.
-- 1 U is an abstract user-defined risk unit; the service does not assume a currency value or force a bankroll percentage.
-- Default stake: 0.25 Kelly (quarter Kelly), capped at 1.0 U per selection.
-- If model validation is absent or EV is non-positive: stake = 0 U, decision = NO BET.
-- The user must supply bankroll size in U. No default bankroll is invented.
-- The endpoint calculates a single-selection stake. It does not yet enforce correlated exposure across simultaneous bets, daily drawdown limits, or portfolio-wide caps; these remain explicit V0.0.25+ work.
-
-## Interfaces
-- REST prediction: POST /v1/predictions/football
-- REST no-vig: POST /v1/markets/no-vig
-- REST Edge/EV: POST /v1/markets/edge-ev
-- REST stake: POST /v1/staking/u
-- REST historical evaluation: POST /v1/historical evaluations/football
-- MCP tools: football_poisson_predict, football_edge_ev, football_stake_u, football_historical evaluation, node47_runtime_info
-
-## MCP transport release gate
-The public endpoint remains /mcp/ using Streamable HTTP. Deployment verification must perform:
-1. MCP initialize request and confirm a successful protocol response plus session handling.
-2. notifications/initialized.
-3. tools/list and confirm the V0.0.24 football tools plus ESPN, SearXNG and PropLine tools.
-4. A real read-only tool call such as node47_runtime_info.
-5. A real searxng_health call, which verifies the GitHub Actions dispatch, ephemeral SearXNG execution and authenticated callback to the waiting Render request.
-
-An HTTP /health response alone does not prove the MCP transport or SearXNG callback works. Do not label the release fully operational until all five checks pass.
+## Routes and tools
+- REST prediction: `POST /v1/predictions/football`.
+- MCP prediction: `football_poisson_predict`.
+- MCP market comparison: `football_edge_ev`.
+- MCP stake sizing: `node47_robot_stake_u`.
