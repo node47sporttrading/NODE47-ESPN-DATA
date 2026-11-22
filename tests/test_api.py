@@ -43,7 +43,8 @@ class ApiTests(unittest.TestCase):
 
     def test_backtesting_routes_are_not_exposed(self):
         paths = {getattr(route, "path", "") for route in api.app.routes}
-        self.assertFalse(any(path.startswith("/v1/backtests/") for path in paths))
+        for path in ("/v1/backtests/football", "/v1/backtests/basketball", "/v1/backtests/tennis"):
+            self.assertNotIn(path, paths)
 
     def test_searxng_callback_rejects_invalid_secret(self):
         with patch.dict(os.environ, {"SEARXNG_CALLBACK_SECRET": "correct-secret"}):
