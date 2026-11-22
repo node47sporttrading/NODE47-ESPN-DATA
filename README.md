@@ -165,6 +165,7 @@ MCP tools: `propline_module_events`, `propline_module_odds`, `propline_module_ev
 - `NO BET` / 0 U is returned when the conservative edge is non-positive or the rounded stake is below the active profile's minimum.
 
 ### MCP and SearXNG operational verification
+- MCP tool `node47_runtime_info` reports the deployed version, baseline models and active robot-native stake contract. `node47_robot_stake_u` is the only stake-sizing tool.
 - MCP remains Streamable HTTP at `/mcp/`. The release must pass a real `initialize` + `tools/list` handshake and execute at least one tool call after deployment; a 200 response from `/health` alone does not prove MCP transport health.
 - SearXNG exposes `searxng_health`, which dispatches a GitHub Actions search and waits for the authenticated Render callback. Test it against the deployed service with production secrets configured.
 - Render health-check path: `/health`; it is distinct from MCP and SearXNG end-to-end checks.
