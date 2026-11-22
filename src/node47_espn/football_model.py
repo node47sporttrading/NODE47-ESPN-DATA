@@ -1,4 +1,4 @@
-"""Transparent football Poisson baseline, market value and U-based staking.
+"""Transparent football Poisson baseline and market value.
 
 This module generates transparent football probabilities; stake sizing is delegated to the shared robot-native risk engine.
 A model output is never considered calibrated merely because its inputs exist.
@@ -125,7 +125,7 @@ def calculate_edge_ev(
     *,
     market_probability_no_vig: float | None = None,
 ) -> dict[str, Any]:
-    """Calculate EV and market edge without an external validation gate."""
+    """Calculate EV and market edge from the supplied probability and price."""
     if not 0 < model_probability < 1:
         raise ValueError("model_probability must be strictly between 0 and 1")
     if decimal_odds <= 1:
