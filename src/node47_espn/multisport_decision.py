@@ -16,7 +16,9 @@ def validation_record(sport: str) -> dict[str, Any]:
         record = json.loads(path.read_text(encoding="utf-8")).get("sports", {}).get(sport, {})
     except (OSError, ValueError, AttributeError):
         return {"status": "not_validated", "reason": "validation_registry_unavailable"}
-    reviewer = record.get("reviewer") if isinstance(record, dict) else None
+    if not isinstance(record, dict):
+        return {"status": "not_validated", "reason": "independent_validation_missing"}
+    reviewer = record.get("reviewer")
     valid = (
         record.get("status") == "validated"
         and isinstance(record.get("validation_id"), str) and bool(record["validation_id"].strip())
