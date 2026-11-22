@@ -45,6 +45,8 @@ class MCPTransportContractTests(unittest.TestCase):
                 self.assertIn(tool, body)
             self.assertNotIn("football_stake_u", body)
             self.assertNotIn("node47_multisport_stake_u", body)
+            self.assertNotIn("node47_robot_stake_u", body)
+            self.assertNotIn("node47_multisport_stake_u", body)
 
 
 if __name__ == "__main__":
