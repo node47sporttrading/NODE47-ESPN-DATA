@@ -504,8 +504,7 @@ async def propline_module_event_odds(
 async def football_poisson_predict(home: dict[str, Any], away: dict[str, Any]) -> dict[str, Any]:
     """Estimate football 1X2, totals and BTTS from supplied home/away goal rates.
 
-    This is a transparent, uncalibrated independent-Poisson baseline. Sample
-    Sample adequacy is descriptive; stake sizing is performed by the robot-native risk tool.
+    This is a transparent, uncalibrated independent-Poisson baseline. Sample adequacy is descriptive; stake sizing is performed by the robot-native risk tool.
     """
     try:
         return predict_football(home, away)
