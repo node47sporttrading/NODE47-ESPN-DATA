@@ -180,6 +180,5 @@ V0.0.25 adds a tennis Elo baseline, independent football/basketball/tennis valid
 ## Independent model validation and live research fallback (V0.0.27)
 
 - Football, basketball and tennis remain independently non-eligible by default. Eligibility requires a complete independent out-of-sample record in `config/model_validation.json`; owner-controlled flags are ignored.
-- Historical backtesting is not part of the NODE.47 product, REST API, MCP surface or prediction modules.
 - If SearXNG is unavailable or leaves a material evidence gap, the assistant continues with current online research, cites sources and marks unresolved facts explicitly.
 - Shared decisions remain sport-specific: no-vig market probabilities, Edge/EV, quarter-Kelly maximum and a hard cap of 1 U per selection. Missing prices, invalid probabilities or non-positive EV remain `NO BET` / `0 U`.
