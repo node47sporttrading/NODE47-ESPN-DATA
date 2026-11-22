@@ -175,3 +175,8 @@ MCP tools: `propline_module_events`, `propline_module_odds`, `propline_module_ev
 
 ### V0.0.24 safety status
 The football engine is a provisional baseline. Until sufficient historical data has been evaluated out of sample, calibration and market-relative performance have been reviewed, and a validation record has been issued, it must not generate a positive stake. Never interpret a paper ROI from a small holdout as evidence of a durable edge.
+
+
+## NODE.47 SPORT ANALYST — V0.0.25 multisport layer
+
+V0.0.25 adds a tennis Elo baseline, independent football/basketball/tennis validation gates, and shared REST/MCP Edge/EV and U staking tools. All three sport models remain uncalibrated and non-bet-eligible by default. The shared staking policy caps requests at quarter Kelly and 1.0 U per selection; otherwise it returns NO BET / 0 U. See [docs/MULTISPORT_MODEL_V0.0.25.md](docs/MULTISPORT_MODEL_V0.0.25.md) for model assumptions, routes, validation requirements and remaining portfolio-risk limitations.
