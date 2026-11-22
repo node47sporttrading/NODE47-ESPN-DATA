@@ -20,8 +20,8 @@ class RobotStakingParityTests(unittest.TestCase):
         self.assertEqual(robot_stake("basketball",0.80,100,2.0,profile="PRUDENT")["stake_u"],2.0)
         self.assertEqual(robot_stake("basketball",0.80,100,2.0,profile="STANDARD")["stake_u"],3.0)
 
-    def test_custom_requires_stake_max(self):
-        with self.assertRaises(ValueError):
-            robot_stake("corners_cartons",0.70,80,2.0,profile="CUSTOM")
+    def test_custom_defaults_to_robot_custom_default(self):
+        result=robot_stake("corners_cartons",0.70,80,2.0,profile="CUSTOM")
+        self.assertEqual(result["stake_u"],3.0)
 
 if __name__ == "__main__": unittest.main()
