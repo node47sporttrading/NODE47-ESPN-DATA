@@ -45,7 +45,7 @@ Optional fields: `home_court_points`, `margin_standard_deviation`, `total_standa
 
 The response includes projected possessions, team points, margin, total, win probabilities and (when supplied) probabilities relative to the market total and home handicap. It always labels this implementation `baseline_uncalibrated`.
 
-## Backtesting utilities
+## historical model evaluationing utilities
 
 `node47_espn.evaluation.chronological_split` sorts observations by prediction timestamp and creates a forward-in-time split. `evaluate_predictions` reports Brier score, log loss, accuracy, reliability-bin summaries and score MAE/RMSE when scores are supplied.
 
@@ -55,7 +55,7 @@ The split helper is not a complete rolling-origin training pipeline. A valid eva
 
 1. Ingest and persist historical NBA game results and time-stamped team-stat snapshots.
 2. Build a point-in-time feature table with no post-game leakage.
-3. Add a rolling-origin backtest and compare against simple baselines and closing market probabilities.
+3. Keep the baseline non-bet-eligible until an independent out-of-sample validation report has been reviewed and recorded.
 4. Fit/calibrate variance and win probabilities on training/validation periods only.
 5. Report sample size, Brier score, log loss, calibration, score errors and confidence intervals on a final holdout.
 6. Add injuries, player availability, rest, travel and lineup adjustments only when their historical timestamps and provenance are available.
