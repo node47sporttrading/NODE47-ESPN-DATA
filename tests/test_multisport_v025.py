@@ -1,4 +1,6 @@
 import os
+import json
+import tempfile
 import unittest
 from unittest.mock import patch
 from fastapi.testclient import TestClient
@@ -6,7 +8,7 @@ from fastapi.testclient import TestClient
 os.environ["NODE47_DISABLE_SCHEDULER"] = "1"
 from node47_espn import api
 from node47_espn.tennis_model import predict_tennis
-from node47_espn.multisport_decision import edge_ev, stake_u
+from node47_espn.multisport_decision import edge_ev, stake_u, validation_state
 
 class MultisportV025Tests(unittest.TestCase):
     def setUp(self):
@@ -56,6 +58,28 @@ class MultisportV025Tests(unittest.TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertEqual(response.json()["decision"], "NO BET")
             self.assertEqual(response.json()["stake_u"], 0.0)
+
+    def test_validation_registry_requires_complete_independent_evidence(self):
+        valid_record = {
+            "status": "validated",
+            "validation_id": "audit-001",
+            "reviewer": {"name": "Independent Reviewer", "independence": "independent"},
+            "report_url": "https://example.org/audit.pdf",
+            "report_sha256": "a" * 64,
+            "validated_at_utc": "2026-11-22T12:00:00Z",
+            "protocol": "out_of_sample",
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            path = os.path.join(tmp, "validation.json")
+            with open(path, "w", encoding="utf-8") as handle:
+                json.dump({"sports": {"football": valid_record}}, handle)
+            with patch.dict(os.environ, {"NODE47_MODEL_VALIDATION_PATH": path}, clear=False):
+                self.assertEqual(validation_state("football"), (True, "audit-001"))
+                incomplete = dict(valid_record)
+                incomplete.pop("report_sha256")
+                with open(path, "w", encoding="utf-8") as handle:
+                    json.dump({"sports": {"football": incomplete}}, handle)
+                self.assertFalse(validation_state("football")[0])
 
     def test_legacy_owner_flags_do_not_activate_any_sport(self):
         with patch.dict(os.environ, {

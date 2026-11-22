@@ -18,7 +18,7 @@ The caller supplies timestamped historical snapshots containing the features kno
 The earlier rows are not used to fit parameters. The test is therefore an evaluation of this fixed baseline, not model training. No future data may be present in the pre-match feature snapshot. A paper ROI is descriptive and does not demonstrate a persistent edge.
 
 ## Validation gate
-The baseline always returns validation_status=not_validated and betting_eligible=false. No REST caller may set a model_validated boolean to bypass this gate. The server enables betting only when both deployment variables are explicitly set after a separate model-risk review:
+The baseline always returns validation_status=not_validated and betting_eligible=false. No REST caller may set a model_validated boolean to bypass this gate. The server enables betting only when a complete independent out-of-sample validation record exists in `config/model_validation.json`.
 - Activation is controlled by a complete independent validation record in `config/model_validation.json`; legacy owner-controlled environment flags are ignored.
 ## Market calculations
 For a complete mutually-exclusive market, raw implied probabilities are 1 / decimal odds. No-vig probabilities divide each raw implied probability by their sum. Edge (percentage points) = model probability - no-vig market probability. EV per unit = model probability × decimal odds - 1.

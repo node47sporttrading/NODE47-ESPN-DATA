@@ -21,7 +21,7 @@ class ApiTests(unittest.TestCase):
     def test_health_endpoint(self):
         response = self.client.get("/v1/health")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()["version"], "0.0.26")
+        self.assertEqual(response.json()["version"], "0.0.27")
 
     def test_competitions_separates_registry_from_active_collection(self):
         response = self.client.get("/v1/competitions?sport=basketball")
@@ -40,6 +40,11 @@ class ApiTests(unittest.TestCase):
 
     def test_mcp_endpoint_is_mounted(self):
         self.assertTrue(any(getattr(route, "path", None) == "/mcp" for route in api.app.routes))
+
+    def test_backtesting_routes_are_not_exposed(self):
+        paths = {getattr(route, "path", "") for route in api.app.routes}
+        for path in ("/v1/backtests/football", "/v1/backtests/basketball", "/v1/backtests/tennis"):
+            self.assertNotIn(path, paths)
 
     def test_searxng_callback_rejects_invalid_secret(self):
         with patch.dict(os.environ, {"SEARXNG_CALLBACK_SECRET": "correct-secret"}):
