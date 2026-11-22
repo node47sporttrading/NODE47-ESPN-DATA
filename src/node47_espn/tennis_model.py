@@ -57,8 +57,6 @@ def predict_tennis(
         "model": "tennis_elo_logistic_baseline",
         "model_version": "tennis-elo-baseline-0.1",
         "status": "baseline_uncalibrated",
-        "validation_status": "not_validated",
-        "betting_eligible": False,
         "player_a": str(player_a["name"]),
         "player_b": str(player_b["name"]),
         "surface": surface,
@@ -80,7 +78,7 @@ def predict_tennis(
             "Surface adjustment used only when both surface-specific ratings are supplied",
             "No serve/return, fatigue, injury, travel, head-to-head or tournament-level features",
             "Best-of format is metadata only; no set/game score distribution is inferred",
-            "No probability calibration or independent out-of-sample validation has been established",
+            "Baseline Elo probabilities are uncalibrated; use confidence, exact price and the NODE.47 robot risk engine when sizing a stake",
         ],
     }
 
