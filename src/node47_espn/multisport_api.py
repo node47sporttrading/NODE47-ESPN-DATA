@@ -27,6 +27,12 @@ class TennisBacktestInput(BaseModel):
     rows: list[dict[str, Any]]
     test_fraction: float = Field(default=0.2, gt=0, lt=1)
 
+
+class BasketballBacktestInput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    rows: list[dict[str, Any]]
+    test_fraction: float = Field(default=0.2, gt=0, lt=1)
+
 class EdgeInput(BaseModel):
     model_config = ConfigDict(extra="forbid")
     sport: str
@@ -42,6 +48,15 @@ class StakeInput(EdgeInput):
 class NoVigInput(BaseModel):
     model_config = ConfigDict(extra="forbid")
     decimal_odds: dict[str, float]
+
+
+@router.post("/v1/backtests/basketball")
+async def basketball_backtest(payload: BasketballBacktestInput):
+    try:
+        from .prediction import backtest_basketball
+        return backtest_basketball(payload.rows, test_fraction=payload.test_fraction)
+    except (ValueError, KeyError, TypeError) as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
 
 @router.post("/v1/predictions/tennis")
 async def tennis_prediction(payload: TennisInput):
