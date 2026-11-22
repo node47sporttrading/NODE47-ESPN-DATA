@@ -1,4 +1,4 @@
-# NODE.47 ESPN DATA — V0.0.16
+# NODE.47 ESPN DATA — V0.0.24
 
 Service de données multisport pour NODE.47 SPORT ANALYT. Collecte les scoreboards ESPN, normalise les événements, conserve les snapshots courants et expose une API REST ainsi qu'un serveur MCP Streamable HTTP en lecture seule.
 
@@ -142,3 +142,36 @@ PropLine is exposed through three validated adapters:
 - **Tennis:** use the single provider key `tennis` across ATP, WTA, Challenger and ITF. Stable defaults are match winner, game handicap and game total. Optional tennis markets are discovered per event before any odds request; no unverified tennis prop key is assumed.
 
 MCP tools: `propline_module_events`, `propline_module_odds`, `propline_module_event_markets`, and `propline_module_event_odds`. Event-specific odds requests first discover and validate actual per-event offerings. Period filters are forwarded to PropLine only when supported by the selected sport. ESPN event IDs and PropLine event IDs are provider-specific and must not be interchanged. Historical odds, closing lines and paid +EV endpoints are not part of the Free-tier integration.
+
+
+## NODE.47 football model, validation, EV and staking — V0.0.24
+
+### Football Poisson baseline
+- REST: `POST /v1/predictions/football`; MCP: `football_poisson_predict`.
+- Inputs are explicit pre-match home/home and away/away goals-for and goals-against averages, with sample sizes.
+- The model computes `lambda_home` and `lambda_away` as the mean of each attack rate and the opponent's corresponding concession rate. It returns 1X2, Over/Under 2.5 and BTTS probabilities from independent Poisson distributions.
+- This is a transparent baseline, **not a trained or calibrated model**. It does not automatically infer missing xG, lineups, injuries, tactical effects or opponent-strength adjustments. Minimum sample adequacy is not validation.
+
+### Chronological backtesting
+- REST: `POST /v1/backtests/football`; MCP: `football_backtest`.
+- Supply timestamped historical pre-match snapshots and final scores. The endpoint sorts by prediction time, holds out the latest fraction and reports multiclass Brier Score, Log Loss and optional flat-1U paper ROI when all three 1X2 prices are present.
+- The result is explicitly labelled `evaluation_only_not_model_validation`. It does not train the model, prove future profitability or automatically authorize betting. Do not use post-kickoff information in input snapshots.
+
+### Market normalization, Edge and EV
+- REST: `POST /v1/markets/no-vig` and `POST /v1/markets/edge-ev`; MCP: `football_edge_ev`.
+- Decimal odds are converted to implied probabilities and normalized to remove the bookmaker overround. Edge is the difference between model probability and no-vig market probability; EV per unit is (p_{model} \times cote - 1).
+- Market comparison may be displayed while the model is unvalidated, but the result remains `NO BET`.
+
+### Staking in U
+- REST: `POST /v1/staking/u`; MCP: `football_stake_u`.
+- `bankroll_units` is the user's bankroll expressed in U. The default policy is quarter Kelly (`kelly_fraction=0.25`) with a maximum stake of `1.0 U` per selection. Both are configurable in the request; the service never assumes the user's monetary value for 1 U.
+- Without an explicit deployment-level validation record, the result is always `NO BET` and `stake_u=0`. A client cannot self-declare the model validated.
+- Betting can be enabled only by setting both `NODE47_FOOTBALL_MODEL_VALIDATED=1` and a non-empty `NODE47_FOOTBALL_VALIDATION_ID` in the API environment after a documented independent out-of-sample review. These variables are intentionally not enabled by default. The current V0.0.24 baseline therefore remains non-bet-eligible.
+
+### MCP and SearXNG operational verification
+- MCP remains Streamable HTTP at `/mcp/`. The release must pass a real `initialize` + `tools/list` handshake and execute at least one tool call after deployment; a 200 response from `/health` alone does not prove MCP transport health.
+- SearXNG already exposes `searxng_health`, which dispatches a real GitHub Actions search and waits for the authenticated Render callback. It must be run against the deployed service with the production secrets configured; workflow success alone is not proof that the callback reached the waiting MCP request.
+- Render health-check path: `/health`. It is an HTTP liveness/readiness response and is distinct from the MCP and SearXNG end-to-end checks.
+
+### V0.0.24 safety status
+The football engine is a provisional baseline. Until sufficient historical data has been evaluated out of sample, calibration and market-relative performance have been reviewed, and a validation record has been issued, it must not generate a positive stake. Never interpret a paper ROI from a small holdout as evidence of a durable edge.
