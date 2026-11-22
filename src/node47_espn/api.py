@@ -30,6 +30,7 @@ from .football_model import (
     no_vig_probabilities, predict_football,
 )
 from .tennis_model import predict_tennis, backtest_tennis
+from .prediction import backtest_basketball
 from .multisport_decision import validation_state, edge_ev as multisport_edge_ev, stake_u as multisport_stake_u
 
 if os.getenv("DATABASE_URL"):
@@ -573,6 +574,15 @@ async def node47_runtime_info() -> dict[str, Any]:
         "searxng_e2e_tool": "searxng_health",
     }
 
+
+
+@mcp.tool()
+async def basketball_backtest(rows: list[dict[str, Any]], test_fraction: float = 0.2) -> dict[str, Any]:
+    """Chronological holdout evaluation from archived pre-tipoff basketball snapshots."""
+    try:
+        return backtest_basketball(rows, test_fraction=test_fraction)
+    except (ValueError, KeyError, TypeError) as exc:
+        return {"status": "invalid_backtest_data", "error": str(exc)}
 
 
 @mcp.tool()
