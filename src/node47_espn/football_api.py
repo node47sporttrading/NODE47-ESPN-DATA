@@ -107,8 +107,7 @@ async def staking_u(payload: StakeInput):
             model_probability=payload.model_probability,
             decimal_odds=payload.decimal_odds,
             bankroll_units=payload.bankroll_units,
-            model_validated=(os.getenv('NODE47_FOOTBALL_MODEL_VALIDATED', '0').strip() == '1'
-                             and bool(os.getenv('NODE47_FOOTBALL_VALIDATION_ID', '').strip())),
+            model_validated=validation_state('football')[0],
             kelly_fraction=payload.kelly_fraction,
             max_stake_u=payload.max_stake_u,
         )
