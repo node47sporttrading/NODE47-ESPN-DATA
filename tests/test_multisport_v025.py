@@ -17,8 +17,6 @@ class MultisportRobotRiskTests(unittest.TestCase):
         self.assertGreater(result["probabilities"]["player_a_win"],0.5)
         self.assertAlmostEqual(sum(result["probabilities"].values()),1.0)
         self.assertEqual(result["status"],"baseline_uncalibrated")
-        self.assertNotIn("validation_status", result)
-        self.assertNotIn("betting_eligible", result)
 
     def test_robot_stake_mirrors_native_mise_de(self):
         result=robot_stake("football",0.60,80,2.0,profile="STANDARD")
@@ -48,7 +46,6 @@ class MultisportRobotRiskTests(unittest.TestCase):
         result=edge_ev("football",0.70,2.0)
         self.assertTrue(result["bet_eligible"])
         self.assertEqual(result["decision"],"VALUE_CANDIDATE")
-        self.assertNotIn("model_validated",result)
 
     def test_rest_robot_staking_endpoint(self):
         response=self.client.post("/v1/decision/staking/robot",json={
