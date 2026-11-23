@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "dataset": "node47_espn_registry_candidates",
-  "generated_at_utc": "2026-11-19T10:24:20.855835Z",
+  "generated_at_utc": "2026-11-23T04:28:24.897823Z",
   "method": "Live enumeration of sports.core.api.espn.com/v2/sports/{sport}/leagues",
   "disclaimer": "Every competition_id below comes from ESPN's own enumeration. Codes are 'candidate' until a scoreboard probe proves they work (tools/probe_registry.py). Nothing is invented.",
   "sports": {

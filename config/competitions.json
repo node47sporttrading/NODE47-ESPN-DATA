@@ -1666,5 +1666,5 @@
     }
   ],
   "max_workers": 4,
-  "collection_mode": "all_verified_registry_entries"
+  "collection_mode": "verified_plus_previously_active"
 }
